@@ -2,153 +2,174 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Happy Birthday</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Yomogi&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&family=Yomogi&display=swap" rel="stylesheet">
 
 <style>
+
 body{
   margin:0;
   height:100vh;
   overflow:hidden;
-  text-align:center;
-  color:white;
-  animation: darkenSky 8s ease forwards;
+  font-family:sans-serif;
 
   background:
-    linear-gradient(
-      to top,
-      #ff9a8b 0%,
-      #ffb199 15%,
-      #5f6fff 35%,
-      #1c2768 60%,
-      #0a0f2c 80%,
-      #050816 100%
+    radial-gradient(ellipse at 70% 20%, rgba(255,160,120,0.25), transparent 60%),
+    radial-gradient(ellipse at 30% 10%, rgba(255,120,80,0.2), transparent 60%),
+    linear-gradient(to bottom,
+      #202544 0%,
+      #2a2f55 40%,
+      #5e4b73 70%,
+      #f3a683 100%
     );
+
+  animation: nightShift 12s ease-in-out forwards;
 }
 
 /* 徐々に暗く */
-@keyframes darkenSky{
+@keyframes nightShift{
   to{
-    filter:brightness(0.75) saturate(1.1);
+    background:
+      linear-gradient(to bottom,
+        #0f1226 0%,
+        #1a1e33 50%,
+        #2b2f4d 100%);
   }
-}
-
-/* 🌙 リアル三日月 */
-.moon{
-  position:absolute;
-  top:70px;
-  right:120px;
-  width:100px;
-  height:100px;
-  border-radius:50%;
-  background: radial-gradient(circle at 30% 30%, #fffdf5, #e6e2d3 70%);
-  box-shadow:
-    0 0 40px rgba(255,255,255,0.5),
-    inset -15px -15px 30px rgba(0,0,0,0.15);
-}
-
-.moon::after{
-  content:"";
-  position:absolute;
-  top:0;
-  left:25px;
-  width:100px;
-  height:100px;
-  border-radius:50%;
-  background:#0a0f2c;
 }
 
 /* 星 */
 .star{
   position:absolute;
-  width:2px;
-  height:2px;
   background:white;
   border-radius:50%;
   opacity:0.8;
-  animation: twinkle 4s infinite ease-in-out;
+  animation: twinkle 3s infinite alternate;
+}
+
+.star.small{ width:2px; height:2px; }
+.star.medium{ width:3px; height:3px; }
+.star.large{
+  width:4px; height:4px;
+  box-shadow:0 0 8px rgba(255,255,255,0.8);
 }
 
 @keyframes twinkle{
-  0%,100%{opacity:0.3;}
-  50%{opacity:1;}
+  from{ opacity:0.4; }
+  to{ opacity:1; }
+}
+
+/* 月 */
+.moon{
+  position:absolute;
+  top:8%;
+  right:10%;
+  width:110px;
+  height:110px;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 35% 35%, #ffffff 0%, #e5e5e5 60%, #cccccc 100%);
+  box-shadow:0 0 30px rgba(180,200,255,0.25);
+  overflow:hidden;
+}
+
+.moon::after{
+  content:"";
+  position:absolute;
+  width:110px;
+  height:110px;
+  border-radius:50%;
+  top:0;
+  left:40px;
+  background:
+    radial-gradient(circle at 30% 50%,
+      #1a1e33 0%,
+      #0f1226 60%,
+      transparent 100%);
 }
 
 /* タイトル */
 h1{
-  margin-top:50px;
+  position:absolute;
+  top:6%;
+  left:50%;
+  transform:translateX(-50%);
   font-family:'Playfair Display', serif;
   font-style:italic;
-  font-size:56px;
-  font-weight:400;
+  font-size:48px;
+  color:white;
+  letter-spacing:2px;
+  text-shadow:0 4px 20px rgba(0,0,0,0.4);
+  z-index:5;
 }
 
-/* 雲配置 */
+/* 雲ラッパー */
 .cloud-wrapper{
   position:relative;
   width:100%;
-  height:70vh;
+  height:75vh;
 }
 
-/* ☁ リアル雲 */
+/* 雲 */
 .cloud{
   position:absolute;
-  width:260px;
-  min-height:140px;
-  padding:28px 20px;
+  width:220px;
+  min-height:120px;
+  padding:22px 18px;
   box-sizing:border-box;
-  border-radius:100px;
+  border-radius:90px;
+
   font-family:'Yomogi', cursive;
-  font-size:15px;
-  line-height:1.8;
+  font-size:14px;
+  line-height:1.7;
   color:#333;
 
   background:
-    radial-gradient(circle at 30% 30%, #ffffff 60%, #eaeaea 100%);
+    radial-gradient(circle at 30% 30%, #ffffff 60%, #ececec 85%, #dcdcdc 100%);
 
   box-shadow:
-    0 20px 40px rgba(0,0,0,0.15),
-    inset 0 -10px 20px rgba(0,0,0,0.08);
+    0 25px 50px rgba(0,0,0,0.2),
+    inset -12px -10px 18px rgba(0,0,0,0.12),
+    inset 8px 6px 12px rgba(255,255,255,0.7);
+
+  z-index:2;
 
   opacity:0;
-  transform:translateY(80px);
+  transform:translateY(60px);
   animation:
     floatUp 1.5s ease-out forwards,
-    sway 8s ease-in-out infinite;
+    sway 7s ease-in-out infinite;
   animation-delay:0s,1.5s;
 }
 
-/* もこもこ強化 */
+/* もこもこ */
 .cloud::before,
 .cloud::after{
   content:"";
   position:absolute;
-  background: radial-gradient(circle at 30% 30%, #ffffff 60%, #eaeaea 100%);
   border-radius:50%;
-  box-shadow: inset 0 -8px 15px rgba(0,0,0,0.08);
+  background:inherit;
+  box-shadow:inherit;
   z-index:-1;
 }
 
 .cloud::before{
-  width:120px;
-  height:120px;
-  top:-45px;
-  left:30px;
+  width:90px;
+  height:90px;
+  top:-30px;
+  left:25px;
 }
 
 .cloud::after{
-  width:140px;
-  height:140px;
-  top:-55px;
-  right:30px;
+  width:100px;
+  height:100px;
+  top:-35px;
+  right:25px;
 }
 
-/* 散らし配置 */
+/* 配置 */
 #msg1{
-  top:18%;
+  top:15%;
   left:8%;
   animation-delay:0s,1.5s;
 }
@@ -161,7 +182,8 @@ h1{
 
 #msg3{
   bottom:12%;
-  left:35%;
+  left:50%;
+  transform:translateX(-50%) translateY(60px);
   animation-delay:1.2s,2.7s;
 }
 
@@ -173,48 +195,48 @@ h1{
 }
 
 @keyframes sway{
-  0%   { transform:translateY(0) translateX(0); }
-  25%  { transform:translateY(0) translateX(-10px); }
-  50%  { transform:translateY(0) translateX(0); }
-  75%  { transform:translateY(0) translateX(10px); }
-  100% { transform:translateY(0) translateX(0); }
+  0%   { transform:translateX(0); }
+  25%  { transform:translateX(-6px); }
+  50%  { transform:translateX(0); }
+  75%  { transform:translateX(6px); }
+  100% { transform:translateX(0); }
 }
+
 </style>
 </head>
 
 <body>
 
-<div class="moon"></div>
-
 <h1>Happy Birthday</h1>
 
+<div class="moon"></div>
+
+<!-- 星（ランダム配置例） -->
+<div class="star small" style="top:20%; left:30%;"></div>
+<div class="star medium" style="top:25%; left:60%;"></div>
+<div class="star large" style="top:18%; left:80%;"></div>
+<div class="star small" style="top:35%; left:50%;"></div>
+<div class="star medium" style="top:12%; left:45%;"></div>
+
 <div class="cloud-wrapper">
+
   <div class="cloud" id="msg1">
-    お誕生日おめでとう。<br>
-    素敵な一年になりますように。
+    お誕生日おめでとう！<br>
+    これからの一年が素敵な時間で<br>
+    いっぱいになりますように。
   </div>
 
   <div class="cloud" id="msg2">
-    おめでとう！<br>
-    心から応援しています。
+    いつもありがとう。<br>
+    笑顔があふれる一年になりますように。
   </div>
 
   <div class="cloud" id="msg3">
-    出会えてよかった。<br>
-    今日が特別な一日になりますように。
+    素敵な未来が<br>
+    あなたを待っていますように。
   </div>
-</div>
 
-<script>
-for(let i=0;i<120;i++){
-  const star=document.createElement("div");
-  star.className="star";
-  star.style.top=Math.random()*70+"vh";
-  star.style.left=Math.random()*100+"vw";
-  star.style.animationDelay=Math.random()*4+"s";
-  document.body.appendChild(star);
-}
-</script>
+</div>
 
 </body>
 </html>
