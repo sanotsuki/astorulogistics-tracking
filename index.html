@@ -3,66 +3,104 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>アストル運送｜お荷物お問い合わせシステム</title>
+<title>お荷物お問い合わせシステム</title>
 
 <style>
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  background-color: #f2f2f2;
-  color: #333;
+  background-color: #f7f7f7;
 }
 
-/* ヘッダー */
 .header {
   background-color: #ffd400;
+  color: black;
   padding: 14px 16px;
   font-weight: bold;
   font-size: 16px;
+  border-bottom: 3px solid black;
 }
 
-/* コンテンツ */
 .container {
-  padding: 16px;
+  padding: 20px;
 }
 
 .card {
   background: white;
+  padding: 20px;
   border-radius: 6px;
-  padding: 18px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 }
 
-.label {
-  font-size: 13px;
-  color: #666;
-}
-
-.number {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 16px;
-}
-
-table {
+input {
   width: 100%;
-  border-collapse: collapse;
+  padding: 12px;
+  font-size: 16px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 12px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: none;
+}
+
+.search-btn {
+  background-color: black;
+  color: #ffd400;
+  font-weight: bold;
+}
+
+.redelivery-btn {
+  background-color: #444;
+  color: white;
+}
+
+.result {
+  margin-top: 20px;
+  display: none;
   font-size: 14px;
 }
 
-th, td {
-  padding: 10px 4px;
-  border-bottom: 1px solid #e5e5e5;
+.status-box {
+  margin-top: 10px;
+  padding: 12px;
+  background-color: #fffbe6;
+  border-left: 4px solid #ffd400;
 }
 
-th {
-  text-align: left;
-  font-weight: 600;
-}
-
-.status-final {
-  font-weight: bold;
+.success {
   color: #c40000;
+  font-weight: bold;
+  margin-top: 15px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.loading {
+  display: none;
+  margin-top: 15px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.spinner {
+  margin: 10px auto;
+  width: 30px;
+  height: 30px;
+  border: 4px solid #ddd;
+  border-top: 4px solid black;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
 }
 </style>
 </head>
@@ -70,51 +108,70 @@ th {
 <body>
 
 <div class="header">
-アストル運送｜お荷物お問い合わせシステム
+お荷物お問い合わせシステム
 </div>
 
 <div class="container">
   <div class="card">
-    <div class="label">お問い合わせ番号</div>
-    <div class="number">4829-7713-260225</div>
+    <div>送り状番号を入力してください</div>
+    <input type="text" id="trackingNumber" placeholder="例）4829-7713-260225">
+    <button class="search-btn" onclick="search()">お問い合わせ</button>
 
-    <table id="tracking">
-      <tr>
-        <th>日時</th>
-        <th>配送状況</th>
-      </tr>
-    </table>
+    <div class="loading" id="loading">
+      <div class="spinner"></div>
+      情報を取得しています…
+    </div>
+
+    <div class="result" id="resultArea">
+      <hr>
+      <div>お問い合わせ番号：<span id="displayNumber"></span></div>
+
+      <div class="status-box">
+        <div><strong>配達状況：</strong></div>
+        <div>宅配ボックス1番にお届けしました。</div>
+        <div style="margin-top:8px;">
+          【暗証番号】<strong>0125</strong>
+        </div>
+      </div>
+
+      <button class="redelivery-btn" onclick="go404()">再配達受付（ダミー）</button>
+
+      <div class="success" id="birthdayMessage"></div>
+    </div>
+
   </div>
 </div>
 
 <script>
-const steps = [
-["02/24 18:02", "荷物を受け付けました"],
-["02/24 21:15", "発送しました"],
-["02/25 06:48", "最寄り営業所に到着しました"],
-["02/25 08:12", "配達中"],
-["02/25 08:27", "宅配ボックスへお届けしました"],
-["02/25 08:28", "🎉 お誕生日おめでとうございます 🎉"]
-];
+const correctNumber = "4829-7713-260225";
 
-let index = 0;
+function search() {
+  const input = document.getElementById("trackingNumber").value;
 
-function addRow() {
-  if (index < steps.length) {
-    const table = document.getElementById("tracking");
-    const row = table.insertRow(-1);
-    row.insertCell(0).innerText = steps[index][0];
-    row.insertCell(1).innerText = steps[index][1];
+  document.getElementById("loading").style.display = "block";
+  document.getElementById("resultArea").style.display = "none";
 
-    if (index === steps.length - 1) {
-      row.classList.add("status-final");
+  setTimeout(() => {
+    document.getElementById("loading").style.display = "none";
+
+    if (input === correctNumber) {
+      document.getElementById("displayNumber").innerText = input;
+      document.getElementById("resultArea").style.display = "block";
+
+      setTimeout(() => {
+        document.getElementById("birthdayMessage").innerText =
+        "🎉 お誕生日おめでとうございます 🎉";
+      }, 2000);
+
+    } else {
+      alert("送り状番号が見つかりませんでした。");
     }
-
-    index++;
-  }
+  }, 1500);
 }
 
-setInterval(addRow, 2000);
+function go404() {
+  window.location.href = "404.html";
+}
 </script>
 
 </body>
