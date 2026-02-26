@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>アストル運送｜お荷物お問い合わせシステム</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+/* ヘッダー */
+.header {
+  background-color: #ffd400;
+  padding: 14px 16px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* コンテンツ */
+.container {
+  padding: 16px;
+}
+
+.card {
+  background: white;
+  border-radius: 6px;
+  padding: 18px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.label {
+  font-size: 13px;
+  color: #666;
+}
+
+.number {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+th, td {
+  padding: 10px 4px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+th {
+  text-align: left;
+  font-weight: 600;
+}
+
+.status-final {
+  font-weight: bold;
+  color: #c40000;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+アストル運送｜お荷物お問い合わせシステム
+</div>
+
+<div class="container">
+  <div class="card">
+    <div class="label">お問い合わせ番号</div>
+    <div class="number">4829-7713-260225</div>
+
+    <table id="tracking">
+      <tr>
+        <th>日時</th>
+        <th>配送状況</th>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<script>
+const steps = [
+["02/24 18:02", "荷物を受け付けました"],
+["02/24 21:15", "発送しました"],
+["02/25 06:48", "最寄り営業所に到着しました"],
+["02/25 08:12", "配達中"],
+["02/25 08:27", "宅配ボックスへお届けしました"],
+["02/25 08:28", "🎉 お誕生日おめでとうございます 🎉"]
+];
+
+let index = 0;
+
+function addRow() {
+  if (index < steps.length) {
+    const table = document.getElementById("tracking");
+    const row = table.insertRow(-1);
+    row.insertCell(0).innerText = steps[index][0];
+    row.insertCell(1).innerText = steps[index][1];
+
+    if (index === steps.length - 1) {
+      row.classList.add("status-final");
+    }
+
+    index++;
+  }
+}
+
+setInterval(addRow, 2000);
+</script>
+
+</body>
+</html>
