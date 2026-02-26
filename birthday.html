@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:'Noto Sans JP',sans-serif;
+  background: radial-gradient(circle at 20% 30%, #1a1f4d, #090b1f 60%, #000);
+  overflow:hidden;
+  color:white;
+  text-align:center;
+}
+
+/* 星 */
+.star{
+  position:absolute;
+  width:2px;
+  height:2px;
+  background:white;
+  border-radius:50%;
+  animation: twinkle 2s infinite ease-in-out;
+}
+
+@keyframes twinkle{
+  0%,100%{opacity:0.2;}
+  50%{opacity:1;}
+}
+
+/* 流れ星 */
+.shooting-star{
+  position:absolute;
+  width:120px;
+  height:2px;
+  background:linear-gradient(90deg, white, transparent);
+  transform:rotate(-45deg);
+  animation:shoot 3s linear infinite;
+  opacity:0;
+}
+
+@keyframes shoot{
+  0%{
+    top:0;
+    left:80%;
+    opacity:0;
+  }
+  10%{
+    opacity:1;
+  }
+  100%{
+    top:80%;
+    left:0%;
+    opacity:0;
+  }
+}
+
+.container{
+  z-index:2;
+}
+
+h1{
+  font-size:42px;
+  letter-spacing:3px;
+  margin-bottom:15px;
+  background: linear-gradient(90deg,#fff,#ffd700,#fff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.message{
+  font-size:18px;
+  line-height:1.8;
+  opacity:0;
+  animation: fadeIn 2s ease forwards;
+  animation-delay:1.5s;
+}
+
+@keyframes fadeIn{
+  to{opacity:1;}
+}
+
+.planet{
+  position:absolute;
+  bottom:-120px;
+  right:-120px;
+  width:300px;
+  height:300px;
+  background: radial-gradient(circle at 30% 30%, #ffd700, #ff8c00);
+  border-radius:50%;
+  opacity:0.15;
+}
+</style>
+</head>
+
+<body>
+
+<div class="planet"></div>
+
+<div class="container">
+  <h1>🎉 HAPPY BIRTHDAY 🎉</h1>
+  <div class="message">
+    生まれてきてくれてありがとう。<br>
+    今日という日が、宇宙でいちばん特別な日になりますように。<br><br>
+    これからの1年が<br>
+    きらきら輝く時間でいっぱいになりますように 🌌
+  </div>
+</div>
+
+<script>
+/* 星を生成 */
+for(let i=0;i<120;i++){
+  const star=document.createElement("div");
+  star.className="star";
+  star.style.top=Math.random()*100+"vh";
+  star.style.left=Math.random()*100+"vw";
+  star.style.animationDelay=Math.random()*2+"s";
+  document.body.appendChild(star);
+}
+
+/* 流れ星を定期的に出す */
+setInterval(()=>{
+  const shooting=document.createElement("div");
+  shooting.className="shooting-star";
+  shooting.style.top=Math.random()*40+"%";
+  shooting.style.left=(60+Math.random()*30)+"%";
+  document.body.appendChild(shooting);
+
+  setTimeout(()=>{
+    shooting.remove();
+  },3000);
+
+},4000);
+</script>
+
+</body>
+</html>
