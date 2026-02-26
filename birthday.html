@@ -5,23 +5,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Happy Birthday</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&display=swap" rel="stylesheet">
 
 <style>
 body{
   margin:0;
   height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-family:'Noto Sans JP',sans-serif;
-  background: radial-gradient(circle at 20% 30%, #1a1f4d, #090b1f 60%, #000);
+  font-family:"Hiragino Kaku Gothic ProN","ヒラギノ角ゴシック","Hiragino Sans",sans-serif;
   overflow:hidden;
   color:white;
   text-align:center;
+
+  /* 🌇 マジックアワー背景 */
+  background: linear-gradient(
+    to top,
+    #ff9a9e 0%,
+    #fad0c4 25%,
+    #a18cd1 55%,
+    #1e2a78 80%,
+    #0c1445 100%
+  );
 }
 
-/* 星 */
+/* 夜空の星 */
 .star{
   position:absolute;
   width:2px;
@@ -36,109 +42,138 @@ body{
   50%{opacity:1;}
 }
 
-/* 流れ星 */
-.shooting-star{
+/* 月 */
+.moon{
   position:absolute;
-  width:120px;
-  height:2px;
-  background:linear-gradient(90deg, white, transparent);
-  transform:rotate(-45deg);
-  animation:shoot 3s linear infinite;
-  opacity:0;
+  top:60px;
+  right:80px;
+  width:80px;
+  height:80px;
+  background:#fff8dc;
+  border-radius:50%;
+  box-shadow:0 0 30px rgba(255,255,255,0.6);
 }
 
-@keyframes shoot{
-  0%{
-    top:0;
-    left:80%;
-    opacity:0;
-  }
-  10%{
-    opacity:1;
-  }
-  100%{
-    top:80%;
-    left:0%;
-    opacity:0;
-  }
-}
-
-.container{
-  z-index:2;
-}
-
+/* タイトル */
 h1{
-  font-size:42px;
-  letter-spacing:3px;
-  margin-bottom:15px;
-  background: linear-gradient(90deg,#fff,#ffd700,#fff);
+  margin-top:40px;
+  font-family:'Fredoka', sans-serif;
+  font-size:48px;
+  letter-spacing:2px;
+  background: linear-gradient(90deg,#fff,#ffe066,#fff);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
 
-.message{
-  font-size:18px;
-  line-height:1.8;
+/* 雲コンテナ */
+.cloud-container{
+  display:flex;
+  justify-content:center;
+  gap:40px;
+  margin-top:60px;
+  flex-wrap:wrap;
+}
+
+/* ☁ 雲 */
+.cloud{
+  position:relative;
+  width:260px;
+  height:150px;
+  background:white;
+  border-radius:80px;
+  color:#333;
+  padding:30px 20px;
+  box-sizing:border-box;
+  font-size:15px;
+  line-height:1.6;
+
   opacity:0;
-  animation: fadeIn 2s ease forwards;
-  animation-delay:1.5s;
+  transform:translateY(80px);
+  animation:
+    floatUp 1.5s ease-out forwards,
+    sway 5s ease-in-out infinite;
+  animation-delay:0s, 1.5s;
 }
 
-@keyframes fadeIn{
-  to{opacity:1;}
-}
-
-.planet{
+.cloud:before,
+.cloud:after{
+  content:"";
   position:absolute;
-  bottom:-120px;
-  right:-120px;
-  width:300px;
-  height:300px;
-  background: radial-gradient(circle at 30% 30%, #ffd700, #ff8c00);
+  background:white;
   border-radius:50%;
-  opacity:0.15;
+}
+
+.cloud:before{
+  width:100px;
+  height:100px;
+  top:-40px;
+  left:30px;
+}
+
+.cloud:after{
+  width:120px;
+  height:120px;
+  top:-50px;
+  right:30px;
+}
+
+/* 順番に出す */
+#msg1{ animation-delay:0s,1.5s; }
+#msg2{ animation-delay:0.5s,2s; }
+#msg3{ animation-delay:1s,2.5s; }
+
+/* ふわっと */
+@keyframes floatUp{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* ゆらゆら */
+@keyframes sway{
+  0%   { transform:translateY(0) translateX(0); }
+  25%  { transform:translateY(0) translateX(-6px); }
+  50%  { transform:translateY(0) translateX(0); }
+  75%  { transform:translateY(0) translateX(6px); }
+  100% { transform:translateY(0) translateX(0); }
 }
 </style>
 </head>
 
 <body>
 
-<div class="planet"></div>
+<div class="moon"></div>
 
-<div class="container">
-  <h1>🎉 HAPPY BIRTHDAY 🎉</h1>
-  <div class="message">
-    生まれてきてくれてありがとう。<br>
-    今日という日が、宇宙でいちばん特別な日になりますように。<br><br>
-    これからの1年が<br>
-    きらきら輝く時間でいっぱいになりますように 🌌
+<h1>🎉 HAPPY BIRTHDAY 🎉</h1>
+
+<div class="cloud-container">
+  <div class="cloud" id="msg1">
+    いつも優しくて本当にありがとう！<br>
+    最高の1年になりますように ✨
+  </div>
+
+  <div class="cloud" id="msg2">
+    これからもたくさん笑おうね！<br>
+    体に気をつけて素敵な毎日を 🌟
+  </div>
+
+  <div class="cloud" id="msg3">
+    出会えてよかった！<br>
+    今日という日が特別な1日になりますように 🎂
   </div>
 </div>
 
 <script>
-/* 星を生成 */
+/* 夜空側（上半分）に星生成 */
 for(let i=0;i<120;i++){
   const star=document.createElement("div");
   star.className="star";
-  star.style.top=Math.random()*100+"vh";
+  star.style.top=Math.random()*50+"vh"; // 上半分だけ
   star.style.left=Math.random()*100+"vw";
   star.style.animationDelay=Math.random()*2+"s";
   document.body.appendChild(star);
 }
-
-/* 流れ星を定期的に出す */
-setInterval(()=>{
-  const shooting=document.createElement("div");
-  shooting.className="shooting-star";
-  shooting.style.top=Math.random()*40+"%";
-  shooting.style.left=(60+Math.random()*30)+"%";
-  document.body.appendChild(shooting);
-
-  setTimeout(()=>{
-    shooting.remove();
-  },3000);
-
-},4000);
 </script>
 
 </body>
