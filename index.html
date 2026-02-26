@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>アストル運送｜配送管理システム</title>
 
-<!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
@@ -35,7 +34,7 @@ body{
   font-weight:600;
   font-size:15px;
   letter-spacing:0.5px;
-  white-space:nowrap;   /* ← 2行防止 */
+  white-space:nowrap;
 }
 
 .container{
@@ -142,7 +141,7 @@ button:hover{
 <div class="container">
   <div class="card">
     送り状番号を入力してください
-    <input type="text" id="trackingNumber" placeholder="例）4829-7713-260225">
+    <input type="text" id="trackingNumber" placeholder="例）1234-5678-9000">
     <button onclick="search()">照会</button>
 
     <div class="loading" id="loading">
@@ -179,7 +178,7 @@ button:hover{
 </div>
 
 <script>
-const correctNumber = "4829-7713-260225";
+const correctNumber = "2026-0125-0101";
 
 function search(){
   const input = document.getElementById("trackingNumber").value;
