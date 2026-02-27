@@ -3,116 +3,157 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>アストル運送｜配送管理システム</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600&display=swap" rel="stylesheet">
+<title>アストル運送 | 荷物検索</title>
 
 <style>
 body{
   margin:0;
-  font-family: 'Noto Sans JP', sans-serif;
-  background:#1c1f24;
-  color:#e8e8e8;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
+  background:#f4f6f9;
+  color:#222;
 }
 
+/* ===== ヘッダー ===== */
 .header{
-  background:#111317;
-  padding:14px 20px;
-  border-bottom:2px solid #2c313a;
+  background:#1f3fa6;
+  color:white;
+  padding:18px;
+  font-weight:600;
+  font-size:20px;
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:10px;
 }
 
-.logo{
-  width:26px;
-  height:26px;
-  flex-shrink:0;
-}
-
-.title{
-  font-weight:600;
-  font-size:15px;
-  white-space:nowrap;
-}
-
-.container{
-  max-width:520px;
-  margin:40px auto;
-  padding:0 20px;
-}
-
-.card{
-  background:#262b33;
-  padding:24px;
+.logo-box{
+  width:32px;
+  height:32px;
+  background:white;
   border-radius:6px;
-  box-shadow:0 0 0 1px #2f3540;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  color:#1f3fa6;
 }
 
-input{
-  width:100%;
-  padding:12px;
-  margin-top:10px;
-  background:#1c1f24;
-  border:1px solid #3a404c;
-  color:white;
-  border-radius:4px;
+/* ===== 検索エリア ===== */
+.search-card{
+  background:white;
+  margin:-20px 16px 20px;
+  padding:20px;
+  border-radius:16px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.08);
 }
 
-button{
-  width:100%;
-  padding:12px;
-  margin-top:14px;
-  background:#3a404c;
-  border:none;
-  color:white;
-  border-radius:4px;
-  cursor:pointer;
+.tab{
+  display:flex;
+  margin-bottom:15px;
+  border-radius:10px;
+  overflow:hidden;
+  border:1px solid #ddd;
 }
 
-button:hover{
-  background:#4a5160;
-}
-
-.loading{
-  display:none;
+.tab div{
+  flex:1;
+  padding:10px;
   text-align:center;
-  margin-top:15px;
   font-size:14px;
 }
 
+.tab .active{
+  background:#2f5bff;
+  color:white;
+  font-weight:600;
+}
+
+.input{
+  width:100%;
+  padding:14px;
+  font-size:16px;
+  border-radius:10px;
+  border:1px solid #ccc;
+  box-sizing:border-box;
+  margin-bottom:12px;
+}
+
+.search-btn{
+  width:100%;
+  padding:14px;
+  background:black;
+  color:white;
+  border:none;
+  border-radius:10px;
+  font-size:16px;
+  cursor:pointer;
+}
+
+.search-btn:active{
+  opacity:0.8;
+}
+
+/* ===== 結果 ===== */
+.section-title{
+  margin:20px 16px 10px;
+  font-weight:600;
+  font-size:18px;
+}
+
+.result-card{
+  background:white;
+  margin:0 16px 16px;
+  padding:16px;
+  border-radius:14px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.06);
+}
+
+.status{
+  display:inline-block;
+  padding:4px 10px;
+  background:#e8f0ff;
+  color:#1f3fa6;
+  border-radius:6px;
+  font-size:13px;
+  margin-bottom:8px;
+}
+
+.detail-btn{
+  width:100%;
+  padding:14px;
+  background:#1f3fa6;
+  color:white;
+  border:none;
+  border-radius:10px;
+  font-size:15px;
+  margin-top:10px;
+  cursor:pointer;
+}
+
+.loading{
+  text-align:center;
+  padding:20px;
+  display:none;
+}
+
 .spinner{
-  margin:10px auto;
-  width:28px;
-  height:28px;
-  border:4px solid #3a404c;
-  border-top:4px solid white;
+  width:30px;
+  height:30px;
+  border:4px solid #ddd;
+  border-top:4px solid #1f3fa6;
   border-radius:50%;
+  margin:0 auto;
   animation:spin 1s linear infinite;
 }
 
 @keyframes spin{
-  100%{transform:rotate(360deg);}
+  to{ transform:rotate(360deg); }
 }
 
-.result{
-  display:none;
-  margin-top:20px;
-  font-size:14px;
-}
-
-.status-box{
-  background:#1f232a;
-  padding:15px;
-  margin-top:10px;
-  border-left:4px solid #6b7280;
-}
-
-.timeline{
-  margin-top:15px;
+.footer{
+  text-align:center;
+  padding:30px 0;
+  color:#888;
   font-size:13px;
-  line-height:1.7;
-  color:#b8bcc4;
 }
 </style>
 </head>
@@ -120,73 +161,66 @@ button:hover{
 <body>
 
 <div class="header">
-  <svg class="logo" viewBox="0 0 24 24" fill="white">
-    <path d="M12 2C8 6 8 10 8 10L14 16C14 16 18 16 22 12C18 12 14 8 12 2Z"/>
-    <circle cx="11" cy="9" r="1.5" fill="#1c1f24"/>
-  </svg>
-  <div class="title">アストル運送｜配送管理システム</div>
+  <div class="logo-box">A</div>
+  アストル運送
 </div>
 
-<div class="container">
-  <div class="card">
-    送り状番号を入力してください
-    <input type="text" id="trackingNumber" placeholder="例）1234-5678-9000">
-    <button onclick="search()">照会</button>
-
-    <div class="loading" id="loading">
-      <div class="spinner"></div>
-      配送情報を取得しています...
-    </div>
-
-    <div class="result" id="resultArea">
-      <hr style="border-color:#3a404c;">
-      <div>お問い合わせ番号：<span id="displayNumber"></span></div>
-      <div>担当営業所コード：21109</div>
-
-      <div class="status-box">
-        <strong>配達完了</strong><br>
-        3月12日 22:00<br><br>
-        宅配ボックス1番にお届けしました。<br>
-        【暗証番号】0125
-      </div>
-
-      <div class="timeline">
-        3月12日 15:12　仕分け完了（営業所 21109）<br>
-        3月12日 18:42　最寄営業所を出発<br>
-        3月12日 20:15　配達中<br>
-        3月12日 21:58　ご不在のため宅配ボックスへ投函<br>
-        3月12日 22:00　配達完了
-      </div>
-
-      <button onclick="goBirthday()">マイページに戻る</button>
-    </div>
-
+<div class="search-card">
+  <div class="tab">
+    <div class="active">送り状番号</div>
+    <div>QR検索</div>
   </div>
+
+  <input class="input" id="tracking"
+    placeholder="例）1234-5678-9000">
+
+  <button class="search-btn" onclick="search()">検索</button>
+</div>
+
+<div class="loading" id="loading">
+  <div class="spinner"></div>
+  <p>検索中...</p>
+</div>
+
+<div id="result"></div>
+
+<div class="footer">
+  © 2026 Astrul Express
 </div>
 
 <script>
-const correctNumber = "2026-0125-0101";
-
 function search(){
-  const input = document.getElementById("trackingNumber").value;
-  document.getElementById("loading").style.display="block";
-  document.getElementById("resultArea").style.display="none";
+  const num = document.getElementById("tracking").value.trim();
+  const loading = document.getElementById("loading");
+  const result = document.getElementById("result");
+
+  result.innerHTML="";
+  loading.style.display="block";
 
   setTimeout(()=>{
-    document.getElementById("loading").style.display="none";
 
-    if(input===correctNumber){
-      document.getElementById("displayNumber").innerText=input;
-      document.getElementById("resultArea").style.display="block";
+    loading.style.display="none";
+
+    if(num === "2026-0125-0101"){
+      result.innerHTML = `
+        <div class="section-title">荷物検索結果</div>
+        <div class="result-card">
+          <div><strong>${num}</strong></div>
+          <div class="status">配達完了</div>
+          <div>3月12日 22:00 配達完了</div>
+          <div>宅配ボックス1番にお届けしました</div>
+          <div>暗証番号：0125</div>
+          <button class="detail-btn"
+            onclick="location.href='birthday.html'">
+            マイページに戻る
+          </button>
+        </div>
+      `;
     }else{
-      alert("該当する送り状番号が見つかりません。");
+      location.href="https://www.google.com/404";
     }
 
   },1500);
-}
-
-function goBirthday(){
-  window.location.href="birthday.html";
 }
 </script>
 
