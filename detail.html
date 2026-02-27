@@ -21,37 +21,102 @@ header{
   font-weight:700;
 }
 
+/* コンテナ */
 .container{
-  padding:20px 16px;
+  padding:20px 16px 40px;
 }
 
+/* カード */
 .card{
   background:white;
-  border-radius:16px;
-  padding:20px;
-  box-shadow:0 6px 18px rgba(0,0,0,0.08);
+  border-radius:18px;
+  padding:22px 18px;
+  box-shadow:0 10px 24px rgba(0,0,0,0.08);
 }
 
-.status{
-  margin-bottom:16px;
-  font-size:14px;
-  color:#555;
+/* 送り状番号 */
+.tracking-number{
+  font-size:18px;
+  font-weight:700;
+  margin-bottom:18px;
 }
 
-.bold{
+/* タイムライン */
+.timeline{
+  position:relative;
+  margin-left:14px;
+  padding-left:20px;
+  border-left:2px solid #d0d6e6;
+}
+
+.timeline-item{
+  position:relative;
+  margin-bottom:26px;
+}
+
+.timeline-item:last-child{
+  margin-bottom:0;
+}
+
+/* 丸 */
+.timeline-item::before{
+  content:"";
+  position:absolute;
+  left:-31px;
+  top:2px;
+  width:14px;
+  height:14px;
+  border-radius:50%;
+  background:#c5cbe0;
+  border:3px solid white;
+  box-shadow:0 0 0 2px #d0d6e6;
+}
+
+/* 完了済み */
+.completed::before{
+  background:#1f3fa3;
+  box-shadow:0 0 0 2px #1f3fa3;
+}
+
+/* 現在地（配達完了） */
+.current{
   font-weight:700;
   color:#1f3fa3;
 }
 
+.date{
+  font-size:13px;
+  color:#666;
+  margin-bottom:4px;
+}
+
+.status{
+  font-size:15px;
+}
+
+/* 下部情報 */
+.delivery-box{
+  margin-top:24px;
+  padding-top:18px;
+  border-top:1px solid #eee;
+  font-size:14px;
+}
+
+.delivery-box p{
+  margin:6px 0;
+}
+
+/* ボタン */
 button{
-  margin-top:20px;
+  margin-top:26px;
   width:100%;
   padding:14px;
   background:#1f3fa3;
   color:white;
   border:none;
-  border-radius:10px;
+  border-radius:12px;
   font-size:16px;
+  font-weight:600;
 }
 </style>
 </head>
@@ -63,15 +128,38 @@ button{
 <div class="container">
   <div class="card">
 
-    <div class="status">3月10日 09:15　発送</div>
-    <div class="status">3月11日 14:32　営業所到着（営業所コード：21109）</div>
-    <div class="status">3月12日 08:10　配達中</div>
-    <div class="status bold">3月12日 22:00　配達完了</div>
+    <div class="tracking-number">
+      送り状番号：2026-0125-0101
+    </div>
 
-    <hr>
+    <div class="timeline">
 
-    <p><strong>お届け先：</strong>宅配ボックス1番</p>
-    <p><strong>暗証番号：</strong>0125</p>
+      <div class="timeline-item completed">
+        <div class="date">3月10日 09:15</div>
+        <div class="status">発送</div>
+      </div>
+
+      <div class="timeline-item completed">
+        <div class="date">3月11日 14:32</div>
+        <div class="status">営業所到着（営業所コード：21109）</div>
+      </div>
+
+      <div class="timeline-item completed">
+        <div class="date">3月12日 08:10</div>
+        <div class="status">配達中</div>
+      </div>
+
+      <div class="timeline-item completed current">
+        <div class="date">3月12日 22:00</div>
+        <div class="status">配達完了</div>
+      </div>
+
+    </div>
+
+    <div class="delivery-box">
+      <p><strong>お届け先：</strong>宅配ボックス1番</p>
+      <p><strong>暗証番号：</strong>0125</p>
+    </div>
 
     <button onclick="location.href='birthday.html'">
       マイページに戻る
