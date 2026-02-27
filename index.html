@@ -10,10 +10,8 @@ body{
   margin:0;
   font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN",sans-serif;
   background:#f2f4f8;
-  color:#222;
 }
 
-/* ヘッダー */
 header{
   background:#1f3fa3;
   color:white;
@@ -23,35 +21,29 @@ header{
   gap:12px;
 }
 
-.logo{
-  width:34px;
-  height:34px;
-}
-
 header h1{
-  font-size:22px;
+  font-size:24px;
   margin:0;
   font-weight:700;
 }
 
-/* 検索ボックス */
 .search-wrapper{
-  padding:20px 16px 0 16px;
+  padding:24px 16px;
 }
 
 .search-box{
   background:white;
   border-radius:16px;
-  padding:20px;
-  box-shadow:0 6px 18px rgba(0,0,0,0.08);
+  padding:22px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.08);
 }
 
 .tabs{
   display:flex;
+  border:1px solid #ddd;
   border-radius:10px;
   overflow:hidden;
-  margin-bottom:16px;
-  border:1px solid #ddd;
+  margin-bottom:18px;
 }
 
 .tabs div{
@@ -87,59 +79,12 @@ button{
   font-size:16px;
   font-weight:600;
 }
-
-/* 検索結果 */
-.section{
-  padding:20px 16px;
-}
-
-.result-card{
-  background:white;
-  border-radius:16px;
-  padding:18px;
-  box-shadow:0 6px 18px rgba(0,0,0,0.08);
-  text-decoration:none;
-  color:inherit;
-  display:block;
-}
-
-.badge{
-  display:inline-block;
-  background:#e6edff;
-  color:#1f3fa3;
-  padding:6px 10px;
-  border-radius:8px;
-  font-size:13px;
-  margin:8px 0;
-}
-
-.result-card h3{
-  margin:0;
-  font-size:18px;
-}
-
-.result-card p{
-  margin:6px 0 0 0;
-  font-size:14px;
-  color:#555;
-}
-
-footer{
-  text-align:center;
-  padding:30px;
-  font-size:13px;
-  color:#777;
-}
 </style>
 </head>
 
 <body>
 
 <header>
-  <!-- ロケットSVG -->
-  <svg class="logo" viewBox="0 0 24 24" fill="white">
-    <path d="M12 2C9 5 8 9 8 12l4 4c3 0 7-1 10-4-3-3-7-4-10-10zM6 14l-2 6 6-2-4-4z"/>
-  </svg>
   <h1>アストル運送</h1>
 </header>
 
@@ -155,25 +100,11 @@ footer{
   </div>
 </div>
 
-<div class="section">
-  <h2>荷物検索結果</h2>
-
-  <a href="detail.html" id="result" class="result-card" style="display:none;">
-    <h3>2026-0125-0101</h3>
-    <div class="badge">配達完了</div>
-    <p>3月12日 22:00 配達完了</p>
-  </a>
-</div>
-
-<footer>
-  © 2026 Astrul Express
-</footer>
-
 <script>
 function search(){
   const input=document.getElementById("tracking").value;
   if(input==="2026-0125-0101"){
-    document.getElementById("result").style.display="block";
+    window.location.href="result.html";
   }else{
     window.location.href="404.html";
   }
