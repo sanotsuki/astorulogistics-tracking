@@ -20,15 +20,23 @@ body{
 }
 
 /* ===== indexと完全同一ヘッダー ===== */
-header{
-  background:var(--main-blue);
-  color:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  height:64px;
-  position:relative;
-}
+<header>
+<svg class="logo" viewBox="0 0 200 200">
+  <circle cx="100" cy="100" r="95" fill="#0f2e6d" stroke="#d83b3b" stroke-width="6"/>
+  <g fill="white">
+    <circle cx="50" cy="60" r="3"/>
+    <circle cx="150" cy="70" r="2.5"/>
+    <circle cx="130" cy="40" r="2"/>
+  </g>
+  <circle cx="160" cy="55" r="9" fill="#e23b3b"/>
+  <path d="M65 150 C65 80,85 45,100 40 C115 45,135 80,135 150"
+        fill="none" stroke="white" stroke-width="16" stroke-linecap="round"/>
+  <path d="M80 120 C100 90,120 75,150 60"
+        fill="none" stroke="#e23b3b" stroke-width="8" stroke-linecap="round"/>
+  <ellipse cx="100" cy="150" rx="60" ry="18" fill="#9aa3b2"/>
+</svg>
+アストル運送
+</header>
 
 .logo{
   font-size:20px;
