@@ -20,12 +20,12 @@ header{
   padding:18px;
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:14px;
 }
 
 .logo{
-  width:38px;
-  height:38px;
+  width:48px;
+  height:48px;
 }
 
 header h1{
@@ -37,7 +37,7 @@ header h1{
 
 /* ===== 検索エリア ===== */
 .search-wrapper{
-  padding:24px 16px;
+  padding:28px 16px;
 }
 
 .search-box{
@@ -91,7 +91,7 @@ button{
 }
 
 button:active{
-  opacity:0.8;
+  opacity:0.85;
 }
 
 /* ===== フッター ===== */
@@ -107,27 +107,32 @@ footer{
 <body>
 
 <header>
-  <!-- Aロケットロゴ -->
-  <svg class="logo" viewBox="0 0 60 60">
-    <!-- A型ロケット本体 -->
-    <path d="M30 5 
-             L50 50 
-             L40 50 
-             L34 38 
-             L26 38 
-             L20 50 
-             L10 50 
-             Z"
-          fill="white"/>
-    
-    <!-- コックピット -->
-    <circle cx="30" cy="22" r="4" fill="#1f3fa3"/>
+  <!-- 筆記体Aロケットロゴ -->
+  <svg class="logo" viewBox="0 0 120 80">
 
-    <!-- 噴射 -->
-    <path d="M30 50 
-             Q27 58 30 55 
-             Q33 58 30 50"
-          fill="white"/>
+    <!-- 軌道ライン -->
+    <path d="M15 55 
+             C 10 25, 55 5, 95 30"
+          stroke="white"
+          stroke-width="4"
+          fill="none"
+          stroke-linecap="round"/>
+
+    <!-- 筆記体A -->
+    <path d="M55 60 
+             C50 40, 60 20, 70 35
+             C75 45, 65 55, 55 60
+             M60 45 
+             C65 42, 70 42, 75 45"
+          stroke="white"
+          stroke-width="5"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"/>
+
+    <!-- ロケット先端 -->
+    <circle cx="95" cy="30" r="4" fill="white"/>
+
   </svg>
 
   <h1>アストル運送</h1>
@@ -151,11 +156,12 @@ footer{
 
 <script>
 function search(){
-  const input=document.getElementById("tracking").value;
-  if(input==="2026-0125-0101"){
-    window.location.href="result.html";
-  }else{
-    window.location.href="404.html";
+  const input = document.getElementById("tracking").value.trim();
+
+  if(input === "2026-0125-0101"){
+    window.location.href = "result.html";
+  } else {
+    window.location.href = "404.html";
   }
 }
 </script>
