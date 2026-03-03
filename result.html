@@ -15,99 +15,188 @@ body{
 header{
   background:#0f2e6d;
   color:white;
-  padding:16px;
+  padding:14px 16px;
+  font-size:18px;
   font-weight:600;
+  display:flex;
+  align-items:center;
+}
+
+.logo{
+  width:38px;
+  height:38px;
+  margin-right:10px;
 }
 
 .wrapper{
-  padding:16px;
+  padding:20px 16px;
 }
 
-.summary{
+.card{
   background:white;
   border-radius:16px;
   padding:20px;
   box-shadow:0 6px 18px rgba(0,0,0,0.08);
+  margin-bottom:20px;
+}
+
+.section-title{
+  font-size:18px;
+  font-weight:600;
+  margin-bottom:16px;
+}
+
+input{
+  width:100%;
+  padding:14px;
+  font-size:16px;
+  border-radius:10px;
+  border:1px solid #ccc;
+  box-sizing:border-box;
+}
+
+.primary-btn{
+  width:100%;
+  margin-top:14px;
+  padding:14px;
+  border:none;
+  border-radius:14px;
+  background:#0f2e6d;
+  color:white;
+  font-size:16px;
+  font-weight:600;
+}
+
+.clear-btn{
+  width:100%;
+  margin-top:14px;
+  padding:14px;
+  border:none;
+  border-radius:14px;
+  background:#e5e5e5;
+  color:#555;
+  font-size:16px;
+  font-weight:600;
+}
+
+.result-box{
+  background:white;
+  border-radius:16px;
+  padding:18px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.08);
   text-decoration:none;
   color:black;
   display:block;
-}
-
-.status{
-  font-size:18px;
-  font-weight:600;
-  margin-bottom:6px;
-}
-
-.from{
-  font-size:14px;
-  color:#555;
   margin-bottom:18px;
 }
 
-.bar{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-top:10px;
+.status{
+  font-weight:600;
+  font-size:16px;
+  margin-bottom:8px;
 }
 
-.circle{
-  width:16px;
-  height:16px;
-  background:#0f2e6d;
-  border-radius:50%;
+.date{
+  font-size:14px;
+  margin-bottom:6px;
 }
 
-.line{
-  flex:1;
-  height:4px;
-  background:#0f2e6d;
-}
-
-.labels{
-  display:flex;
-  justify-content:space-between;
-  font-size:12px;
-  margin-top:8px;
+.note{
+  font-size:14px;
   color:#555;
+}
+
+footer{
+  text-align:center;
+  font-size:12px;
+  color:#777;
+  padding:30px 0 20px;
 }
 </style>
 </head>
 
 <body>
 
-<header>検索結果</header>
+<header>
+<svg class="logo" viewBox="0 0 200 200">
+  <circle cx="100" cy="100" r="95" fill="#0f2e6d" stroke="#d83b3b" stroke-width="6"/>
+  <g fill="white">
+    <circle cx="50" cy="60" r="3"/>
+    <circle cx="150" cy="70" r="2.5"/>
+    <circle cx="130" cy="40" r="2"/>
+  </g>
+  <circle cx="160" cy="55" r="9" fill="#e23b3b"/>
+  <path d="M65 150 C65 80,85 45,100 40 C115 45,135 80,135 150"
+        fill="none" stroke="white" stroke-width="16" stroke-linecap="round"/>
+  <path d="M80 120 C100 90,120 75,150 60"
+        fill="none" stroke="#e23b3b" stroke-width="8" stroke-linecap="round"/>
+  <ellipse cx="100" cy="150" rx="60" ry="18" fill="#9aa3b2"/>
+</svg>
+アストル運送
+</header>
 
 <div class="wrapper">
 
-<a href="detail.html" class="summary">
+<!-- 🔎 再検索エリア -->
+<div class="card">
+  <div class="section-title">追跡番号検索</div>
 
-<div class="status">
-22時00分　お届け済み（宅配ボックス）
+  <form id="trackingForm">
+    <input 
+      type="text"
+      id="tracking"
+      placeholder="例) 0012-3456-7890"
+      inputmode="numeric"
+      maxlength="14"
+      required
+    >
+    <button type="submit" class="primary-btn">追跡する</button>
+  </form>
 </div>
 
-<div class="from">
-チームアストルさまより
-</div>
+<!-- 📦 検索結果 -->
+<div class="section-title">荷物検索結果</div>
 
-<div class="bar">
-<div class="circle"></div>
-<div class="line"></div>
-<div class="circle"></div>
-<div class="line"></div>
-<div class="circle"></div>
-</div>
-
-<div class="labels">
-<span>発送</span>
-<span>営業所</span>
-<span>到着</span>
-</div>
-
+<a href="detail.html" class="result-box">
+  <div>追跡番号：0002-1109-0101</div>
+  <div class="status">配達完了</div>
+  <div class="date">3月12日(木) 22時00分　引渡完了</div>
+  <div class="note">宅配ボックスにお届けさせていただきました。</div>
 </a>
 
+<button class="clear-btn" onclick="clearResult()">検索結果をクリア</button>
+
 </div>
+
+<footer>©︎ アストル運送</footer>
+
+<script>
+const input = document.getElementById("tracking");
+const form = document.getElementById("trackingForm");
+
+// 自動ハイフン
+input.addEventListener("input", function(){
+  let numbers = this.value.replace(/\D/g, "");
+  numbers = numbers.substring(0,12);
+  let formatted = numbers.replace(/(\d{4})(?=\d)/g, "$1-");
+  this.value = formatted;
+});
+
+// 判定
+form.addEventListener("submit", function(e){
+  e.preventDefault();
+  const correctNumber = "0002-1109-0101";
+  if(input.value === correctNumber){
+    location.reload();
+  }else{
+    alert("その追跡番号は存在しません。\n番号をお確かめの上、再度ご入力ください。");
+  }
+});
+
+function clearResult(){
+  location.href = "index.html";
+}
+</script>
 
 </body>
 </html>
