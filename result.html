@@ -3,230 +3,187 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>検索結果</title>
+<title>荷物検索結果 | アストル運送</title>
 
 <style>
 body{
   margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
-  background:#f2f3f7;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background:#f5f7fb;
 }
 
+/* ===== ヘッダー ===== */
 header{
-  background:#0f2e6d;
-  color:white;
-  padding:14px 16px;
-  font-size:18px;
-  font-weight:600;
-  display:flex;
-  align-items:center;
+  background:#0d47a1;
+  color:#fff;
+  text-align:center;
+  padding:18px 0;
+  font-size:20px;
+  font-weight:bold;
 }
 
-.logo{
-  width:38px;
-  height:38px;
-  margin-right:10px;
+/* ===== コンテンツ ===== */
+.container{
+  padding:20px;
 }
 
-.wrapper{
-  padding:20px 16px;
-}
-
-.card{
-  background:white;
-  border-radius:16px;
-  padding:16px;
-  box-shadow:0 6px 18px rgba(0,0,0,0.08);
-  margin-bottom:20px;
-}
-
-.section-title{
-  font-size:18px;
-  font-weight:600;
-  margin-bottom:14px;
-}
-
-/* 🔎 検索ボックスさらに縮小 */
-input{
-  width:100%;
-  padding:8px 10px;
-  font-size:14px;
+/* ===== 検索ボックス（indexより縦幅小さめ） ===== */
+.search-area{
+  background:#fff;
+  padding:15px;
   border-radius:10px;
+}
+
+.search-title{
+  font-weight:bold;
+  margin-bottom:8px;
+}
+
+.search-box{
+  width:100%;
+  padding:8px;              /* 縦幅さらに縮小 */
+  font-size:14px;           /* 1pt小さめ */
   border:1px solid #ccc;
+  border-radius:6px;
   box-sizing:border-box;
 }
 
-.primary-btn{
+.search-btn{
+  margin-top:10px;
   width:100%;
-  margin-top:8px;
-  padding:8px;
+  padding:9px;
+  background:#0d47a1;
+  color:#fff;
   border:none;
-  border-radius:10px;
-  background:#0f2e6d;
-  color:white;
+  border-radius:6px;
   font-size:14px;
-  font-weight:600;
-}
-
-/* 📦 結果ボックス */
-.result-box{
-  position:relative;
-  background:white;
-  border-radius:16px;
-  padding:18px 40px;
-  box-shadow:0 6px 18px rgba(0,0,0,0.08);
-  text-decoration:none;
-  color:black;
-  display:block;
-  margin-bottom:18px;
-}
-
-/* 左チェック */
-.check{
-  position:absolute;
-  left:12px;
-  top:50%;
-  transform:translateY(-50%);
-  width:28px;
-  height:28px;
-  background:#0f2e6d;
-  color:white;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:16px;
-}
-
-/* 右矢印 */
-.arrow{
-  position:absolute;
-  right:14px;
-  top:50%;
-  transform:translateY(-50%);
-  font-size:18px;
-  color:#999;
-}
-
-.tracking{
-  font-weight:700;
-  margin-bottom:6px;
-}
-
-.status{
-  font-weight:600;
-  margin-bottom:6px;
-}
-
-.date{
-  margin-bottom:6px;
-  font-size:14px;
-}
-
-.note{
-  font-size:12px;
-  color:#666;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
 }
 
 .clear-btn{
+  margin-top:8px;
   width:100%;
-  margin-top:16px;
-  padding:14px;
+  padding:8px;
+  background:#e0e0e0;
   border:none;
-  border-radius:14px;
-  background:#e5e5e5;
-  color:#555;
-  font-size:16px;
-  font-weight:600;
+  border-radius:6px;
+  font-size:13px;
 }
 
+/* ===== 検索結果ボックス ===== */
+.result-title{
+  margin-top:25px;
+  font-weight:bold;
+}
+
+.result-item{
+  display:flex;
+  align-items:center;
+  background:#ffffff;
+  border-radius:10px;
+  padding:14px;
+  margin-top:12px;
+  text-decoration:none;
+  color:#000;
+  position:relative;
+}
+
+/* 四角チェックマーク */
+.check-icon{
+  background:#0d47a1;
+  color:#fff;
+  width:22px;
+  height:22px;
+  border-radius:4px; /* 四角 */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:13px;
+  margin-right:10px;
+}
+
+.result-text{
+  flex:1;
+}
+
+.arrow{
+  font-size:18px;
+  color:#0d47a1;
+}
+
+/* ===== フッター ===== */
 footer{
+  margin-top:40px;
   text-align:center;
   font-size:12px;
   color:#777;
-  padding:30px 0 20px;
+  padding:15px 0;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-<svg class="logo" viewBox="0 0 200 200">
-  <circle cx="100" cy="100" r="95" fill="#0f2e6d" stroke="#d83b3b" stroke-width="6"/>
-  <g fill="white">
-    <circle cx="50" cy="60" r="3"/>
-    <circle cx="150" cy="70" r="2.5"/>
-    <circle cx="130" cy="40" r="2"/>
-  </g>
-  <circle cx="160" cy="55" r="9" fill="#e23b3b"/>
-  <path d="M65 150 C65 80,85 45,100 40 C115 45,135 80,135 150"
-        fill="none" stroke="white" stroke-width="16" stroke-linecap="round"/>
-  <path d="M80 120 C100 90,120 75,150 60"
-        fill="none" stroke="#e23b3b" stroke-width="8" stroke-linecap="round"/>
-  <ellipse cx="100" cy="150" rx="60" ry="18" fill="#9aa3b2"/>
-</svg>
-アストル運送
-</header>
+<header>アストル運送</header>
 
-<div class="wrapper">
+<div class="container">
 
-<div class="card">
-  <div class="section-title">追跡番号検索</div>
-  <form id="trackingForm">
-    <input 
-      type="text"
-      id="tracking"
-      placeholder="例) 0012-3456-7890"
-      inputmode="numeric"
-      maxlength="14"
-      required
-    >
-    <button type="submit" class="primary-btn">追跡する</button>
-  </form>
-</div>
+  <!-- 検索エリア -->
+  <div class="search-area">
+    <div class="search-title">追跡番号検索</div>
+    <input type="text" id="trackingNumber" class="search-box" 
+      placeholder="例) 0012-3456-7890" maxlength="14">
+    <button class="search-btn" onclick="searchTracking()">検索開始</button>
+    <button class="clear-btn" onclick="clearInput()">入力内容をクリア</button>
+  </div>
 
-<div class="section-title">荷物検索結果</div>
+  <!-- 検索結果 -->
+  <div class="result-title">荷物検索結果</div>
 
-<a href="detail.html" class="result-box">
-  <div class="check">✓</div>
-  <div class="arrow">&gt;</div>
+  <a href="detail.html" class="result-item">
+    <div class="check-icon">✓</div>
 
-  <div class="tracking">追跡番号：0002-1109-0101</div>
-  <div class="status">配達完了</div>
-  <div class="date">3月12日(木) 22時00分　引渡完了</div>
-  <div class="note">宅配ボックスにお届けさせていただきました。</div>
-</a>
+    <div class="result-text">
+      <div><strong>0002-1109-0101</strong></div>
+      <div><strong>配達完了</strong></div>
+      <div>3月12日(木) 22時00分　引渡完了</div>
+      <div style="font-size:12px; white-space:nowrap;">
+        宅配ボックスにお届けさせていただきました。
+      </div>
+    </div>
 
-<button class="clear-btn" onclick="location.href='index.html'">検索結果をクリア</button>
+    <div class="arrow">&gt;</div>
+  </a>
+
+  <button class="clear-btn" style="margin-top:15px;" onclick="clearResult()">検索結果をクリア</button>
 
 </div>
 
-<footer>©︎ アストル運送</footer>
+<footer>
+  ©︎ アストル運送
+</footer>
 
 <script>
-const input = document.getElementById("tracking");
-const form = document.getElementById("trackingForm");
+const correctNumber = "0002-1109-0101";
 
-input.addEventListener("input", function(){
-  let numbers = this.value.replace(/\D/g, "");
-  numbers = numbers.substring(0,12);
-  let formatted = numbers.replace(/(\d{4})(?=\d)/g, "$1-");
-  this.value = formatted;
-});
-
-form.addEventListener("submit", function(e){
-  e.preventDefault();
-  const correctNumber = "0002-1109-0101";
-  if(input.value === correctNumber){
-    location.reload();
+/* 検索処理（indexと同じ判定） */
+function searchTracking(){
+  const input = document.getElementById("trackingNumber").value;
+  if(input === correctNumber){
+    alert("このページは検索結果ページです。");
   }else{
-    alert("その追跡番号は存在しません。\n番号をお確かめの上、再度ご入力ください。");
+    alert("その追跡番号は存在しません。番号をお確かめの上、再度ご入力ください。");
   }
-});
+}
+
+/* 入力クリア */
+function clearInput(){
+  document.getElementById("trackingNumber").value = "";
+}
+
+/* 結果クリア */
+function clearResult(){
+  location.reload();
+}
 </script>
 
 </body>
