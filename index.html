@@ -29,7 +29,7 @@ header{
 }
 
 .wrapper{
-  padding:20px 16px;
+  padding:24px 16px;
 }
 
 .card{
@@ -39,6 +39,12 @@ header{
   box-shadow:0 6px 18px rgba(0,0,0,0.08);
 }
 
+.section-title{
+  font-size:18px;
+  font-weight:600;
+  margin-bottom:18px;
+}
+
 input{
   width:100%;
   padding:14px;
@@ -46,22 +52,34 @@ input{
   border-radius:10px;
   border:1px solid #ccc;
   box-sizing:border-box;
-  text-align:left;
 }
 
 input::placeholder{
   color:#aaa;
 }
 
-button{
+.primary-btn{
   width:100%;
   margin-top:18px;
   padding:14px;
   border:none;
-  border-radius:12px;
+  border-radius:14px;
   background:#0f2e6d;
   color:white;
   font-size:16px;
+  font-weight:600;
+}
+
+.clear-btn{
+  width:100%;
+  margin-top:14px;
+  padding:14px;
+  border:none;
+  border-radius:14px;
+  background:#e5e5e5;
+  color:#555;
+  font-size:16px;
+  font-weight:600;
 }
 
 footer{
@@ -76,7 +94,6 @@ footer{
 <body>
 
 <header>
-
 <svg class="logo" viewBox="0 0 200 200">
   <circle cx="100" cy="100" r="95" fill="#0f2e6d" stroke="#d83b3b" stroke-width="6"/>
   <g fill="white">
@@ -91,28 +108,51 @@ footer{
         fill="none" stroke="#e23b3b" stroke-width="8" stroke-linecap="round"/>
   <ellipse cx="100" cy="150" rx="60" ry="18" fill="#9aa3b2"/>
 </svg>
-
 アストル運送
-
 </header>
 
 <div class="wrapper">
   <div class="card">
+
+    <div class="section-title">追跡番号検索</div>
+
     <form action="result.html">
       <input 
         type="text"
+        id="tracking"
         name="tracking"
         placeholder="例) 0012-3456-7890"
-        pattern="[0-9\-]+"
         inputmode="numeric"
+        maxlength="14"
         required
       >
-      <button type="submit">追跡する</button>
+
+      <button type="submit" class="primary-btn">追跡する</button>
+      <button type="button" class="clear-btn" onclick="clearInput()">入力内容をクリア</button>
+
     </form>
+
   </div>
 </div>
 
 <footer>©︎ アストル運送</footer>
+
+<script>
+const input = document.getElementById("tracking");
+
+input.addEventListener("input", function(){
+
+  let numbers = this.value.replace(/\D/g, "");
+  numbers = numbers.substring(0,12);
+  let formatted = numbers.replace(/(\d{4})(?=\d)/g, "$1-");
+  this.value = formatted;
+
+});
+
+function clearInput(){
+  input.value = "";
+}
+</script>
 
 </body>
 </html>
