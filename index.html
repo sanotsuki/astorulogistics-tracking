@@ -116,7 +116,7 @@ footer{
 
     <div class="section-title">追跡番号検索</div>
 
-    <form action="result.html">
+    <form id="trackingForm">
       <input 
         type="text"
         id="tracking"
@@ -139,19 +139,33 @@ footer{
 
 <script>
 const input = document.getElementById("tracking");
+const form = document.getElementById("trackingForm");
 
+// 4桁ごとハイフン自動挿入
 input.addEventListener("input", function(){
-
   let numbers = this.value.replace(/\D/g, "");
   numbers = numbers.substring(0,12);
   let formatted = numbers.replace(/(\d{4})(?=\d)/g, "$1-");
   this.value = formatted;
-
 });
 
+// クリア処理
 function clearInput(){
   input.value = "";
 }
+
+// 判定処理
+form.addEventListener("submit", function(e){
+  e.preventDefault(); // 通常遷移止める
+
+  const correctNumber = "0002-1109-0101";
+
+  if(input.value === correctNumber){
+    window.location.href = "result.html";
+  }else{
+    alert("その追跡番号は存在しません。\n番号をお確かめの上、再度ご入力ください。");
+  }
+});
 </script>
 
 </body>
