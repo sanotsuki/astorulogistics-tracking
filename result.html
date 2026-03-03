@@ -35,7 +35,7 @@ header{
 .card{
   background:white;
   border-radius:16px;
-  padding:20px;
+  padding:18px;
   box-shadow:0 6px 18px rgba(0,0,0,0.08);
   margin-bottom:20px;
 }
@@ -46,10 +46,11 @@ header{
   margin-bottom:16px;
 }
 
+/* 🔎 検索ボックス小型化 */
 input{
   width:100%;
-  padding:14px;
-  font-size:16px;
+  padding:10px;
+  font-size:15px;
   border-radius:10px;
   border:1px solid #ccc;
   box-sizing:border-box;
@@ -57,19 +58,19 @@ input{
 
 .primary-btn{
   width:100%;
-  margin-top:14px;
-  padding:14px;
+  margin-top:10px;
+  padding:10px;
   border:none;
-  border-radius:14px;
+  border-radius:12px;
   background:#0f2e6d;
   color:white;
-  font-size:16px;
+  font-size:15px;
   font-weight:600;
 }
 
 .clear-btn{
   width:100%;
-  margin-top:14px;
+  margin-top:16px;
   padding:14px;
   border:none;
   border-radius:14px;
@@ -79,6 +80,7 @@ input{
   font-weight:600;
 }
 
+/* 📦 検索結果ボックス */
 .result-box{
   background:white;
   border-radius:16px;
@@ -86,24 +88,57 @@ input{
   box-shadow:0 6px 18px rgba(0,0,0,0.08);
   text-decoration:none;
   color:black;
-  display:block;
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
   margin-bottom:18px;
+}
+
+.result-left{
+  display:flex;
+  align-items:flex-start;
+}
+
+.check{
+  width:28px;
+  height:28px;
+  background:#0f2e6d;
+  color:white;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:16px;
+  margin-right:12px;
+  flex-shrink:0;
+}
+
+.result-content{
+  font-size:14px;
+}
+
+.tracking{
+  font-weight:700;
+  margin-bottom:6px;
 }
 
 .status{
   font-weight:600;
-  font-size:16px;
-  margin-bottom:8px;
+  margin-bottom:6px;
 }
 
 .date{
-  font-size:14px;
   margin-bottom:6px;
 }
 
 .note{
-  font-size:14px;
   color:#555;
+}
+
+.arrow{
+  font-size:18px;
+  color:#999;
+  margin-left:10px;
 }
 
 footer{
@@ -137,10 +172,9 @@ footer{
 
 <div class="wrapper">
 
-<!-- 🔎 再検索エリア -->
+<!-- 🔎 再検索 -->
 <div class="card">
   <div class="section-title">追跡番号検索</div>
-
   <form id="trackingForm">
     <input 
       type="text"
@@ -154,17 +188,23 @@ footer{
   </form>
 </div>
 
-<!-- 📦 検索結果 -->
+<!-- 📦 結果 -->
 <div class="section-title">荷物検索結果</div>
 
 <a href="detail.html" class="result-box">
-  <div>追跡番号：0002-1109-0101</div>
-  <div class="status">配達完了</div>
-  <div class="date">3月12日(木) 22時00分　引渡完了</div>
-  <div class="note">宅配ボックスにお届けさせていただきました。</div>
+  <div class="result-left">
+    <div class="check">✓</div>
+    <div class="result-content">
+      <div class="tracking">追跡番号：0002-1109-0101</div>
+      <div class="status">配達完了</div>
+      <div class="date">3月12日(木) 22時00分　引渡完了</div>
+      <div class="note">宅配ボックスにお届けさせていただきました。</div>
+    </div>
+  </div>
+  <div class="arrow">&gt;</div>
 </a>
 
-<button class="clear-btn" onclick="clearResult()">検索結果をクリア</button>
+<button class="clear-btn" onclick="location.href='index.html'">検索結果をクリア</button>
 
 </div>
 
@@ -174,7 +214,6 @@ footer{
 const input = document.getElementById("tracking");
 const form = document.getElementById("trackingForm");
 
-// 自動ハイフン
 input.addEventListener("input", function(){
   let numbers = this.value.replace(/\D/g, "");
   numbers = numbers.substring(0,12);
@@ -182,7 +221,6 @@ input.addEventListener("input", function(){
   this.value = formatted;
 });
 
-// 判定
 form.addEventListener("submit", function(e){
   e.preventDefault();
   const correctNumber = "0002-1109-0101";
@@ -192,10 +230,6 @@ form.addEventListener("submit", function(e){
     alert("その追跡番号は存在しません。\n番号をお確かめの上、再度ご入力ください。");
   }
 });
-
-function clearResult(){
-  location.href = "index.html";
-}
 </script>
 
 </body>
