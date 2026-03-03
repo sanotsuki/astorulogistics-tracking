@@ -47,7 +47,7 @@ header{
 
 input{
   width:100%;
-  padding:10px; /* result用に縦幅だけ少しスリム */
+  padding:10px;
   font-size:15px;
   border-radius:10px;
   border:1px solid #ccc;
@@ -68,6 +68,7 @@ input::placeholder{
   color:white;
   font-size:15px;
   font-weight:600;
+  cursor:pointer;
 }
 
 .clear-result-btn{
@@ -80,6 +81,7 @@ input::placeholder{
   color:#555;
   font-size:16px;
   font-weight:600;
+  cursor:pointer;
 }
 
 /* ===== 検索結果ボックス ===== */
@@ -110,10 +112,6 @@ input::placeholder{
 
 .result-content{
   flex:1;
-}
-
-.result-content strong{
-  font-weight:600;
 }
 
 .result-note{
@@ -181,8 +179,7 @@ footer{
     <div class="arrow">&gt;</div>
   </a>
 
-  <button class="clear-result-btn"
-    onclick="location.href='index.html'">
+  <button class="clear-result-btn" onclick="location.href='index.html'">
     検索結果をクリア
   </button>
 
