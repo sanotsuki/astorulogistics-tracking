@@ -2,178 +2,177 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>アストル運送</title>
 
 <style>
 body{
   margin:0;
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
-  background:#f4f6fa;
+  background:#f2f3f7;
 }
 
 /* ===== ヘッダー ===== */
 header{
-  background:#0c1c3c;
+  background:#4169e1;
   color:white;
   display:flex;
   align-items:center;
-  padding:12px 20px;
-  gap:14px;
-  box-shadow:0 2px 8px rgba(0,0,0,0.2);
+  padding:14px;
+  font-weight:600;
+  font-size:18px;
 }
 
 .logo{
-  width:60px;
-  height:60px;
+  width:44px;
+  height:44px;
+  margin-right:10px;
 }
 
-.company{
-  font-size:20px;
-  font-weight:600;
-  letter-spacing:2px;
+/* ===== 全体ラップ ===== */
+.wrapper{
+  padding:14px;
 }
 
-/* ===== コンテンツ ===== */
-.container{
-  padding:30px;
-  max-width:800px;
-  margin:auto;
-}
-
+/* ===== カード ===== */
 .card{
   background:white;
-  padding:24px;
   border-radius:14px;
-  box-shadow:0 6px 20px rgba(0,0,0,0.08);
-  margin-bottom:24px;
+  padding:16px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.06);
 }
 
-h2{
-  margin-top:0;
+/* ===== 最新ステータス ===== */
+.highlight{
+  background:#e9f7ef;
+  border:1px solid #28a745;
+  border-radius:12px;
+  padding:14px;
+  margin-bottom:18px;
 }
 
-input,button{
-  padding:10px;
+.highlight strong{
   font-size:16px;
 }
 
+/* ===== タイムライン ===== */
+.timeline{
+  position:relative;
+  margin-top:10px;
+  padding-left:22px;
+  border-left:2px solid #ddd;
+}
+
+.timeline-item{
+  position:relative;
+  margin-bottom:22px;
+}
+
+.timeline-item::before{
+  content:"";
+  position:absolute;
+  left:-30px;
+  top:4px;
+  width:12px;
+  height:12px;
+  background:#28a745;
+  border-radius:50%;
+}
+
+.timeline-title{
+  font-weight:600;
+  font-size:15px;
+}
+
+.timeline-meta{
+  font-size:13px;
+  color:#666;
+  margin-top:3px;
+}
+
+/* ===== ボタン ===== */
 button{
-  background:#0c1c3c;
-  color:white;
+  width:100%;
+  margin-top:20px;
+  padding:14px;
   border:none;
-  border-radius:8px;
-  cursor:pointer;
-}
-
-button:hover{
-  opacity:0.85;
-}
-
-.hidden{
-  display:none;
+  border-radius:12px;
+  background:#4169e1;
+  color:white;
+  font-size:16px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- ===== 共通ヘッダー ===== -->
 <header>
 <svg class="logo" viewBox="0 0 200 200">
-
-  <!-- 外枠 -->
-  <circle cx="100" cy="100" r="95" fill="#132a55" stroke="#d83b3b" stroke-width="6"/>
-
-  <!-- 星 -->
-  <g fill="white" opacity="0.9">
+  <circle cx="100" cy="100" r="95" fill="#4169e1" stroke="#d83b3b" stroke-width="6"/>
+  <g fill="white">
     <circle cx="50" cy="60" r="3"/>
     <circle cx="150" cy="70" r="2.5"/>
     <circle cx="130" cy="40" r="2"/>
-    <circle cx="70" cy="120" r="2.5"/>
   </g>
-
-  <!-- 赤い惑星 -->
   <circle cx="160" cy="55" r="9" fill="#e23b3b"/>
-
-  <!-- 白アーチ（A本体） -->
-  <path d="
-    M65 150
-    C65 80, 85 45, 100 40
-    C115 45, 135 80, 135 150
-  "
-  fill="none"
-  stroke="white"
-  stroke-width="16"
-  stroke-linecap="round"
-  />
-
-  <!-- 赤い軌道 -->
-  <path d="
-    M80 120
-    C100 90, 120 75, 150 60
-  "
-  fill="none"
-  stroke="#e23b3b"
-  stroke-width="8"
-  stroke-linecap="round"
-  />
-
-  <!-- グレー地平ライン -->
-  <ellipse cx="100" cy="150" rx="60" ry="18"
-    fill="#9aa3b2"
-  />
-
+  <path d="M65 150 C65 80,85 45,100 40 C115 45,135 80,135 150"
+        fill="none" stroke="white" stroke-width="16" stroke-linecap="round"/>
+  <path d="M80 120 C100 90,120 75,150 60"
+        fill="none" stroke="#e23b3b" stroke-width="8" stroke-linecap="round"/>
+  <ellipse cx="100" cy="150" rx="60" ry="18" fill="#9aa3b2"/>
 </svg>
-
-<div class="company">アストル運送</div>
+アストル運送
 </header>
 
-<div class="container">
+<div class="wrapper">
 
-<!-- ===== トップ ===== -->
-<div class="card" id="searchPage">
-  <h2>荷物検索</h2>
-  <input type="text" placeholder="追跡番号を入力">
-  <button onclick="search()">検索</button>
+<div class="card">
+
+<div class="highlight">
+<strong>配達完了</strong><br>
+宅配ボックスにお届けしました。<br>
+宅配ボックス番号：1番<br>
+暗証番号：0123
 </div>
 
-<!-- ===== 検索結果 ===== -->
-<div class="card hidden" id="resultPage">
-  <h2>荷物検索結果</h2>
-  <p><strong>配送状況：</strong>配送中</p>
-  <p><strong>現在地：</strong>東京物流センター</p>
-  <button onclick="showDetail()">配達詳細を見る</button>
+<div class="timeline">
+
+<div class="timeline-item">
+<div class="timeline-title">配達完了</div>
+<div class="timeline-meta">3/12 22:00</div>
 </div>
 
-<!-- ===== 配達詳細 ===== -->
-<div class="card hidden" id="detailPage">
-  <h2>配達詳細</h2>
-  <p>3/3 08:00　荷物受付</p>
-  <p>3/3 12:30　仕分け完了</p>
-  <p>3/3 18:00　配送センター出発</p>
-  <p>現在：配送中</p>
-  <button onclick="backHome()">トップへ戻る</button>
+<div class="timeline-item">
+<div class="timeline-title">持ち出し中</div>
+<div class="timeline-meta">3/12 08:47　二の宮ベースアストル支店</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-title">作業店通過</div>
+<div class="timeline-meta">3/12 05:18　二の宮ベースアストル支店</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-title">輸送中</div>
+<div class="timeline-meta">3/11 23:36</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-title">発送済み</div>
+<div class="timeline-meta">3/11 15:42　つくば営業所</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-title">荷物受付</div>
+<div class="timeline-meta">3/11 10:27　つくば営業所</div>
 </div>
 
 </div>
 
-<script>
-function search(){
-  document.getElementById("searchPage").classList.add("hidden");
-  document.getElementById("resultPage").classList.remove("hidden");
-}
+<button onclick="location.reload()">トップへ戻る</button>
 
-function showDetail(){
-  document.getElementById("resultPage").classList.add("hidden");
-  document.getElementById("detailPage").classList.remove("hidden");
-}
-
-function backHome(){
-  document.getElementById("detailPage").classList.add("hidden");
-  document.getElementById("searchPage").classList.remove("hidden");
-}
-</script>
+</div>
+</div>
 
 </body>
 </html>
