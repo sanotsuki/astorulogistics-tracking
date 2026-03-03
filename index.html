@@ -13,19 +13,18 @@ body{
   color:#222;
 }
 
-/* ===== ヘッダー ===== */
 header{
   background:#1f3fa3;
   color:white;
   padding:18px;
   display:flex;
   align-items:center;
-  gap:14px;
+  gap:16px;
 }
 
 .logo{
-  width:48px;
-  height:48px;
+  width:72px;
+  height:72px;
 }
 
 header h1{
@@ -35,7 +34,7 @@ header h1{
   letter-spacing:1px;
 }
 
-/* ===== 検索エリア ===== */
+/* 検索 */
 .search-wrapper{
   padding:28px 16px;
 }
@@ -90,11 +89,6 @@ button{
   cursor:pointer;
 }
 
-button:active{
-  opacity:0.85;
-}
-
-/* ===== フッター ===== */
 footer{
   text-align:center;
   padding:40px 20px;
@@ -107,35 +101,48 @@ footer{
 <body>
 
 <header>
-  <!-- 筆記体Aロケットロゴ -->
-  <svg class="logo" viewBox="0 0 120 80">
 
-    <!-- 軌道ライン -->
-    <path d="M15 55 
-             C 10 25, 55 5, 95 30"
-          stroke="white"
-          stroke-width="4"
-          fill="none"
-          stroke-linecap="round"/>
+<!-- ===== バッジ型Aロゴ ===== -->
+<svg class="logo" viewBox="0 0 200 200">
 
-    <!-- 筆記体A -->
-    <path d="M55 60 
-             C50 40, 60 20, 70 35
-             C75 45, 65 55, 55 60
-             M60 45 
-             C65 42, 70 42, 75 45"
-          stroke="white"
-          stroke-width="5"
-          fill="none"
-          stroke-linecap="round"
-          stroke-linejoin="round"/>
+  <!-- 外枠 -->
+  <circle cx="100" cy="100" r="95" fill="#1b2f5f" stroke="#d32f2f" stroke-width="6"/>
+  <circle cx="100" cy="100" r="88" fill="#1b2f5f" stroke="white" stroke-width="3"/>
 
-    <!-- ロケット先端 -->
-    <circle cx="95" cy="30" r="4" fill="white"/>
+  <!-- 星 -->
+  <circle cx="60" cy="60" r="3" fill="white"/>
+  <circle cx="140" cy="70" r="2.5" fill="white"/>
+  <circle cx="120" cy="40" r="2" fill="white"/>
+  <circle cx="80" cy="120" r="2" fill="white"/>
 
-  </svg>
+  <!-- Aアーチ -->
+  <path d="M100 30 
+           C70 60, 70 120, 100 160
+           C130 120, 130 60, 100 30"
+        fill="none"
+        stroke="white"
+        stroke-width="14"
+        stroke-linecap="round"/>
 
-  <h1>アストル運送</h1>
+  <!-- 地平線 -->
+  <path d="M40 130 Q100 110 160 130"
+        fill="#8c99a6"/>
+
+  <!-- 軌道ライン -->
+  <path d="M60 110 
+           Q120 60 160 80"
+        fill="none"
+        stroke="#d32f2f"
+        stroke-width="6"
+        stroke-linecap="round"/>
+
+  <!-- 惑星 -->
+  <circle cx="160" cy="80" r="8" fill="#d32f2f"/>
+
+</svg>
+
+<h1>アストル運送</h1>
+
 </header>
 
 <div class="search-wrapper">
@@ -157,7 +164,6 @@ footer{
 <script>
 function search(){
   const input = document.getElementById("tracking").value.trim();
-
   if(input === "2026-0125-0101"){
     window.location.href = "result.html";
   } else {
