@@ -3,172 +3,158 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>アストル運送 - 荷物検索</title>
+<title>アストル運送</title>
 
 <style>
 body{
   margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN",sans-serif;
-  background:#f2f4f8;
-  color:#222;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
+  background:#f4f6fa;
 }
 
+/* ===== ヘッダー ===== */
 header{
-  background:#1f3fa3;
+  background:#0c1c3c;
   color:white;
-  padding:18px;
   display:flex;
   align-items:center;
-  gap:16px;
+  padding:12px 20px;
+  gap:14px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.2);
 }
 
 .logo{
-  width:72px;
-  height:72px;
+  width:52px;
+  height:52px;
 }
 
-header h1{
-  font-size:26px;
-  margin:0;
-  font-weight:700;
-  letter-spacing:1px;
-}
-
-/* 検索 */
-.search-wrapper{
-  padding:28px 16px;
-}
-
-.search-box{
-  background:white;
-  border-radius:18px;
-  padding:22px;
-  box-shadow:0 10px 24px rgba(0,0,0,0.08);
-}
-
-.tabs{
-  display:flex;
-  border:1px solid #ddd;
-  border-radius:10px;
-  overflow:hidden;
-  margin-bottom:18px;
-}
-
-.tabs div{
-  flex:1;
-  text-align:center;
-  padding:10px;
+.company{
+  font-size:20px;
   font-weight:600;
-  font-size:14px;
+  letter-spacing:2px;
 }
 
-.active{
-  background:#2d4ecf;
-  color:white;
+/* ===== コンテンツ ===== */
+.container{
+  padding:30px;
+  max-width:800px;
+  margin:auto;
 }
 
-input{
-  width:100%;
-  padding:14px;
-  border-radius:10px;
-  border:1px solid #ccc;
+.card{
+  background:white;
+  padding:24px;
+  border-radius:14px;
+  box-shadow:0 6px 20px rgba(0,0,0,0.08);
+  margin-bottom:24px;
+}
+
+h2{
+  margin-top:0;
+}
+
+input,button{
+  padding:10px;
   font-size:16px;
-  margin-bottom:14px;
-  box-sizing:border-box;
 }
 
 button{
-  width:100%;
-  padding:14px;
-  background:black;
+  background:#0c1c3c;
   color:white;
   border:none;
-  border-radius:10px;
-  font-size:16px;
-  font-weight:600;
+  border-radius:8px;
   cursor:pointer;
 }
 
-footer{
-  text-align:center;
-  padding:40px 20px;
-  font-size:13px;
-  color:#777;
+button:hover{
+  opacity:0.85;
+}
+
+.hidden{
+  display:none;
 }
 </style>
 </head>
 
 <body>
 
+<!-- ===== 共通ヘッダー ===== -->
 <header>
-
-<!-- ===== バッジ型Aロゴ ===== -->
 <svg class="logo" viewBox="0 0 200 200">
-
   <!-- 外枠 -->
-  <circle cx="100" cy="100" r="95" fill="#1b2f5f" stroke="#d32f2f" stroke-width="6"/>
-  <circle cx="100" cy="100" r="88" fill="#1b2f5f" stroke="white" stroke-width="3"/>
-
+  <circle cx="100" cy="100" r="95" fill="#132a55" stroke="#d83b3b" stroke-width="6"/>
+  
   <!-- 星 -->
-  <circle cx="60" cy="60" r="3" fill="white"/>
-  <circle cx="140" cy="70" r="2.5" fill="white"/>
-  <circle cx="120" cy="40" r="2" fill="white"/>
-  <circle cx="80" cy="120" r="2" fill="white"/>
+  <g fill="white" opacity="0.9">
+    <circle cx="50" cy="60" r="3"/>
+    <circle cx="150" cy="70" r="2.5"/>
+    <circle cx="130" cy="40" r="2"/>
+    <circle cx="70" cy="120" r="2.5"/>
+  </g>
 
-  <!-- Aアーチ -->
-  <path d="M100 30 
-           C70 60, 70 120, 100 160
-           C130 120, 130 60, 100 30"
-        fill="none"
-        stroke="white"
-        stroke-width="14"
-        stroke-linecap="round"/>
+  <!-- 赤い惑星 -->
+  <circle cx="155" cy="55" r="8" fill="#e23b3b"/>
 
-  <!-- 地平線 -->
-  <path d="M40 130 Q100 110 160 130"
-        fill="#8c99a6"/>
-
-  <!-- 軌道ライン -->
-  <path d="M60 110 
-           Q120 60 160 80"
-        fill="none"
-        stroke="#d32f2f"
-        stroke-width="6"
-        stroke-linecap="round"/>
-
-  <!-- 惑星 -->
-  <circle cx="160" cy="80" r="8" fill="#d32f2f"/>
+  <!-- ロケット軌道A（上半分のみ・白単色） -->
+  <path d="
+    M60 140
+    C40 110, 70 60, 100 50
+    C135 38, 160 70, 140 105
+    " 
+    fill="none"
+    stroke="white"
+    stroke-width="14"
+    stroke-linecap="round"
+  />
 
 </svg>
 
-<h1>アストル運送</h1>
-
+<div class="company">アストル運送</div>
 </header>
 
-<div class="search-wrapper">
-  <div class="search-box">
-    <div class="tabs">
-      <div class="active">送り状番号</div>
-      <div>QR検索</div>
-    </div>
+<div class="container">
 
-    <input type="text" id="tracking" placeholder="例）1234-5678-9000">
-    <button onclick="search()">検索</button>
-  </div>
+<!-- ===== トップ（検索） ===== -->
+<div class="card" id="searchPage">
+  <h2>荷物検索</h2>
+  <input type="text" id="trackingInput" placeholder="追跡番号を入力">
+  <button onclick="search()">検索</button>
 </div>
 
-<footer>
-  © 2026 Astrul Express
-</footer>
+<!-- ===== 検索結果 ===== -->
+<div class="card hidden" id="resultPage">
+  <h2>荷物検索結果</h2>
+  <p><strong>配送状況：</strong>配送中</p>
+  <p><strong>現在地：</strong>東京物流センター</p>
+  <button onclick="showDetail()">配達詳細を見る</button>
+</div>
+
+<!-- ===== 配達詳細 ===== -->
+<div class="card hidden" id="detailPage">
+  <h2>配達詳細</h2>
+  <p>3/3 08:00　荷物受付</p>
+  <p>3/3 12:30　仕分け完了</p>
+  <p>3/3 18:00　配送センター出発</p>
+  <p>現在：配送中</p>
+  <button onclick="backHome()">トップへ戻る</button>
+</div>
+
+</div>
 
 <script>
 function search(){
-  const input = document.getElementById("tracking").value.trim();
-  if(input === "2026-0125-0101"){
-    window.location.href = "result.html";
-  } else {
-    window.location.href = "404.html";
-  }
+  document.getElementById("searchPage").classList.add("hidden");
+  document.getElementById("resultPage").classList.remove("hidden");
+}
+
+function showDetail(){
+  document.getElementById("resultPage").classList.add("hidden");
+  document.getElementById("detailPage").classList.remove("hidden");
+}
+
+function backHome(){
+  document.getElementById("detailPage").classList.add("hidden");
+  document.getElementById("searchPage").classList.remove("hidden");
 }
 </script>
 
