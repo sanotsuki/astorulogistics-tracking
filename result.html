@@ -35,7 +35,7 @@ header{
 .card{
   background:white;
   border-radius:16px;
-  padding:18px;
+  padding:16px;
   box-shadow:0 6px 18px rgba(0,0,0,0.08);
   margin-bottom:20px;
 }
@@ -43,14 +43,14 @@ header{
 .section-title{
   font-size:18px;
   font-weight:600;
-  margin-bottom:16px;
+  margin-bottom:14px;
 }
 
-/* 🔎 検索ボックス小型化 */
+/* 🔎 検索ボックスさらに縮小 */
 input{
   width:100%;
-  padding:10px;
-  font-size:15px;
+  padding:8px 10px;
+  font-size:14px;
   border-radius:10px;
   border:1px solid #ccc;
   box-sizing:border-box;
@@ -58,48 +58,35 @@ input{
 
 .primary-btn{
   width:100%;
-  margin-top:10px;
-  padding:10px;
+  margin-top:8px;
+  padding:8px;
   border:none;
-  border-radius:12px;
+  border-radius:10px;
   background:#0f2e6d;
   color:white;
-  font-size:15px;
+  font-size:14px;
   font-weight:600;
 }
 
-.clear-btn{
-  width:100%;
-  margin-top:16px;
-  padding:14px;
-  border:none;
-  border-radius:14px;
-  background:#e5e5e5;
-  color:#555;
-  font-size:16px;
-  font-weight:600;
-}
-
-/* 📦 検索結果ボックス */
+/* 📦 結果ボックス */
 .result-box{
+  position:relative;
   background:white;
   border-radius:16px;
-  padding:18px;
+  padding:18px 40px;
   box-shadow:0 6px 18px rgba(0,0,0,0.08);
   text-decoration:none;
   color:black;
-  display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
+  display:block;
   margin-bottom:18px;
 }
 
-.result-left{
-  display:flex;
-  align-items:flex-start;
-}
-
+/* 左チェック */
 .check{
+  position:absolute;
+  left:12px;
+  top:50%;
+  transform:translateY(-50%);
   width:28px;
   height:28px;
   background:#0f2e6d;
@@ -109,12 +96,16 @@ input{
   align-items:center;
   justify-content:center;
   font-size:16px;
-  margin-right:12px;
-  flex-shrink:0;
 }
 
-.result-content{
-  font-size:14px;
+/* 右矢印 */
+.arrow{
+  position:absolute;
+  right:14px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:18px;
+  color:#999;
 }
 
 .tracking{
@@ -129,16 +120,27 @@ input{
 
 .date{
   margin-bottom:6px;
+  font-size:14px;
 }
 
 .note{
-  color:#555;
+  font-size:12px;
+  color:#666;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
 
-.arrow{
-  font-size:18px;
-  color:#999;
-  margin-left:10px;
+.clear-btn{
+  width:100%;
+  margin-top:16px;
+  padding:14px;
+  border:none;
+  border-radius:14px;
+  background:#e5e5e5;
+  color:#555;
+  font-size:16px;
+  font-weight:600;
 }
 
 footer{
@@ -172,7 +174,6 @@ footer{
 
 <div class="wrapper">
 
-<!-- 🔎 再検索 -->
 <div class="card">
   <div class="section-title">追跡番号検索</div>
   <form id="trackingForm">
@@ -188,20 +189,16 @@ footer{
   </form>
 </div>
 
-<!-- 📦 結果 -->
 <div class="section-title">荷物検索結果</div>
 
 <a href="detail.html" class="result-box">
-  <div class="result-left">
-    <div class="check">✓</div>
-    <div class="result-content">
-      <div class="tracking">追跡番号：0002-1109-0101</div>
-      <div class="status">配達完了</div>
-      <div class="date">3月12日(木) 22時00分　引渡完了</div>
-      <div class="note">宅配ボックスにお届けさせていただきました。</div>
-    </div>
-  </div>
+  <div class="check">✓</div>
   <div class="arrow">&gt;</div>
+
+  <div class="tracking">追跡番号：0002-1109-0101</div>
+  <div class="status">配達完了</div>
+  <div class="date">3月12日(木) 22時00分　引渡完了</div>
+  <div class="note">宅配ボックスにお届けさせていただきました。</div>
 </a>
 
 <button class="clear-btn" onclick="location.href='index.html'">検索結果をクリア</button>
