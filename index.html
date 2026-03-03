@@ -3,63 +3,85 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>荷物検索 | アストル運送</title>
+<title>アストル運送 - 追跡</title>
 
 <style>
-body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;background:#f2f3f7;}
-header{background:#2f5fd0;color:white;display:flex;align-items:center;padding:14px;font-weight:600;}
-.logo{width:44px;height:44px;margin-right:10px;}
-.wrapper{padding:16px;}
-.card{background:white;border-radius:14px;padding:20px;box-shadow:0 4px 12px rgba(0,0,0,0.06);}
-input{width:100%;padding:14px;font-size:18px;border-radius:10px;border:1px solid #ccc;letter-spacing:2px;}
-button{width:100%;margin-top:16px;padding:14px;border:none;border-radius:12px;background:#2f5fd0;color:white;font-size:16px;}
-.error{color:red;margin-top:10px;}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
+  background:#f2f3f7;
+}
+
+header{
+  background:#0f2e6d;
+  color:white;
+  padding:16px;
+  font-size:18px;
+  font-weight:600;
+}
+
+.wrapper{
+  padding:20px 16px;
+}
+
+.card{
+  background:white;
+  border-radius:16px;
+  padding:24px 20px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.08);
+}
+
+input{
+  width:100%;
+  padding:14px;
+  font-size:16px;
+  border-radius:10px;
+  border:1px solid #ccc;
+  box-sizing:border-box;
+  text-align:center;
+}
+
+button{
+  width:100%;
+  margin-top:18px;
+  padding:14px;
+  border:none;
+  border-radius:12px;
+  background:#0f2e6d;
+  color:white;
+  font-size:16px;
+}
+
+footer{
+  text-align:center;
+  font-size:12px;
+  color:#777;
+  padding:30px 0 20px;
+}
 </style>
 </head>
 
 <body>
 
-<header>
-<svg class="logo" viewBox="0 0 200 200">
-<circle cx="100" cy="100" r="95" fill="#2f5fd0" stroke="#d83b3b" stroke-width="6"/>
-<circle cx="160" cy="55" r="9" fill="#e23b3b"/>
-<path d="M65 150 C65 80,85 45,100 40 C115 45,135 80,135 150"
-fill="none" stroke="white" stroke-width="16" stroke-linecap="round"/>
-<path d="M80 120 C100 90,120 75,150 60"
-fill="none" stroke="#e23b3b" stroke-width="8" stroke-linecap="round"/>
-<ellipse cx="100" cy="150" rx="60" ry="18" fill="#9aa3b2"/>
-</svg>
-アストル運送
-</header>
+<header>アストル運送</header>
 
 <div class="wrapper">
-<div class="card">
-<h2>荷物検索</h2>
-<input type="text" id="trackingInput" maxlength="14" placeholder="0000-0000-0000">
-<button onclick="search()">検索</button>
-<div class="error" id="errorMsg"></div>
+  <div class="card">
+    <form action="result.html">
+      <input 
+        type="text"
+        name="tracking"
+        placeholder="0012-3456-7890"
+        pattern="[0-9\-]+"
+        inputmode="numeric"
+        required
+      >
+      <button type="submit">追跡する</button>
+    </form>
+  </div>
 </div>
-</div>
 
-<script>
-const input=document.getElementById("trackingInput");
-
-input.addEventListener("input",function(){
-let value=input.value.replace(/-/g,"").replace(/\D/g,"");
-if(value.length>12){value=value.slice(0,12);}
-let formatted=value.match(/.{1,4}/g);
-input.value=formatted?formatted.join("-"):value;
-});
-
-function search(){
-const correct="2026-0123-0101";
-if(input.value===correct){
-window.location.href="result.html";
-}else{
-document.getElementById("errorMsg").textContent="追跡番号が見つかりません。";
-}
-}
-</script>
+<footer>©︎ アストル運送</footer>
 
 </body>
 </html>
