@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no">
 <title>アストル運送 - お荷物詳細</title>
 
 <style>
@@ -12,12 +13,26 @@ body{
   background:#f2f3f7;
 }
 
+a{
+  color:inherit;
+  text-decoration:none;
+  pointer-events:none;
+}
+
 header{
   background:#0f2e6d;
   color:white;
   padding:14px 16px;
   font-size:18px;
   font-weight:600;
+  display:flex;
+  align-items:center;
+}
+
+.logo{
+  width:38px;
+  height:38px;
+  margin-right:10px;
 }
 
 .wrapper{
@@ -32,6 +47,15 @@ header{
   padding:24px 20px;
   box-shadow:0 6px 18px rgba(0,0,0,0.08);
   margin-bottom:18px;
+}
+
+.tracking-number{
+  font-size:18px;
+  font-weight:700;
+  margin-bottom:6px;
+  -webkit-user-select:text;
+  user-select:text;
+  pointer-events:none;
 }
 
 /* ===== 横タイムライン ===== */
@@ -58,7 +82,6 @@ header{
   width:100%;
   height:3px;
   background:#0f2e6d;
-  z-index:0;
 }
 
 .circle{
@@ -104,6 +127,7 @@ header{
   text-decoration:none;
   display:block;
   margin-bottom:14px;
+  pointer-events:auto;
 }
 
 /* ===== 縦タイムライン ===== */
@@ -132,7 +156,6 @@ header{
 
 .timeline-item{
   margin-bottom:16px;
-  position:relative;
 }
 
 .timeline-card{
@@ -159,7 +182,6 @@ header{
   margin-right:8px;
 }
 
-/* ▼ CSS三角矢印 */
 .arrow{
   width:0;
   height:0;
@@ -195,12 +217,28 @@ footer{
 
 <body>
 
-<header>アストル運送</header>
+<header>
+<svg class="logo" viewBox="0 0 200 200">
+  <circle cx="100" cy="100" r="95" fill="#0f2e6d" stroke="#d83b3b" stroke-width="6"/>
+  <g fill="white">
+    <circle cx="50" cy="60" r="3"/>
+    <circle cx="150" cy="70" r="2.5"/>
+    <circle cx="130" cy="40" r="2"/>
+  </g>
+  <circle cx="160" cy="55" r="9" fill="#e23b3b"/>
+  <path d="M65 150 C65 80,85 45,100 40 C115 45,135 80,135 150"
+        fill="none" stroke="white" stroke-width="16" stroke-linecap="round"/>
+  <path d="M80 120 C100 90,120 75,150 60"
+        fill="none" stroke="#e23b3b" stroke-width="8" stroke-linecap="round"/>
+  <ellipse cx="100" cy="150" rx="60" ry="18" fill="#9aa3b2"/>
+</svg>
+アストル運送
+</header>
 
 <div class="wrapper">
 
   <div class="card">
-    <div style="font-size:18px;font-weight:700;margin-bottom:6px;">
+    <div class="tracking-number">
       追跡番号:0002-1109-0101
     </div>
 
@@ -227,7 +265,6 @@ footer{
     <div class="status-title">荷物状況</div>
 
     <div class="timeline-wrapper">
-
       <div class="timeline-item">
         <div class="timeline-card" onclick="toggle(this)">
           <div class="timeline-header">
@@ -240,24 +277,9 @@ footer{
           <div class="timeline-detail">受付が完了しました。</div>
         </div>
       </div>
-
-      <div class="timeline-item">
-        <div class="timeline-card" onclick="toggle(this)">
-          <div class="timeline-header">
-            <span>発送</span>
-            <span style="display:flex;align-items:center;">
-              <span class="timeline-date">3/10 18:00</span>
-              <span class="arrow"></span>
-            </span>
-          </div>
-          <div class="timeline-detail">発送作業が完了しました。</div>
-        </div>
-      </div>
-
     </div>
   </div>
 
-  <!-- ★ カードの外に移動 -->
   <a href="birthday.html" class="home-btn">ホームへ戻る</a>
 
 </div>
