@@ -45,17 +45,10 @@ header{
 /* ===== 荷物情報 ===== */
 
 .tracking-number{
-  font-size:18px; /* ← 強調 */
+  font-size:18px;
   font-weight:700;
   margin-bottom:6px;
-  user-select:text;
   pointer-events:none;
-}
-
-.tracking-number a{
-  pointer-events:none;
-  color:inherit;
-  text-decoration:none;
 }
 
 .address{
@@ -76,32 +69,31 @@ header{
   font-weight:700;
 }
 
-/* ===== 横サマリー（完全接続） ===== */
+/* ===== 横サマリー（丸で線を止める） ===== */
 
 .summary{
   margin-top:20px;
   display:flex;
   justify-content:space-between;
-  position:relative;
-}
-
-.summary::before{
-  content:"";
-  position:absolute;
-  top:12px;
-  left:0;
-  right:0;
-  height:3px;
-  background:#0f2e6d;
-  z-index:0;
+  align-items:center;
 }
 
 .step{
   text-align:center;
-  position:relative;
-  z-index:1;
   flex:1;
+  position:relative;
   font-size:14px;
+}
+
+.step:not(:last-child)::after{
+  content:"";
+  position:absolute;
+  top:12px;
+  right:-50%;
+  width:100%;
+  height:3px;
+  background:#0f2e6d;
+  z-index:0;
 }
 
 .circle{
@@ -115,9 +107,11 @@ header{
   justify-content:center;
   margin:0 auto 6px;
   font-size:13px;
+  position:relative;
+  z-index:1;
 }
 
-/* ===== ボタン ===== */
+/* ===== ボタン共通 ===== */
 
 .dummy-btn{
   background:#e5e5e5;
@@ -133,10 +127,25 @@ header{
   box-sizing:border-box;
 }
 
-/* ===== 縦タイムライン ===== */
+.home-btn{
+  background:#0f2e6d;
+  color:white;
+  font-size:16px;
+  font-weight:600;
+  padding:14px;
+  border-radius:14px;
+  text-align:center;
+  width:100%;
+  box-sizing:border-box;
+  text-decoration:none;
+  display:block;
+  margin-top:10px;
+}
+
+/* ===== 縦タイムライン（カードの下に線） ===== */
 
 .status-title{
-  font-size:18px; /* ← 追跡番号と同じ */
+  font-size:18px;
   font-weight:700;
   margin-bottom:16px;
 }
@@ -146,40 +155,36 @@ header{
   padding-left:26px;
 }
 
-/* 縦線を背面へ */
 .timeline-wrapper::before{
   content:"";
   position:absolute;
-  left:9px;
+  left:12px;
   top:0;
   bottom:0;
   width:3px;
-  background:#0f2e6d;
-  z-index:0;
+  background:#ccc;
+  z-index:0; /* ← 背面 */
 }
 
 .timeline-item{
   position:relative;
   margin-bottom:16px;
-  z-index:1; /* カードを前面へ */
-}
-
-/* 左の丸は削除 */
-.timeline-dot{
-  display:none;
 }
 
 .timeline-card{
-  background:white;
+  background:#f7f7f7;
   border-radius:14px;
-  padding:14px;
-  box-shadow:0 4px 14px rgba(0,0,0,0.08); /* 少し目立たせる */
+  padding:16px;
+  box-shadow:0 3px 8px rgba(0,0,0,0.08);
   cursor:pointer;
+  position:relative;
+  z-index:1; /* ← 線より前 */
 }
 
 .timeline-header{
   display:flex;
   justify-content:space-between;
+  align-items:center;
   font-size:15px;
   font-weight:600;
 }
@@ -187,11 +192,21 @@ header{
 .timeline-date{
   font-weight:400;
   font-size:14px;
+  margin-right:8px;
+}
+
+.arrow{
+  font-size:16px;
+  transition:0.2s;
+}
+
+.timeline-item.active .arrow{
+  transform:rotate(180deg);
 }
 
 .timeline-detail{
   display:none;
-  margin-top:8px;
+  margin-top:10px;
   font-size:14px;
   color:#555;
 }
@@ -212,10 +227,6 @@ footer{
 <body>
 
 <header>
-<svg class="logo" viewBox="0 0 200 200">
-  <circle cx="100" cy="100" r="95" fill="#0f2e6d" stroke="#d83b3b" stroke-width="6"/>
-  <ellipse cx="100" cy="150" rx="60" ry="18" fill="#9aa3b2"/>
-</svg>
 アストル運送
 </header>
 
@@ -254,7 +265,6 @@ footer{
 
   <!-- 縦タイムライン -->
   <div class="card">
-
     <div class="status-title">荷物状況</div>
 
     <div class="timeline-wrapper">
@@ -262,8 +272,11 @@ footer{
       <div class="timeline-item">
         <div class="timeline-card" onclick="toggle(this)">
           <div class="timeline-header">
-            荷物受付
-            <span class="timeline-date">3/10 10:00</span>
+            <span>荷物受付</span>
+            <span>
+              <span class="timeline-date">3/10 10:00</span>
+              <span class="arrow">∨</span>
+            </span>
           </div>
           <div class="timeline-detail">受付が完了しました。</div>
         </div>
@@ -272,8 +285,11 @@ footer{
       <div class="timeline-item">
         <div class="timeline-card" onclick="toggle(this)">
           <div class="timeline-header">
-            発送
-            <span class="timeline-date">3/10 18:00</span>
+            <span>発送</span>
+            <span>
+              <span class="timeline-date">3/10 18:00</span>
+              <span class="arrow">∨</span>
+            </span>
           </div>
           <div class="timeline-detail">発送作業が完了しました。</div>
         </div>
@@ -282,8 +298,11 @@ footer{
       <div class="timeline-item">
         <div class="timeline-card" onclick="toggle(this)">
           <div class="timeline-header">
-            作業店通過
-            <span class="timeline-date">3/11 05:00</span>
+            <span>作業店通過</span>
+            <span>
+              <span class="timeline-date">3/11 05:00</span>
+              <span class="arrow">∨</span>
+            </span>
           </div>
           <div class="timeline-detail">作業店を通過しました。</div>
         </div>
@@ -292,8 +311,11 @@ footer{
       <div class="timeline-item">
         <div class="timeline-card" onclick="toggle(this)">
           <div class="timeline-header">
-            配達担当店保管中
-            <span class="timeline-date">3/11 14:00</span>
+            <span>配達担当店保管中</span>
+            <span>
+              <span class="timeline-date">3/11 14:00</span>
+              <span class="arrow">∨</span>
+            </span>
           </div>
           <div class="timeline-detail">配達準備中です。</div>
         </div>
@@ -302,14 +324,20 @@ footer{
       <div class="timeline-item">
         <div class="timeline-card" onclick="toggle(this)">
           <div class="timeline-header">
-            配達完了（宅配ボックス）
-            <span class="timeline-date">3/12 22:00</span>
+            <span>配達完了（宅配ボックス）</span>
+            <span>
+              <span class="timeline-date">3/12 22:00</span>
+              <span class="arrow">∨</span>
+            </span>
           </div>
           <div class="timeline-detail">宅配ボックスに配達しました。</div>
         </div>
       </div>
 
     </div>
+
+    <a href="birthday.html" class="home-btn">ホームへ戻る</a>
+
   </div>
 
 </div>
