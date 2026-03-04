@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>お荷物詳細</title>
 
 <style>
+/* ===============================
+   index / result と同じ土台
+================================ */
 :root{
-  --main-color:#0b4da2;
-  --sub-color:#f4f6f9;
-  --text-color:#333;
-  --gray:#e9ecef;
-  --border:#ddd;
+  --primary:#0b4da2;
+  --bg:#f4f6f9;
+  --card:#ffffff;
+  --text:#333333;
+  --border:#e0e0e0;
+  --gray:#eef1f4;
 }
 
 *{
@@ -21,88 +25,105 @@
 
 body{
   margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
-  background:var(--sub-color);
-  color:var(--text-color);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  font-size:16px;
 }
 
-/* ===== HEADER (indexと同一想定) ===== */
-header{
+/* ===== ヘッダー（index完全準拠） ===== */
+.header{
   background:#fff;
   border-bottom:1px solid var(--border);
   padding:14px 16px;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-weight:bold;
-  font-size:20px;
-  color:var(--main-color);
 }
 
-/* ===== CONTAINER ===== */
+.header-inner{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.logo{
+  width:26px;
+  height:26px;
+  background:var(--primary);
+  border-radius:4px;
+}
+
+.header-title{
+  font-size:20px;
+  font-weight:700;
+  color:var(--primary);
+}
+
+/* ===== コンテナ ===== */
 .container{
-  width:100%;
   max-width:430px;
   margin:0 auto;
   padding:16px;
 }
 
-/* ===== CARD ===== */
+/* ===== 共通カード ===== */
 .card{
-  background:#fff;
-  border-radius:12px;
+  background:var(--card);
+  border-radius:14px;
   padding:18px;
-  box-shadow:0 2px 6px rgba(0,0,0,0.05);
-  margin-bottom:16px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.05);
+  margin-bottom:18px;
 }
 
-/* ===== 荷物情報 ===== */
-.label{
-  font-size:15px;
-  margin-bottom:10px;
-}
-
+/* ===============================
+   荷物情報
+================================ */
 .tracking-number{
-  font-size:17px;
-  font-weight:bold;
-  user-select:text;
+  font-size:18px;
+  font-weight:700;
   pointer-events:none;
+  user-select:text;
+}
+
+.address{
+  margin-top:6px;
+  font-size:16px;
 }
 
 .gray-box{
   background:var(--gray);
   padding:14px;
-  border-radius:10px;
-  margin-top:12px;
-  font-size:15px;
-}
-
-.gray-box small{
-  font-size:14px;
-  color:#666;
+  border-radius:12px;
+  margin-top:14px;
+  font-size:16px;
 }
 
 .gray-box b{
-  font-size:16px;
+  font-size:17px;
+}
+
+.gray-box small{
+  font-size:15px;
+  color:#666;
 }
 
 /* ===== 横サマリー ===== */
 .summary{
-  margin-top:16px;
+  margin-top:18px;
   display:flex;
   justify-content:space-between;
-  align-items:center;
   position:relative;
 }
 
 .summary::before{
   content:"";
   position:absolute;
-  top:12px;
+  top:13px;
   left:12%;
   right:12%;
   height:3px;
-  background:var(--main-color);
+  background:var(--primary);
   z-index:0;
 }
 
@@ -110,39 +131,43 @@ header{
   text-align:center;
   position:relative;
   z-index:1;
-  font-size:14px;
+  font-size:15px;
 }
 
 .circle{
-  width:24px;
-  height:24px;
+  width:26px;
+  height:26px;
   border-radius:50%;
-  background:var(--main-color);
+  background:var(--primary);
   color:#fff;
   display:flex;
   align-items:center;
   justify-content:center;
   margin:0 auto 6px;
-  font-size:14px;
+  font-size:15px;
 }
 
-/* ===== ダミーボタン ===== */
+/* ===============================
+   ダミーボタン
+================================ */
 .dummy-btn{
   width:100%;
-  padding:16px;
-  border-radius:12px;
-  background:#ccc;
+  background:#dcdcdc;
   color:#777;
+  padding:16px;
+  border-radius:14px;
   text-align:center;
   font-size:16px;
-  margin-bottom:14px;
+  margin-bottom:16px;
   pointer-events:none;
 }
 
-/* ===== 縦タイムライン ===== */
+/* ===============================
+   縦タイムライン
+================================ */
 .timeline-wrapper{
   position:relative;
-  padding-left:22px;
+  padding-left:26px;
 }
 
 .timeline-wrapper::before{
@@ -152,27 +177,27 @@ header{
   top:0;
   bottom:0;
   width:3px;
-  background:var(--main-color);
+  background:var(--primary);
 }
 
 .timeline-item{
   position:relative;
-  margin-bottom:14px;
+  margin-bottom:16px;
 }
 
 .timeline-dot{
   position:absolute;
-  left:-2px;
+  left:-1px;
   top:22px;
   width:14px;
   height:14px;
-  background:var(--main-color);
   border-radius:50%;
+  background:var(--primary);
 }
 
 .timeline-card{
   background:#fff;
-  border-radius:12px;
+  border-radius:14px;
   padding:16px;
   box-shadow:0 2px 6px rgba(0,0,0,0.05);
   cursor:pointer;
@@ -182,11 +207,11 @@ header{
   display:flex;
   justify-content:space-between;
   font-size:16px;
-  font-weight:bold;
+  font-weight:700;
 }
 
 .timeline-date{
-  font-weight:normal;
+  font-weight:400;
   font-size:15px;
 }
 
@@ -201,26 +226,34 @@ header{
   display:block;
 }
 
-/* ===== FOOTER ===== */
-footer{
+/* ===============================
+   フッター（index完全準拠）
+================================ */
+.footer{
   text-align:center;
   font-size:14px;
-  padding:20px 0;
   color:#777;
+  padding:24px 0;
 }
 </style>
 </head>
 
 <body>
 
-<header>アストル運送</header>
+<!-- ===== ヘッダー ===== -->
+<div class="header">
+  <div class="header-inner">
+    <div class="logo"></div>
+    <div class="header-title">アストル運送</div>
+  </div>
+</div>
 
 <div class="container">
 
   <!-- 荷物情報 -->
   <div class="card">
     <div class="tracking-number">追跡番号:0002-1109-0101</div>
-    <div>受取:送り状の住所</div>
+    <div class="address">受取:送り状の住所</div>
 
     <div class="gray-box">
       3月12日(木)22時00分 引渡完了<br>
@@ -245,11 +278,11 @@ footer{
     </div>
   </div>
 
-  <!-- ダミーボタン -->
+  <!-- ボタン -->
   <div class="dummy-btn">日時変更 (対面・宅配ボックス)</div>
   <div class="dummy-btn">場所変更 (営業所・コンビニなど)</div>
 
-  <!-- ===== 縦タイムライン追加部分 ===== -->
+  <!-- 縦タイムライン -->
   <div class="card">
     <div class="timeline-wrapper">
 
@@ -260,9 +293,7 @@ footer{
             荷物受付
             <span class="timeline-date">3/10 10:00</span>
           </div>
-          <div class="timeline-detail">
-            受付の詳細情報がここに入ります。
-          </div>
+          <div class="timeline-detail">受付の詳細情報がここに入ります。</div>
         </div>
       </div>
 
@@ -273,9 +304,7 @@ footer{
             発送
             <span class="timeline-date">3/10 18:00</span>
           </div>
-          <div class="timeline-detail">
-            発送の詳細情報がここに入ります。
-          </div>
+          <div class="timeline-detail">発送の詳細情報がここに入ります。</div>
         </div>
       </div>
 
@@ -286,9 +315,7 @@ footer{
             作業店通過
             <span class="timeline-date">3/11 05:00</span>
           </div>
-          <div class="timeline-detail">
-            作業店通過の詳細情報がここに入ります。
-          </div>
+          <div class="timeline-detail">作業店通過の詳細情報がここに入ります。</div>
         </div>
       </div>
 
@@ -299,9 +326,7 @@ footer{
             配達担当店保管中
             <span class="timeline-date">3/11 14:00</span>
           </div>
-          <div class="timeline-detail">
-            保管中の詳細情報がここに入ります。
-          </div>
+          <div class="timeline-detail">保管中の詳細情報がここに入ります。</div>
         </div>
       </div>
 
@@ -312,9 +337,7 @@ footer{
             配達完了(宅配ボックス)
             <span class="timeline-date">3/12 22:00</span>
           </div>
-          <div class="timeline-detail">
-            配達完了の詳細情報がここに入ります。
-          </div>
+          <div class="timeline-detail">配達完了の詳細情報がここに入ります。</div>
         </div>
       </div>
 
@@ -323,7 +346,7 @@ footer{
 
 </div>
 
-<footer>©︎アストル運送</footer>
+<div class="footer">©︎アストル運送</div>
 
 <script>
 function toggle(el){
