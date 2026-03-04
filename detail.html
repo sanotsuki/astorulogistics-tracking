@@ -1,4 +1,4 @@
-　<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -33,6 +33,8 @@ header{
 
 .wrapper{
   padding:24px 16px;
+  max-width:480px;
+  margin:0 auto;
 }
 
 /* ===== カード ===== */
@@ -141,7 +143,8 @@ footer{
 
 /* ===== 非活性ボタン ===== */
 .button-area{
-  margin-top:20px;
+  max-width:480px;
+  margin:0 auto 10px auto;
 }
 
 .dummy-btn{
@@ -189,7 +192,6 @@ footer{
   <div class="section-title" style="margin-left:4px;">お荷物情報</div>
 
   <div class="card">
-
     <p>
       <strong>追跡番号：</strong>
       <span class="tracking-number" style="pointer-events:none;">
@@ -224,14 +226,14 @@ footer{
         <div class="label">到着</div>
       </div>
     </div>
-
-    <div class="button-area">
-      <div class="dummy-btn">日時変更（対面・宅配ボックス）</div>
-      <div class="dummy-btn">場所変更（営業所・コンビニなど）</div>
-    </div>
-
   </div>
 
+</div>
+
+<!-- ボタンはカード外 -->
+<div class="button-area">
+  <div class="dummy-btn">日時変更（対面・宅配ボックス）</div>
+  <div class="dummy-btn">場所変更（営業所・コンビニなど）</div>
 </div>
 
 <footer>
