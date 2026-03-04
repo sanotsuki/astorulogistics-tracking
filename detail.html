@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+　<!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -57,7 +57,7 @@ footer{
   padding:30px 0 20px;
 }
 
-/* ===== 追跡番号強調 ===== */
+/* ===== 追跡番号 ===== */
 .tracking-number{
   font-size:20px;
   font-weight:700;
@@ -138,6 +138,29 @@ footer{
   font-size:13px;
   color:#444;
 }
+
+/* ===== 非活性ボタン ===== */
+.button-area{
+  margin-top:20px;
+}
+
+.dummy-btn{
+  width:100%;
+  padding:15px;
+  margin-bottom:12px;
+  border-radius:12px;
+  background:#e5e7eb;
+  color:#9aa3b2;
+  font-weight:600;
+  text-align:center;
+  pointer-events:none;
+  cursor:default;
+  box-shadow:inset 0 2px 4px rgba(0,0,0,0.06);
+}
+
+.dummy-btn:last-child{
+  margin-bottom:0;
+}
 </style>
 </head>
 
@@ -190,20 +213,21 @@ footer{
         <div class="circle completed"></div>
         <div class="label">発送</div>
       </div>
-
       <div class="line completed"></div>
-
       <div class="summary-step">
         <div class="circle completed"></div>
         <div class="label">営業所</div>
       </div>
-
       <div class="line completed"></div>
-
       <div class="summary-step">
         <div class="circle completed">✓</div>
         <div class="label">到着</div>
       </div>
+    </div>
+
+    <div class="button-area">
+      <div class="dummy-btn">日時変更（対面・宅配ボックス）</div>
+      <div class="dummy-btn">場所変更（営業所・コンビニなど）</div>
     </div>
 
   </div>
