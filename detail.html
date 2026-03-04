@@ -57,6 +57,13 @@ footer{
   padding:30px 0 20px;
 }
 
+/* ===== 追跡番号強調 ===== */
+.tracking-number{
+  font-size:20px;
+  font-weight:700;
+  letter-spacing:1px;
+}
+
 /* ===== グレー情報ボックス ===== */
 .status-box{
   background:#eef0f4;
@@ -86,7 +93,7 @@ footer{
   font-size:15px;
 }
 
-/* ===== 横サマリー（ヤマト寄せ） ===== */
+/* ===== 横サマリー ===== */
 .summary{
   display:flex;
   align-items:center;
@@ -97,17 +104,20 @@ footer{
 .summary-step{
   text-align:center;
   flex:1;
-  position:relative;
 }
 
 .circle{
-  width:20px;
-  height:20px;
+  width:22px;
+  height:22px;
   border-radius:50%;
   background:#c4c9d4;
   margin:0 auto 6px;
-  position:relative;
-  z-index:2;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:14px;
+  font-weight:700;
+  color:white;
 }
 
 .circle.completed{
@@ -126,50 +136,6 @@ footer{
 
 .label{
   font-size:13px;
-  color:#444;
-}
-
-/* ===== タイムライン（そのまま） ===== */
-.timeline{
-  border-left:3px solid #0f2e6d;
-  margin-left:10px;
-  padding-left:20px;
-}
-
-.timeline-item{
-  position:relative;
-  margin-bottom:24px;
-}
-
-.timeline-item::before{
-  content:"";
-  position:absolute;
-  left:-29px;
-  top:4px;
-  width:14px;
-  height:14px;
-  background:#9aa3b2;
-  border-radius:50%;
-}
-
-.timeline-item.latest::before{
-  background:#d83b3b;
-}
-
-.time{
-  font-size:14px;
-  color:#666;
-  margin-bottom:4px;
-}
-
-.status{
-  font-weight:600;
-  font-size:16px;
-  margin-bottom:2px;
-}
-
-.office{
-  font-size:14px;
   color:#444;
 }
 </style>
@@ -201,7 +167,13 @@ footer{
 
   <div class="card">
 
-    <p><strong>追跡番号：</strong><span style="pointer-events:none;">0002-1109-0101</span></p>
+    <p>
+      <strong>追跡番号：</strong>
+      <span class="tracking-number" style="pointer-events:none;">
+        0002-1109-0101
+      </span>
+    </p>
+
     <p><strong>受取：</strong>送り状の住所</p>
 
     <div class="status-box">
@@ -213,7 +185,6 @@ footer{
       <div class="status-pass">暗証番号: 0123</div>
     </div>
 
-    <!-- 横サマリー -->
     <div class="summary">
       <div class="summary-step">
         <div class="circle completed"></div>
@@ -230,7 +201,7 @@ footer{
       <div class="line completed"></div>
 
       <div class="summary-step">
-        <div class="circle completed"></div>
+        <div class="circle completed">✓</div>
         <div class="label">到着</div>
       </div>
     </div>
