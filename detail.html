@@ -1,247 +1,320 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="format-detection" content="telephone=no">
-<title>配達詳細 | アストル運送</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>荷物詳細 | アストル運送</title>
+  <style>
+    :root {
+      --main-blue: #0b5cab;
+      --light-blue: #e8f2fc;
+      --gray-bg: #f5f5f5;
+      --text-gray: #777;
+      --line-gray: #dcdcdc;
+    }
 
-<style>
-body{
-  margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
-  background:#f2f3f7;
-  font-size:17px;
-}
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: var(--light-blue);
+      font-size: 15px;
+    }
 
-/* ===== ヘッダー ===== */
-header{
-  background:#0f2e6d;
-  color:white;
-  padding:14px 16px;
-  font-size:19px;
-  font-weight:600;
-  display:flex;
-  align-items:center;
-}
+    /* ===== ヘッダー（indexと同一想定） ===== */
+    header {
+      background-color: var(--main-blue);
+      color: white;
+      text-align: center;
+      padding: 16px 0;
+      font-size: 20px;
+      font-weight: bold;
+    }
 
-.logo{
-  width:38px;
-  height:38px;
-  margin-right:10px;
-}
+    /* ===== フッター ===== */
+    footer {
+      text-align: center;
+      padding: 20px 0;
+      font-size: 14px;
+      color: #555;
+    }
 
-/* 中央レイアウト */
-.wrapper{
-  padding:24px 16px;
-  max-width:480px;
-  margin:0 auto;
-}
+    /* ===== 共通カード ===== */
+    .card {
+      width: 90%;
+      max-width: 420px;
+      margin: 20px auto;
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-sizing: border-box;
+    }
 
-/* ===== カード ===== */
-.card{
-  background:white;
-  border-radius:16px;
-  padding:24px 20px;
-  box-shadow:0 6px 18px rgba(0,0,0,0.08);
-  margin-bottom:20px;
-  width:100%;
-  box-sizing:border-box;
-}
+    /* ===== 荷物情報グレーカード ===== */
+    .gray-box {
+      background: var(--gray-bg);
+      border-radius: 8px;
+      padding: 15px;
+      margin-top: 10px;
+    }
 
-.section-title{
-  font-size:19px;
-  font-weight:600;
-  margin-bottom:10px;
-}
+    .tracking-number {
+      font-size: 17px;
+      font-weight: bold;
+      pointer-events: none;
+      user-select: text;
+    }
 
-/* ===== 追跡番号 ===== */
-.tracking-number{
-  font-size:20px;
-  font-weight:700;
-  letter-spacing:1px;
-}
+    .bold {
+      font-weight: bold;
+    }
 
-/* ===== グレー情報ボックス ===== */
-.status-box{
-  background:#eef0f4;
-  border-radius:12px;
-  padding:18px;
-  margin:18px 0 28px;
-}
+    .small-gray {
+      font-size: 14px;
+      color: var(--text-gray);
+    }
 
-.status-date{
-  font-size:15px;
-  margin-bottom:6px;
-}
+    /* ===== 横サマリー（ヤマト風） ===== */
+    .summary {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+    }
 
-.status-main{
-  font-weight:700;
-  font-size:17px;
-  margin-bottom:6px;
-}
+    .summary::before {
+      content: "";
+      position: absolute;
+      top: 14px;
+      left: 10%;
+      right: 10%;
+      height: 4px;
+      background: var(--line-gray);
+      z-index: 0;
+    }
 
-.status-sub{
-  font-size:14px;
-  color:#666;
-  margin-bottom:10px;
-}
+    .summary-step {
+      position: relative;
+      text-align: center;
+      flex: 1;
+      z-index: 1;
+    }
 
-.status-pass{
-  font-size:15px;
-}
+    .circle {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: white;
+      border: 3px solid var(--line-gray);
+      margin: 0 auto;
+      line-height: 22px;
+      font-size: 16px;
+      font-weight: bold;
+    }
 
-/* ===== 横サマリー ===== */
-.summary{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-top:6px;
-}
+    .circle.active {
+      background: var(--main-blue);
+      border-color: var(--main-blue);
+      color: white;
+    }
 
-.summary-step{
-  text-align:center;
-  flex:1;
-}
+    .summary-label {
+      margin-top: 6px;
+      font-size: 14px;
+    }
 
-.circle{
-  width:22px;
-  height:22px;
-  border-radius:50%;
-  background:#c4c9d4;
-  margin:0 auto 6px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:14px;
-  font-weight:700;
-  color:white;
-}
+    /* ===== ダミーボタン ===== */
+    .dummy-btn {
+      width: 90%;
+      max-width: 420px;
+      margin: 12px auto;
+      padding: 14px;
+      text-align: center;
+      background: #e0e0e0;
+      color: #999;
+      border-radius: 8px;
+      font-weight: bold;
+      pointer-events: none;
+      cursor: not-allowed;
+      box-sizing: border-box;
+    }
 
-.circle.completed{
-  background:#0f2e6d;
-}
+    /* ===== 縦タイムライン ===== */
+    .timeline-wrapper {
+      position: relative;
+      padding-left: 30px;
+    }
 
-.line{
-  height:4px;
-  background:#c4c9d4;
-  flex:1;
-}
+    .timeline-wrapper::before {
+      content: "";
+      position: absolute;
+      left: 12px;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: var(--line-gray);
+    }
 
-.line.completed{
-  background:#0f2e6d;
-}
+    .timeline-item {
+      position: relative;
+      margin-bottom: 20px;
+    }
 
-.label{
-  font-size:13px;
-  color:#444;
-}
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -18px;
+      top: 20px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: white;
+      border: 3px solid var(--main-blue);
+    }
 
-/* ===== 非活性ボタン ===== */
-.button-area{
-  width:100%;
-}
+    .timeline-card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 15px;
+      cursor: pointer;
+    }
 
-.dummy-btn{
-  width:100%;
-  padding:15px;
-  margin-bottom:12px;
-  border-radius:12px;
-  background:#e5e7eb;
-  color:#9aa3b2;
-  font-weight:600;
-  text-align:center;
-  pointer-events:none;
-  cursor:default;
-  box-shadow:inset 0 2px 4px rgba(0,0,0,0.06);
-  box-sizing:border-box;
-}
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      font-weight: bold;
+    }
 
-.dummy-btn:last-child{
-  margin-bottom:0;
-}
+    .timeline-date {
+      font-size: 14px;
+      color: var(--text-gray);
+      font-weight: normal;
+    }
 
-footer{
-  text-align:center;
-  font-size:13px;
-  color:#777;
-  padding:30px 0 20px;
-}
-</style>
+    .timeline-detail {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #444;
+      display: none;
+    }
+
+    .timeline-item.active .timeline-detail {
+      display: block;
+    }
+  </style>
 </head>
-
 <body>
 
-<header>
-<svg class="logo" viewBox="0 0 200 200">
-  <circle cx="100" cy="100" r="95" fill="#0f2e6d" stroke="#d83b3b" stroke-width="6"/>
-  <g fill="white">
-    <circle cx="50" cy="60" r="3"/>
-    <circle cx="150" cy="70" r="2.5"/>
-    <circle cx="130" cy="40" r="2"/>
-  </g>
-  <circle cx="160" cy="55" r="9" fill="#e23b3b"/>
-  <path d="M65 150 C65 80,85 45,100 40 C115 45,135 80,135 150"
-        fill="none" stroke="white" stroke-width="16" stroke-linecap="round"/>
-  <path d="M80 120 C100 90,120 75,150 60"
-        fill="none" stroke="#e23b3b" stroke-width="8" stroke-linecap="round"/>
-  <ellipse cx="100" cy="150" rx="60" ry="18" fill="#9aa3b2"/>
-</svg>
-アストル運送
-</header>
+<header>アストル運送</header>
 
-<div class="wrapper">
+<!-- ===== 荷物情報 ===== -->
+<div class="card">
+  <div class="tracking-number">追跡番号:0002-1109-0101</div>
+  <div>受取:送り状の住所</div>
 
-  <div class="section-title" style="margin-left:4px;">お荷物情報</div>
-
-  <div class="card">
-    <p>
-      <strong>追跡番号：</strong>
-      <span class="tracking-number" style="pointer-events:none;">
-        0002-1109-0101
-      </span>
-    </p>
-
-    <p><strong>受取：</strong>送り状の住所</p>
-
-    <div class="status-box">
-      <div class="status-date">3月12日(木)22時00分 引渡完了</div>
-      <div class="status-main">配達完了 (宅配ボックス1番)</div>
-      <div class="status-sub">
-        宅配ボックスにお届けさせていただきました。
-      </div>
-      <div class="status-pass">暗証番号: 0123</div>
-    </div>
-
-    <div class="summary">
-      <div class="summary-step">
-        <div class="circle completed"></div>
-        <div class="label">発送</div>
-      </div>
-      <div class="line completed"></div>
-      <div class="summary-step">
-        <div class="circle completed"></div>
-        <div class="label">営業所</div>
-      </div>
-      <div class="line completed"></div>
-      <div class="summary-step">
-        <div class="circle completed">✓</div>
-        <div class="label">到着</div>
-      </div>
-    </div>
+  <div class="gray-box">
+    <div>3月12日(木)22時00分 引渡完了</div>
+    <div class="bold">配達完了 (宅配ボックス1番)</div>
+    <div class="small-gray">宅配ボックスにお届けさせていただきました。</div>
+    <div>暗証番号: 0123</div>
   </div>
 
-  <!-- カード外・幅完全一致 -->
-  <div class="button-area">
-    <div class="dummy-btn">日時変更（対面・宅配ボックス）</div>
-    <div class="dummy-btn">場所変更（営業所・コンビニなど）</div>
+  <!-- 横サマリー -->
+  <div class="summary">
+    <div class="summary-step">
+      <div class="circle"> </div>
+      <div class="summary-label">発送</div>
+    </div>
+    <div class="summary-step">
+      <div class="circle"> </div>
+      <div class="summary-label">営業所</div>
+    </div>
+    <div class="summary-step">
+      <div class="circle active">✓</div>
+      <div class="summary-label">到着</div>
+    </div>
   </div>
-
 </div>
 
-<footer>
-©︎ アストル運送
-</footer>
+<!-- ===== ダミーボタン ===== -->
+<div class="dummy-btn">日時変更（対面・宅配ボックス）</div>
+<div class="dummy-btn">場所変更（営業所・コンビニなど）</div>
+
+<!-- ===== 縦タイムラインカード ===== -->
+<div class="card">
+  <div class="timeline-wrapper">
+
+    <div class="timeline-item">
+      <div class="timeline-card" onclick="toggle(this)">
+        <div class="timeline-header">
+          荷物受付
+          <span class="timeline-date">3月10日 09:00</span>
+        </div>
+        <div class="timeline-detail">
+          ここに詳細情報が入ります。
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card" onclick="toggle(this)">
+        <div class="timeline-header">
+          発送
+          <span class="timeline-date">3月10日 15:00</span>
+        </div>
+        <div class="timeline-detail">
+          ここに詳細情報が入ります。
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card" onclick="toggle(this)">
+        <div class="timeline-header">
+          作業店通過
+          <span class="timeline-date">3月11日 08:30</span>
+        </div>
+        <div class="timeline-detail">
+          ここに詳細情報が入ります。
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-card" onclick="toggle(this)">
+        <div class="timeline-header">
+          配達担当店保管中
+          <span class="timeline-date">3月12日 07:10</span>
+        </div>
+        <div class="timeline-detail">
+          ここに詳細情報が入ります。
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item active">
+      <div class="timeline-card" onclick="toggle(this)">
+        <div class="timeline-header">
+          配達完了（宅配ボックス）
+          <span class="timeline-date">3月12日 22:00</span>
+        </div>
+        <div class="timeline-detail">
+          ここに詳細情報が入ります。
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>©︎アストル運送</footer>
+
+<script>
+  function toggle(element) {
+    const parent = element.parentElement;
+    parent.classList.toggle("active");
+  }
+</script>
 
 </body>
 </html>
