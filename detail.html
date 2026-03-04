@@ -6,17 +6,54 @@
 <title>配達詳細 | アストル運送</title>
 
 <style>
-body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;background:#f2f3f7;}
-header{background:#2f5fd0;color:white;display:flex;align-items:center;padding:14px;font-weight:600;}
-.logo{width:44px;height:44px;margin-right:10px;}
-.wrapper{padding:14px;}
-.card{background:white;border-radius:14px;padding:16px;box-shadow:0 4px 12px rgba(0,0,0,0.06);}
-.highlight{background:#e9f7ef;border:1px solid #28a745;border-radius:12px;padding:14px;margin-bottom:18px;}
-.timeline{border-left:2px solid #ddd;padding-left:20px;}
-.item{margin-bottom:20px;position:relative;}
-.item::before{content:"";position:absolute;left:-28px;top:4px;width:12px;height:12px;background:#28a745;border-radius:50%;}
-.title{font-weight:600;font-size:15px;}
-.meta{font-size:13px;color:#666;margin-top:3px;}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
+  background:#f2f3f7;
+}
+
+/* ===== ヘッダー（完全統一） ===== */
+header{
+  background:#0f2e6d;
+  color:white;
+  padding:14px 16px;
+  font-size:18px;
+  font-weight:600;
+  display:flex;
+  align-items:center;
+}
+
+.logo{
+  width:38px;
+  height:38px;
+  margin-right:10px;
+}
+
+.wrapper{
+  padding:24px 16px;
+}
+
+/* ===== カード基本デザイン（index/result準拠） ===== */
+.card{
+  background:white;
+  border-radius:16px;
+  padding:24px 20px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.08);
+  margin-bottom:20px;
+}
+
+.section-title{
+  font-size:18px;
+  font-weight:600;
+  margin-bottom:16px;
+}
+
+footer{
+  text-align:center;
+  font-size:12px;
+  color:#777;
+  padding:30px 0 20px;
+}
 </style>
 </head>
 
@@ -24,63 +61,35 @@ header{background:#2f5fd0;color:white;display:flex;align-items:center;padding:14
 
 <header>
 <svg class="logo" viewBox="0 0 200 200">
-<circle cx="100" cy="100" r="95" fill="#2f5fd0" stroke="#d83b3b" stroke-width="6"/>
-<circle cx="160" cy="55" r="9" fill="#e23b3b"/>
-<path d="M65 150 C65 80,85 45,100 40 C115 45,135 80,135 150"
-fill="none" stroke="white" stroke-width="16"/>
-<path d="M80 120 C100 90,120 75,150 60"
-fill="none" stroke="#e23b3b" stroke-width="8"/>
-<ellipse cx="100" cy="150" rx="60" ry="18" fill="#9aa3b2"/>
+  <circle cx="100" cy="100" r="95" fill="#0f2e6d" stroke="#d83b3b" stroke-width="6"/>
+  <g fill="white">
+    <circle cx="50" cy="60" r="3"/>
+    <circle cx="150" cy="70" r="2.5"/>
+    <circle cx="130" cy="40" r="2"/>
+  </g>
+  <circle cx="160" cy="55" r="9" fill="#e23b3b"/>
+  <path d="M65 150 C65 80,85 45,100 40 C115 45,135 80,135 150"
+        fill="none" stroke="white" stroke-width="16" stroke-linecap="round"/>
+  <path d="M80 120 C100 90,120 75,150 60"
+        fill="none" stroke="#e23b3b" stroke-width="8" stroke-linecap="round"/>
+  <ellipse cx="100" cy="150" rx="60" ry="18" fill="#9aa3b2"/>
 </svg>
 アストル運送
 </header>
 
 <div class="wrapper">
-<div class="card">
 
-<div class="highlight">
-<strong>配達完了</strong><br>
-宅配ボックスにお届けしました。<br>
-宅配ボックス番号：1番<br>
-暗証番号：0123
-</div>
-
-<div class="timeline">
-
-<div class="item">
-<div class="title">配達完了</div>
-<div class="meta">3/12 22:00</div>
-</div>
-
-<div class="item">
-<div class="title">持ち出し中</div>
-<div class="meta">3/12 08:47　二の宮ベースアストル支店</div>
-</div>
-
-<div class="item">
-<div class="title">作業店通過</div>
-<div class="meta">3/12 05:18　二の宮ベースアストル支店</div>
-</div>
-
-<div class="item">
-<div class="title">輸送中</div>
-<div class="meta">3/11 23:36</div>
-</div>
-
-<div class="item">
-<div class="title">発送済み</div>
-<div class="meta">3/11 15:42　つくば営業所</div>
-</div>
-
-<div class="item">
-<div class="title">荷物受付</div>
-<div class="meta">3/11 10:27　つくば営業所</div>
-</div>
+  <!-- 仮の詳細カード（あとで作り込み） -->
+  <div class="card">
+    <div class="section-title">配達詳細</div>
+    詳細情報はここに表示されます。
+  </div>
 
 </div>
 
-</div>
-</div>
+<footer>
+©︎ アストル運送
+</footer>
 
 </body>
 </html>
