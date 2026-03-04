@@ -12,7 +12,7 @@ body{
   background:#f2f3f7;
 }
 
-/* ===== ヘッダー（完全統一） ===== */
+/* ===== ヘッダー（index/resultと完全統一） ===== */
 header{
   background:#0f2e6d;
   color:white;
@@ -33,7 +33,7 @@ header{
   padding:24px 16px;
 }
 
-/* ===== カード基本デザイン（index/result準拠） ===== */
+/* ===== カード ===== */
 .card{
   background:white;
   border-radius:16px;
@@ -53,6 +53,49 @@ footer{
   font-size:12px;
   color:#777;
   padding:30px 0 20px;
+}
+
+/* ===== タイムライン ===== */
+.timeline{
+  border-left:3px solid #0f2e6d;
+  margin-left:10px;
+  padding-left:20px;
+}
+
+.timeline-item{
+  position:relative;
+  margin-bottom:24px;
+}
+
+.timeline-item::before{
+  content:"";
+  position:absolute;
+  left:-29px;
+  top:4px;
+  width:14px;
+  height:14px;
+  background:#9aa3b2;
+  border-radius:50%;
+}
+
+.timeline-item.latest::before{
+  background:#d83b3b;
+}
+
+.time{
+  font-size:13px;
+  color:#666;
+  margin-bottom:4px;
+}
+
+.status{
+  font-weight:600;
+  margin-bottom:2px;
+}
+
+.office{
+  font-size:13px;
+  color:#444;
 }
 </style>
 </head>
@@ -79,10 +122,60 @@ footer{
 
 <div class="wrapper">
 
-  <!-- 仮の詳細カード（あとで作り込み） -->
+  <!-- お荷物情報 -->
   <div class="card">
-    <div class="section-title">配達詳細</div>
-    詳細情報はここに表示されます。
+    <div class="section-title">お荷物情報</div>
+    <p><strong>伝票番号：</strong>5059-7550-6422</p>
+    <p><strong>サービス：</strong>宅急便</p>
+    <p><strong>発送日：</strong>2026/03/02</p>
+    <p><strong>お届け予定日：</strong>2026/03/03</p>
+  </div>
+
+  <!-- 担当店 -->
+  <div class="card">
+    <div class="section-title">担当店</div>
+    <p>● ○○営業所</p>
+    <p>● △△ベース店</p>
+  </div>
+
+  <!-- 配達状況 -->
+  <div class="card">
+    <div class="section-title">配達状況</div>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="time">2026/03/02 18:20</div>
+        <div class="status">荷物受付</div>
+        <div class="office">○○営業所</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="time">2026/03/02 22:45</div>
+        <div class="status">発送</div>
+        <div class="office">○○営業所</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="time">2026/03/03 05:12</div>
+        <div class="status">作業店通過</div>
+        <div class="office">△△ベース店</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="time">2026/03/03 08:30</div>
+        <div class="status">配達中</div>
+        <div class="office">○○営業所</div>
+      </div>
+
+      <!-- 最新（下） -->
+      <div class="timeline-item latest">
+        <div class="time">2026/03/03 12:14</div>
+        <div class="status">配達完了</div>
+        <div class="office">○○営業所</div>
+      </div>
+
+    </div>
   </div>
 
 </div>
