@@ -31,6 +31,7 @@ header{
   margin-right:10px;
 }
 
+/* 中央レイアウト */
 .wrapper{
   padding:24px 16px;
   max-width:480px;
@@ -44,19 +45,14 @@ header{
   padding:24px 20px;
   box-shadow:0 6px 18px rgba(0,0,0,0.08);
   margin-bottom:20px;
+  width:100%;
+  box-sizing:border-box;
 }
 
 .section-title{
   font-size:19px;
   font-weight:600;
   margin-bottom:10px;
-}
-
-footer{
-  text-align:center;
-  font-size:13px;
-  color:#777;
-  padding:30px 0 20px;
 }
 
 /* ===== 追跡番号 ===== */
@@ -143,8 +139,7 @@ footer{
 
 /* ===== 非活性ボタン ===== */
 .button-area{
-  max-width:480px;
-  margin:0 auto 10px auto;
+  width:100%;
 }
 
 .dummy-btn{
@@ -159,10 +154,18 @@ footer{
   pointer-events:none;
   cursor:default;
   box-shadow:inset 0 2px 4px rgba(0,0,0,0.06);
+  box-sizing:border-box;
 }
 
 .dummy-btn:last-child{
   margin-bottom:0;
+}
+
+footer{
+  text-align:center;
+  font-size:13px;
+  color:#777;
+  padding:30px 0 20px;
 }
 </style>
 </head>
@@ -228,12 +231,12 @@ footer{
     </div>
   </div>
 
-</div>
+  <!-- カード外・幅完全一致 -->
+  <div class="button-area">
+    <div class="dummy-btn">日時変更（対面・宅配ボックス）</div>
+    <div class="dummy-btn">場所変更（営業所・コンビニなど）</div>
+  </div>
 
-<!-- ボタンはカード外 -->
-<div class="button-area">
-  <div class="dummy-btn">日時変更（対面・宅配ボックス）</div>
-  <div class="dummy-btn">場所変更（営業所・コンビニなど）</div>
 </div>
 
 <footer>
