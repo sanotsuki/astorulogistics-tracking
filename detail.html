@@ -3,112 +3,69 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>お荷物詳細</title>
+<title>アストル運送 - お荷物詳細</title>
 
 <style>
-/* ===============================
-   index / result と同じ土台
-================================ */
-:root{
-  --primary:#0b4da2;
-  --bg:#f4f6f9;
-  --card:#ffffff;
-  --text:#333333;
-  --border:#e0e0e0;
-  --gray:#eef1f4;
-}
-
-*{
-  box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
-}
-
 body{
   margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  font-size:16px;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
+  background:#f2f3f7;
 }
 
-/* ===== ヘッダー（index完全準拠） ===== */
-.header{
-  background:#fff;
-  border-bottom:1px solid var(--border);
+/* ===== index完全準拠ヘッダー ===== */
+header{
+  background:#0f2e6d;
+  color:white;
   padding:14px 16px;
+  font-size:18px;
+  font-weight:600;
   display:flex;
   align-items:center;
-  justify-content:center;
-}
-
-.header-inner{
-  display:flex;
-  align-items:center;
-  gap:8px;
 }
 
 .logo{
-  width:26px;
-  height:26px;
-  background:var(--primary);
-  border-radius:4px;
+  width:38px;
+  height:38px;
+  margin-right:10px;
 }
 
-.header-title{
-  font-size:20px;
-  font-weight:700;
-  color:var(--primary);
+.wrapper{
+  padding:24px 16px;
 }
 
-/* ===== コンテナ ===== */
-.container{
-  max-width:430px;
-  margin:0 auto;
-  padding:16px;
-}
-
-/* ===== 共通カード ===== */
 .card{
-  background:var(--card);
-  border-radius:14px;
-  padding:18px;
-  box-shadow:0 2px 8px rgba(0,0,0,0.05);
+  background:white;
+  border-radius:16px;
+  padding:24px 20px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.08);
   margin-bottom:18px;
 }
 
-/* ===============================
-   荷物情報
-================================ */
+/* ===== 荷物情報 ===== */
+
 .tracking-number{
-  font-size:18px;
-  font-weight:700;
-  pointer-events:none;
+  font-size:17px;
+  font-weight:600;
+  margin-bottom:6px;
   user-select:text;
+  pointer-events:none;
 }
 
 .address{
-  margin-top:6px;
-  font-size:16px;
+  font-size:15px;
 }
 
 .gray-box{
-  background:var(--gray);
+  background:#f0f1f5;
   padding:14px;
   border-radius:12px;
   margin-top:14px;
-  font-size:16px;
-}
-
-.gray-box b{
-  font-size:17px;
-}
-
-.gray-box small{
   font-size:15px;
-  color:#666;
+  line-height:1.6;
 }
 
 /* ===== 横サマリー ===== */
+
 .summary{
   margin-top:18px;
   display:flex;
@@ -119,11 +76,11 @@ body{
 .summary::before{
   content:"";
   position:absolute;
-  top:13px;
+  top:12px;
   left:12%;
   right:12%;
   height:3px;
-  background:var(--primary);
+  background:#0f2e6d;
   z-index:0;
 }
 
@@ -131,40 +88,39 @@ body{
   text-align:center;
   position:relative;
   z-index:1;
-  font-size:15px;
+  font-size:14px;
 }
 
 .circle{
-  width:26px;
-  height:26px;
+  width:24px;
+  height:24px;
   border-radius:50%;
-  background:var(--primary);
-  color:#fff;
+  background:#0f2e6d;
+  color:white;
   display:flex;
   align-items:center;
   justify-content:center;
   margin:0 auto 6px;
-  font-size:15px;
+  font-size:13px;
 }
 
-/* ===============================
-   ダミーボタン
-================================ */
+/* ===== ダミーボタン ===== */
+
 .dummy-btn{
   width:100%;
-  background:#dcdcdc;
-  color:#777;
-  padding:16px;
+  padding:14px;
   border-radius:14px;
-  text-align:center;
+  background:#e5e5e5;
+  color:#555;
   font-size:16px;
-  margin-bottom:16px;
+  font-weight:600;
+  text-align:center;
+  margin-bottom:14px;
   pointer-events:none;
 }
 
-/* ===============================
-   縦タイムライン
-================================ */
+/* ===== 縦タイムライン ===== */
+
 .timeline-wrapper{
   position:relative;
   padding-left:26px;
@@ -173,11 +129,11 @@ body{
 .timeline-wrapper::before{
   content:"";
   position:absolute;
-  left:10px;
+  left:9px;
   top:0;
   bottom:0;
   width:3px;
-  background:var(--primary);
+  background:#0f2e6d;
 }
 
 .timeline-item{
@@ -187,38 +143,38 @@ body{
 
 .timeline-dot{
   position:absolute;
-  left:-1px;
+  left:-2px;
   top:22px;
   width:14px;
   height:14px;
   border-radius:50%;
-  background:var(--primary);
+  background:#0f2e6d;
 }
 
 .timeline-card{
-  background:#fff;
+  background:white;
   border-radius:14px;
-  padding:16px;
-  box-shadow:0 2px 6px rgba(0,0,0,0.05);
+  padding:14px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.06);
   cursor:pointer;
 }
 
 .timeline-header{
   display:flex;
   justify-content:space-between;
-  font-size:16px;
-  font-weight:700;
+  font-size:15px;
+  font-weight:600;
 }
 
 .timeline-date{
   font-weight:400;
-  font-size:15px;
+  font-size:14px;
 }
 
 .timeline-detail{
   display:none;
-  margin-top:10px;
-  font-size:15px;
+  margin-top:8px;
+  font-size:14px;
   color:#555;
 }
 
@@ -226,31 +182,37 @@ body{
   display:block;
 }
 
-/* ===============================
-   フッター（index完全準拠）
-================================ */
-.footer{
+footer{
   text-align:center;
-  font-size:14px;
+  font-size:12px;
   color:#777;
-  padding:24px 0;
+  padding:30px 0 20px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- ===== ヘッダー ===== -->
-<div class="header">
-  <div class="header-inner">
-    <div class="logo"></div>
-    <div class="header-title">アストル運送</div>
-  </div>
-</div>
+<header>
+<svg class="logo" viewBox="0 0 200 200">
+  <circle cx="100" cy="100" r="95" fill="#0f2e6d" stroke="#d83b3b" stroke-width="6"/>
+  <g fill="white">
+    <circle cx="50" cy="60" r="3"/>
+    <circle cx="150" cy="70" r="2.5"/>
+    <circle cx="130" cy="40" r="2"/>
+  </g>
+  <circle cx="160" cy="55" r="9" fill="#e23b3b"/>
+  <path d="M65 150 C65 80,85 45,100 40 C115 45,135 80,135 150"
+        fill="none" stroke="white" stroke-width="16" stroke-linecap="round"/>
+  <path d="M80 120 C100 90,120 75,150 60"
+        fill="none" stroke="#e23b3b" stroke-width="8" stroke-linecap="round"/>
+  <ellipse cx="100" cy="150" rx="60" ry="18" fill="#9aa3b2"/>
+</svg>
+アストル運送
+</header>
 
-<div class="container">
+<div class="wrapper">
 
-  <!-- 荷物情報 -->
   <div class="card">
     <div class="tracking-number">追跡番号:0002-1109-0101</div>
     <div class="address">受取:送り状の住所</div>
@@ -258,7 +220,7 @@ body{
     <div class="gray-box">
       3月12日(木)22時00分 引渡完了<br>
       <b>配達完了 (宅配ボックス1番)</b><br>
-      <small>宅配ボックスにお届けさせていただきました。</small><br>
+      宅配ボックスにお届けいたしました。<br>
       暗証番号: 0123
     </div>
 
@@ -278,11 +240,9 @@ body{
     </div>
   </div>
 
-  <!-- ボタン -->
-  <div class="dummy-btn">日時変更 (対面・宅配ボックス)</div>
-  <div class="dummy-btn">場所変更 (営業所・コンビニなど)</div>
+  <div class="dummy-btn">日時変更（対面・宅配ボックス）</div>
+  <div class="dummy-btn">場所変更（営業所・コンビニなど）</div>
 
-  <!-- 縦タイムライン -->
   <div class="card">
     <div class="timeline-wrapper">
 
@@ -293,7 +253,7 @@ body{
             荷物受付
             <span class="timeline-date">3/10 10:00</span>
           </div>
-          <div class="timeline-detail">受付の詳細情報がここに入ります。</div>
+          <div class="timeline-detail">受付が完了しました。</div>
         </div>
       </div>
 
@@ -304,7 +264,7 @@ body{
             発送
             <span class="timeline-date">3/10 18:00</span>
           </div>
-          <div class="timeline-detail">発送の詳細情報がここに入ります。</div>
+          <div class="timeline-detail">発送作業が完了しました。</div>
         </div>
       </div>
 
@@ -315,7 +275,7 @@ body{
             作業店通過
             <span class="timeline-date">3/11 05:00</span>
           </div>
-          <div class="timeline-detail">作業店通過の詳細情報がここに入ります。</div>
+          <div class="timeline-detail">作業店を通過しました。</div>
         </div>
       </div>
 
@@ -326,7 +286,7 @@ body{
             配達担当店保管中
             <span class="timeline-date">3/11 14:00</span>
           </div>
-          <div class="timeline-detail">保管中の詳細情報がここに入ります。</div>
+          <div class="timeline-detail">配達準備中です。</div>
         </div>
       </div>
 
@@ -334,10 +294,10 @@ body{
         <div class="timeline-dot"></div>
         <div class="timeline-card" onclick="toggle(this)">
           <div class="timeline-header">
-            配達完了(宅配ボックス)
+            配達完了（宅配ボックス）
             <span class="timeline-date">3/12 22:00</span>
           </div>
-          <div class="timeline-detail">配達完了の詳細情報がここに入ります。</div>
+          <div class="timeline-detail">宅配ボックスに配達しました。</div>
         </div>
       </div>
 
@@ -346,7 +306,7 @@ body{
 
 </div>
 
-<div class="footer">©︎アストル運送</div>
+<footer>©︎ アストル運送</footer>
 
 <script>
 function toggle(el){
