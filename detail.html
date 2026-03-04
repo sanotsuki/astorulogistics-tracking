@@ -45,7 +45,7 @@ header{
 .section-title{
   font-size:18px;
   font-weight:600;
-  margin-bottom:16px;
+  margin-bottom:10px;
 }
 
 footer{
@@ -55,7 +55,70 @@ footer{
   padding:30px 0 20px;
 }
 
-/* ===== タイムライン ===== */
+/* ===== グレー情報ボックス ===== */
+.status-box{
+  background:#eef0f4;
+  border-radius:12px;
+  padding:16px;
+  margin:16px 0 24px;
+}
+
+.status-date{
+  font-size:14px;
+  margin-bottom:6px;
+}
+
+.status-main{
+  font-weight:700;
+  margin-bottom:6px;
+}
+
+.status-sub{
+  font-size:13px;
+  color:#666;
+  margin-bottom:8px;
+}
+
+.status-pass{
+  font-size:14px;
+}
+
+/* ===== 横向きサマリー ===== */
+.summary{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-top:10px;
+}
+
+.summary-step{
+  text-align:center;
+  flex:1;
+}
+
+.circle{
+  width:16px;
+  height:16px;
+  background:#9aa3b2;
+  border-radius:50%;
+  margin:0 auto 6px;
+}
+
+.circle.active{
+  background:#d83b3b;
+}
+
+.line{
+  height:3px;
+  background:#9aa3b2;
+  flex:1;
+}
+
+.label{
+  font-size:12px;
+}
+
+/* ===== 縦タイムライン ===== */
 .timeline{
   border-left:3px solid #0f2e6d;
   margin-left:10px;
@@ -122,13 +185,40 @@ footer{
 
 <div class="wrapper">
 
-  <!-- お荷物情報 -->
+  <!-- お荷物情報タイトル（カード外） -->
+  <div class="section-title" style="margin-left:4px;">お荷物情報</div>
+
   <div class="card">
-    <div class="section-title">お荷物情報</div>
-    <p><strong>伝票番号：</strong>5059-7550-6422</p>
-    <p><strong>サービス：</strong>宅急便</p>
-    <p><strong>発送日：</strong>2026/03/02</p>
-    <p><strong>お届け予定日：</strong>2026/03/03</p>
+
+    <p><strong>追跡番号：</strong>0002-1109-0101</p>
+    <p><strong>受取：</strong>送り状の住所</p>
+
+    <div class="status-box">
+      <div class="status-date">3月12日(木)22時00分 引渡完了</div>
+      <div class="status-main">配達完了 (宅配ボックス1番)</div>
+      <div class="status-sub">
+        宅配ボックスにお届けさせていただきました。
+      </div>
+      <div class="status-pass">暗証番号: 0123</div>
+    </div>
+
+    <div class="summary">
+      <div class="summary-step">
+        <div class="circle"></div>
+        <div class="label">発送</div>
+      </div>
+      <div class="line"></div>
+      <div class="summary-step">
+        <div class="circle"></div>
+        <div class="label">営業所</div>
+      </div>
+      <div class="line"></div>
+      <div class="summary-step">
+        <div class="circle active"></div>
+        <div class="label">到着</div>
+      </div>
+    </div>
+
   </div>
 
   <!-- 担当店 -->
@@ -168,7 +258,6 @@ footer{
         <div class="office">○○営業所</div>
       </div>
 
-      <!-- 最新（下） -->
       <div class="timeline-item latest">
         <div class="time">2026/03/03 12:14</div>
         <div class="status">配達完了</div>
