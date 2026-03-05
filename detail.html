@@ -83,8 +83,19 @@ header{
   display:flex;
   justify-content:space-between;
   align-items:flex-start;
-  position:relative;   /* ← 追加 */
+  position:relative;
   padding:0 4px;
+}
+
+.summary::before{
+  content:"";
+  position:absolute;
+  top:12px;              /* 丸の中央 */
+  left:24px;             /* 左丸の中心位置 */
+  right:24px;            /* 右丸の中心位置 */
+  height:3px;
+  background:#0f2e6d;
+  z-index:0;
 }
 
 .step{
@@ -129,17 +140,6 @@ header{
   justify-content:center;
   margin:0 0 6px 0; /* ← auto削除 */
   font-size:13px;
-}
-
-.step:not(:last-child)::after{
-  content:"";
-  position:absolute;
-  top:12px;
-  left:calc(50% + 12px);
-  width:calc(100% - 24px);
-  height:3px;
-  background:#0f2e6d;
-  z-index:0;
 }
 
 /* ===== ボタン ===== */
