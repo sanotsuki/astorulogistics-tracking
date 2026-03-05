@@ -82,15 +82,16 @@ header{
   margin-top:20px;
   display:flex;
   justify-content:space-between;
-  position:relative;
+  align-items:center;
+  padding:0 4px;
 }
 
 .summary::before{
   content:"";
   position:absolute;
   top:12px;
-  left:0;
-  right:0;
+  left:calc(50% + 12px);
+  width:calc(100% - 24px);
   height:3px;
   background:#0f2e6d;
   z-index:0;
@@ -102,6 +103,14 @@ header{
   z-index:1;
   flex:1;
   font-size:14px;
+}
+
+.step:first-child{
+  text-align:left;
+}
+
+.step:last-child{
+  text-align:right;
 }
 
 .circle{
