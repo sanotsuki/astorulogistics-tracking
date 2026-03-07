@@ -160,6 +160,18 @@ header{
 
 /* ===== 縦タイムライン ===== */
 
+.timeline-node{
+  position:absolute;
+  left:8px;
+  top:20px;
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:white;
+  border:3px solid #0f2e6d;
+  z-index:2;
+}
+
 .timeline-date{
   font-weight:400;
   font-size:14px;
@@ -197,7 +209,7 @@ header{
 
 .timeline-wrapper{
   position:relative;
-  padding-left:26px;
+  padding-left:34px;
 }
 
 /* 縦線を背面へ */
@@ -252,10 +264,13 @@ header{
 }
 
 .timeline-detail{
-  display:none;
-  margin-top:8px;
+  max-height:0;
+  overflow:hidden;
+  margin-top:0;
   font-size:14px;
   color:#555;
+  line-height:1.7;
+  transition:max-height 0.35s ease, margin-top 0.25s ease;
 }
 
 .timeline-item.active .timeline-detail{
@@ -332,6 +347,7 @@ footer{
     <div class="timeline-wrapper">
 
       <div class="timeline-item">
+        <div class="timeline-node"></div>
         <div class="timeline-card" onclick="toggle(this)">
           <div class="timeline-header">
             荷物受付
@@ -343,6 +359,7 @@ footer{
       </div>
 
       <div class="timeline-item">
+        <div class="timeline-node"></div>
         <div class="timeline-card" onclick="toggle(this)">
           <div class="timeline-header">
             発送
@@ -353,6 +370,7 @@ footer{
       </div>
 
       <div class="timeline-item">
+        <div class="timeline-node"></div>
         <div class="timeline-card" onclick="toggle(this)">
           <div class="timeline-header">
             作業店通過
@@ -363,6 +381,7 @@ footer{
       </div>
 
       <div class="timeline-item">
+        <div class="timeline-node"></div>
         <div class="timeline-card" onclick="toggle(this)">
           <div class="timeline-header">
             配達担当店保管中
@@ -373,6 +392,7 @@ footer{
       </div>
 
       <div class="timeline-item">
+        <div class="timeline-node"></div>
         <div class="timeline-card" onclick="toggle(this)">
           <div class="timeline-header">
             配達完了（宅配ボックス）
