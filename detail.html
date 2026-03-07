@@ -195,13 +195,12 @@ header{
 
 .timeline-node{
   position:absolute;
-  left:12px;
+  left:18px;
   top:22px;
-  width:14px;
-  height:14px;
+  width:12px;
+  height:12px;
   border-radius:50%;
-  background:white;
-  border:3px solid #0f2e6d;
+  background:#0f2e6d;
   z-index:2;
 }
 
@@ -249,7 +248,7 @@ header{
 .timeline-wrapper::before{
   content:"";
   position:absolute;
-  left:18px;
+  left:23px;
   top:28px;
   bottom:10px;
   width:3px;
@@ -263,9 +262,14 @@ header{
   z-index:1; /* カードを前面へ */
 }
 
-/* 左の丸は削除 */
-.timeline-dot{
-  display:none;
+.timeline-card::before{
+  content:"";
+  position:absolute;
+  left:-16px;
+  top:28px;
+  width:16px;
+  height:3px;
+  background:#0f2e6d;
 }
 
 .timeline-card{
