@@ -161,13 +161,6 @@ header{
 
 /* ===== 縦タイムライン ===== */
 
-/* 完了ステップ */
-
-.timeline-item.done .timeline-node{
-  border-color:#0f2e6d;
-  background:white;
-}
-
 /* 未到達ステップ */
 
 .timeline-item.future .timeline-node{
@@ -195,13 +188,14 @@ header{
 
 .timeline-node{
   position:absolute;
-  left:18px;
-  top:26px;
+  left:22px;     /* 縦線の中心 */
+  top:34px;      /* 横線の高さ */
   width:12px;
   height:12px;
   border-radius:50%;
   background:#0f2e6d;
-  z-index:5;
+  transform:translateX(-50%);
+  z-index:4;
 }
 
 .timeline-date{
@@ -253,7 +247,7 @@ header{
   bottom:0;
   width:3px;
   background:#0f2e6d;
-  z-index:1;
+  z-index:0;
 }
 
 .timeline-item{
@@ -266,8 +260,7 @@ header{
   content:"";
   position:absolute;
   left:-14px;
-  top:34px;
-
+  top:40px;
   width:14px;
   height:3px;
 
