@@ -160,6 +160,34 @@ header{
 
 /* ===== 縦タイムライン ===== */
 
+.timeline-date{
+  font-weight:400;
+  font-size:14px;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  color:#666;
+}
+
+.arrow{
+  display:inline-block;
+  font-size:18px;
+  transition:transform 0.25s ease;
+  font-weight:700;
+}
+
+.timeline-item.active .arrow{
+  transform:rotate(180deg);
+}
+
+.timeline-detail{
+  display:none;
+  margin-top:12px;
+  font-size:14px;
+  color:#555;
+  line-height:1.7;
+}
+
 .status-title{
   font-size:18px; /* ← 追跡番号と同じ */
   font-weight:700;
@@ -298,9 +326,10 @@ footer{
         <div class="timeline-card" onclick="toggle(this)">
           <div class="timeline-header">
             荷物受付
-            <span class="timeline-date">03月10日 10:19 <span class="arrow">›</span>
+            <span class="timeline-date">03月10日 10:19 <span class="arrow">v</span></span>
           </div>
-          <div class="timeline-detail">受付が完了しました。</div>
+          <div class="timeline-detail">お品物をお預かりいたしました。<br><br>担当店名：つくば営業所<br>担当店コード：980123
+          </div>
         </div>
       </div>
 
@@ -308,9 +337,9 @@ footer{
         <div class="timeline-card" onclick="toggle(this)">
           <div class="timeline-header">
             発送
-            <span class="timeline-date">3/10 18:00</span>
+            <span class="timeline-date">3/10 18:00<span class="arrow">v</span></span>
           </div>
-          <div class="timeline-detail">発送作業が完了しました。</div>
+          <div class="timeline-detail">お品物を発送いたしました。</div>
         </div>
       </div>
 
@@ -318,9 +347,9 @@ footer{
         <div class="timeline-card" onclick="toggle(this)">
           <div class="timeline-header">
             作業店通過
-            <span class="timeline-date">3/11 05:00</span>
+            <span class="timeline-date">3/11 05:04<span class="arrow">v</span></span>
           </div>
-          <div class="timeline-detail">作業店を通過しました。</div>
+          <div class="timeline-detail">担当店名：二の宮ベース</div>
         </div>
       </div>
 
@@ -328,9 +357,9 @@ footer{
         <div class="timeline-card" onclick="toggle(this)">
           <div class="timeline-header">
             配達担当店保管中
-            <span class="timeline-date">3/11 14:00</span>
+            <span class="timeline-date">3/11 09:26<span class="arrow">v</span></span>
           </div>
-          <div class="timeline-detail">配達準備中です。</div>
+          <div class="timeline-detail">ただいま配達担当店にて保管しております。</div>
         </div>
       </div>
 
@@ -338,9 +367,9 @@ footer{
         <div class="timeline-card" onclick="toggle(this)">
           <div class="timeline-header">
             配達完了（宅配ボックス）
-            <span class="timeline-date">3/12 22:00</span>
+            <span class="timeline-date">3/12 22:00<span class="arrow">v</span></span>
           </div>
-          <div class="timeline-detail">宅配ボックスに配達しました。</div>
+          <div class="timeline-detail">このお荷物はお届けが済んでおります。<br><br>担当店名：アストル営業所<br>配達方法：送り状の住所（宅配ボックス）</div>
         </div>
       </div>
 
