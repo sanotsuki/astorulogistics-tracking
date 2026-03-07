@@ -188,13 +188,13 @@ header{
 
 .timeline-node{
   position:absolute;
-  left:22px;     /* 縦線の中心 */
-  top:34px;      /* 横線の高さ */
+  left:23px;      /* 縦線の中心 */
+  top:30px;       /* 横線と同じ高さ */
   width:12px;
   height:12px;
   border-radius:50%;
   background:#0f2e6d;
-  transform:translateX(-50%);
+  transform:translate(-50%,-50%);
   z-index:4;
 }
 
@@ -242,7 +242,7 @@ header{
 .timeline-wrapper::before{
   content:"";
   position:absolute;
-  left:22px;
+  left:23px;
   top:0;
   bottom:0;
   width:3px;
@@ -260,10 +260,9 @@ header{
   content:"";
   position:absolute;
   left:-14px;
-  top:40px;
+  top:30px;
   width:14px;
   height:3px;
-
   background:#0f2e6d;
 }
 
