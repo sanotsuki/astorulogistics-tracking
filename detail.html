@@ -314,10 +314,65 @@ footer{
   color:#777;
   padding:30px 0 20px;
 }
+
+/* ===== 配送通知 ===== */
+
+.delivery-notice{
+  position:fixed;
+  top:-120px;
+  left:50%;
+  transform:translateX(-50%);
+  width:92%;
+  max-width:420px;
+  background:rgba(255,255,255,0.95);
+  backdrop-filter:blur(12px);
+  border-radius:18px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.18);
+  padding:12px 14px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  z-index:9999;
+  transition:top 0.6s cubic-bezier(.22,.9,.3,1);
+}
+
+.delivery-notice.show{
+  top:14px;
+}
+
+.notice-icon{
+  font-size:22px;
+}
+
+.notice-title{
+  font-size:14px;
+  font-weight:600;
+}
+
+.notice-time{
+  font-weight:400;
+  color:#777;
+  margin-left:6px;
+}
+
+.notice-body{
+  font-size:13px;
+  color:#444;
+  margin-top:2px;
+}
+
 </style>
 </head>
 
 <body>
+  
+<div class="delivery-notice" id="deliveryNotice">
+  <div class="notice-icon">📦</div>
+  <div class="notice-text">
+    <div class="notice-title">アストル運送 <span class="notice-time">今</span></div>
+    <div class="notice-body">お荷物をお届けしました<br>宅配ボックスをご確認ください</div>
+  </div>
+</div>
 
 <header>
 <svg class="logo" viewBox="0 0 200 200">
@@ -441,6 +496,33 @@ footer{
 <footer>©︎ アストル運送</footer>
 
 <script>
+// 通知表示
+setTimeout(()=>{
+  const notice = document.getElementById("deliveryNotice");
+  notice.classList.add("show");
+
+  setTimeout(()=>{
+    notice.classList.remove("show");
+  },5000);
+
+},3000);
+
+let startY = 0;
+
+const notice = document.getElementById("deliveryNotice");
+
+notice.addEventListener("touchstart",(e)=>{
+  startY = e.touches[0].clientY;
+});
+
+notice.addEventListener("touchmove",(e)=>{
+  let moveY = e.touches[0].clientY;
+
+  if(startY - moveY > 40){
+    notice.classList.remove("show");
+  }
+});
+
 function toggle(el){
   el.parentElement.classList.toggle("active");
 }
