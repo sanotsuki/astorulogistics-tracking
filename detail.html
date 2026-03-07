@@ -238,22 +238,24 @@ header{
   padding-left:46px;
 }
 
-/* 縦線を背面へ */
-.timeline-wrapper::before{
-  content:"";
-  position:absolute;
-  left:23px;
-  top:38px;
-  bottom:38px;
-  width:3px;
-  background:#0f2e6d;
-  z-index:0;
-}
-
 .timeline-item{
   position:relative;
   margin-bottom:20px;
-  z-index:1;
+}
+
+/* 縦線 */
+.timeline-item::after{
+  content:"";
+  position:absolute;
+  left:-19px;
+  top:38px;
+  bottom:-20px;
+  width:3px;
+  background:#0f2e6d;
+}
+
+.timeline-item:last-child::after{
+  display:none;
 }
 
 .timeline-item::before{
