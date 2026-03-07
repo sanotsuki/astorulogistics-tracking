@@ -139,7 +139,8 @@ header{
   align-items:center;
   justify-content:center;
   margin:0 0 6px 0; /* ← auto削除 */
-  font-size:13px;
+  font-size:15px;
+  font-weight:700;
 }
 
 /* ===== ボタン ===== */
@@ -223,6 +224,14 @@ header{
 
 .timeline-item.active .arrow{
   transform:rotate(-90deg);  /* 上向き */
+}
+
+.timeline-item:last-child .timeline-header{
+  font-weight:700;
+}
+
+.timeline-item:last-child .timeline-card{
+  box-shadow:0 14px 28px rgba(0,0,0,0.18);
 }
 
 .status-title{
