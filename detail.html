@@ -247,8 +247,8 @@ header{
 .timeline-item::after{
   content:"";
   position:absolute;
-  left:-19px;
-  top:38px;
+  left:-23px;
+  top:50%;
   height:calc(100% + 20px);   /* ←ここが重要 */
   width:3px;
   background:#0f2e6d;
@@ -261,13 +261,13 @@ header{
 .timeline-item::before{
   content:"";
   position:absolute;
-  left:-19px;   /* 縦線位置に合わせる */
-  top:30px;
-  width:16px;
-  height:16px;
+  left:-23px;
+  top:50%;
+  width:18px;
+  height:18px;
   border-radius:50%;
   background:#0f2e6d;
-  transform:translateX(-50%);
+  transform:translate(-50%,-50%);
 }
 
 .timeline-card::before{
