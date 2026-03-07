@@ -242,7 +242,7 @@ header{
 .timeline-wrapper::before{
   content:"";
   position:absolute;
-  left:28px;
+  left:23px;
   top:0;
   bottom:0;
   width:3px;
@@ -253,15 +253,27 @@ header{
 .timeline-item{
   position:relative;
   margin-bottom:20px;
-  z-index:1; /* カードを前面へ */
+  z-index:1;
+}
+
+.timeline-item::before{
+  content:"";
+  position:absolute;
+  left:-23px;   /* 縦線位置に合わせる */
+  top:30px;
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  background:#0f2e6d;
+  transform:translateX(-50%);
 }
 
 .timeline-card::before{
   content:"";
   position:absolute;
-  left:-18px;
-  top:30px;
-  width:18px;
+  left:-23px;
+  top:34px;
+  width:23px;
   height:3px;
   background:#0f2e6d;
 }
@@ -431,7 +443,6 @@ footer{
     <div class="timeline-wrapper">
 
       <div class="timeline-item done">
-        <div class="timeline-node"></div>
         <div class="timeline-card" onclick="toggle(this)">
           <div class="timeline-header">
             荷物受付
@@ -443,7 +454,6 @@ footer{
       </div>
 
       <div class="timeline-item done">
-        <div class="timeline-node"></div>
         <div class="timeline-card" onclick="toggle(this)">
           <div class="timeline-header">
             発送
@@ -454,7 +464,6 @@ footer{
       </div>
 
       <div class="timeline-item done">
-        <div class="timeline-node"></div>
         <div class="timeline-card" onclick="toggle(this)">
           <div class="timeline-header">
             作業店通過
@@ -465,7 +474,6 @@ footer{
       </div>
 
       <div class="timeline-item done">
-        <div class="timeline-node"></div>
         <div class="timeline-card" onclick="toggle(this)">
           <div class="timeline-header">
             配達担当店保管中
@@ -476,7 +484,6 @@ footer{
       </div>
 
       <div class="timeline-item done">
-        <div class="timeline-node"></div>
         <div class="timeline-card" onclick="toggle(this)">
           <div class="timeline-header">
             配達完了（宅配ボックス）
