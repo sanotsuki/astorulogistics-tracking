@@ -160,10 +160,42 @@ header{
 
 /* ===== 縦タイムライン ===== */
 
+/* 完了ステップ */
+
+.timeline-item.done .timeline-node{
+  border-color:#0f2e6d;
+  background:white;
+}
+
+/* 未到達ステップ */
+
+.timeline-item.future .timeline-node{
+  border-color:#ccc;
+  background:white;
+}
+
+/* 未到達カード */
+
+.timeline-item.future .timeline-card{
+  opacity:0.6;
+}
+
+/* 未到達テキスト */
+
+.timeline-item.future .timeline-header{
+  color:#888;
+}
+
+/* 未到達矢印 */
+
+.timeline-item.future .arrow{
+  color:#aaa;
+}
+
 .timeline-node{
   position:absolute;
-  left:8px;
-  top:20px;
+  left:9px;
+  top:22px;
   width:10px;
   height:10px;
   border-radius:50%;
@@ -217,8 +249,8 @@ header{
   content:"";
   position:absolute;
   left:11px;
-  top:6px;
-  bottom:6px;
+  top:28px;
+  bottom:10px;
   width:3px;
   background:#0f2e6d;
   z-index:0;
@@ -239,8 +271,10 @@ header{
   background:white;
   border-radius:14px;
   padding:14px;
-  box-shadow:0 4px 14px rgba(0,0,0,0.08); /* 少し目立たせる */
+  box-shadow:0 4px 14px rgba(0,0,0,0.08);
   cursor:pointer;
+  position:relative;
+  z-index:3;
 }
 
 .timeline-item.active .timeline-card{
@@ -346,7 +380,7 @@ footer{
 
     <div class="timeline-wrapper">
 
-      <div class="timeline-item">
+      <div class="timeline-item done">
         <div class="timeline-node"></div>
         <div class="timeline-card" onclick="toggle(this)">
           <div class="timeline-header">
@@ -358,7 +392,7 @@ footer{
         </div>
       </div>
 
-      <div class="timeline-item">
+      <div class="timeline-item done">
         <div class="timeline-node"></div>
         <div class="timeline-card" onclick="toggle(this)">
           <div class="timeline-header">
@@ -369,7 +403,7 @@ footer{
         </div>
       </div>
 
-      <div class="timeline-item">
+      <div class="timeline-item done">
         <div class="timeline-node"></div>
         <div class="timeline-card" onclick="toggle(this)">
           <div class="timeline-header">
@@ -380,7 +414,7 @@ footer{
         </div>
       </div>
 
-      <div class="timeline-item">
+      <div class="timeline-item done">
         <div class="timeline-node"></div>
         <div class="timeline-card" onclick="toggle(this)">
           <div class="timeline-header">
@@ -391,7 +425,7 @@ footer{
         </div>
       </div>
 
-      <div class="timeline-item">
+      <div class="timeline-item done">
         <div class="timeline-node"></div>
         <div class="timeline-card" onclick="toggle(this)">
           <div class="timeline-header">
