@@ -161,31 +161,6 @@ header{
 
 /* ===== 縦タイムライン ===== */
 
-/* 未到達ステップ */
-
-.timeline-item.future .timeline-node{
-  border-color:#ccc;
-  background:white;
-}
-
-/* 未到達カード */
-
-.timeline-item.future .timeline-card{
-  opacity:0.6;
-}
-
-/* 未到達テキスト */
-
-.timeline-item.future .timeline-header{
-  color:#888;
-}
-
-/* 未到達矢印 */
-
-.timeline-item.future .arrow{
-  color:#aaa;
-}
-
 .timeline-node{
   position:absolute;
   left:23px;      /* 縦線の中心 */
@@ -291,7 +266,7 @@ header{
 }
 
 .timeline-item.active .timeline-card{
-  box-shadow:0 10px 24px rgba(0,0,0,0.16);
+  box-shadow:0 4px 12px rgba(0,0,0,0.15);
 }
 
 .timeline-item.active .arrow{
@@ -318,6 +293,11 @@ header{
 .timeline-item.active .timeline-detail{
   max-height:200px;
   margin-top:10px;
+}
+
+.timeline-item.active::before{
+  width:22px;
+  height:22px;
 }
 
 footer{
@@ -485,7 +465,7 @@ footer{
         </div>
       </div>
 
-      <div class="timeline-item done">
+      <div class="timeline-item active">
         <div class="timeline-card" onclick="toggle(this)">
           <div class="timeline-header">
             配達完了（宅配ボックス）
