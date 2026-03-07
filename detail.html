@@ -204,9 +204,9 @@ header{
 .timeline-wrapper::before{
   content:"";
   position:absolute;
-  left:9px;
-  top:0;
-  bottom:0;
+  left:11px;
+  top:6px;
+  bottom:6px;
   width:3px;
   background:#0f2e6d;
   z-index:0;
@@ -214,7 +214,7 @@ header{
 
 .timeline-item{
   position:relative;
-  margin-bottom:16px;
+  margin-bottom:20px;
   z-index:1; /* カードを前面へ */
 }
 
@@ -229,6 +229,14 @@ header{
   padding:14px;
   box-shadow:0 4px 14px rgba(0,0,0,0.08); /* 少し目立たせる */
   cursor:pointer;
+}
+
+.timeline-item.active .timeline-card{
+  box-shadow:0 10px 24px rgba(0,0,0,0.16);
+}
+
+.timeline-item.active .arrow{
+  color:#222;
 }
 
 .timeline-header{
