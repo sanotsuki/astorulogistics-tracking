@@ -194,8 +194,8 @@ header{
 
 .timeline-node{
   position:absolute;
-  left:9px;
-  top:22px;
+  left:2px;
+  top:18px;
   width:10px;
   height:10px;
   border-radius:50%;
@@ -223,14 +223,6 @@ header{
 
 .timeline-item.active .arrow{
   transform:rotate(-90deg);  /* 上向き */
-}
-
-.timeline-detail{
-  display:none;
-  margin-top:12px;
-  font-size:14px;
-  color:#555;
-  line-height:1.7;
 }
 
 .status-title{
@@ -292,11 +284,6 @@ header{
   font-weight:600;
 }
 
-.timeline-date{
-  font-weight:400;
-  font-size:14px;
-}
-
 .timeline-detail{
   max-height:0;
   overflow:hidden;
@@ -308,7 +295,8 @@ header{
 }
 
 .timeline-item.active .timeline-detail{
-  display:block;
+  max-height:200px;
+  margin-top:10px;
 }
 
 footer{
@@ -397,7 +385,7 @@ footer{
         <div class="timeline-card" onclick="toggle(this)">
           <div class="timeline-header">
             発送
-            <span class="timeline-date">3/10 18:00<span class="arrow">›</span></span>
+            <span class="timeline-date">3月10日 18:00<span class="arrow">›</span></span>
           </div>
           <div class="timeline-detail">お品物を発送いたしました。</div>
         </div>
@@ -408,7 +396,7 @@ footer{
         <div class="timeline-card" onclick="toggle(this)">
           <div class="timeline-header">
             作業店通過
-            <span class="timeline-date">3/11 05:04<span class="arrow">›</span></span>
+            <span class="timeline-date">3月11日 05:04<span class="arrow">›</span></span>
           </div>
           <div class="timeline-detail">担当店名：二の宮ベース</div>
         </div>
@@ -419,7 +407,7 @@ footer{
         <div class="timeline-card" onclick="toggle(this)">
           <div class="timeline-header">
             配達担当店保管中
-            <span class="timeline-date">3/11 09:26<span class="arrow">›</span></span>
+            <span class="timeline-date">3月11日 09:26<span class="arrow">›</span></span>
           </div>
           <div class="timeline-detail">ただいま配達担当店にて保管しております。</div>
         </div>
@@ -430,7 +418,7 @@ footer{
         <div class="timeline-card" onclick="toggle(this)">
           <div class="timeline-header">
             配達完了（宅配ボックス）
-            <span class="timeline-date">3/12 22:00<span class="arrow">›</span></span>
+            <span class="timeline-date">3月12日 22:00<span class="arrow">›</span></span>
           </div>
           <div class="timeline-detail">このお荷物はお届けが済んでおります。<br><br>担当店名：アストル営業所<br>配達方法：送り状の住所（宅配ボックス）</div>
         </div>
