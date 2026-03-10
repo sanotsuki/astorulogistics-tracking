@@ -178,6 +178,7 @@ From アストル3年目
 </div>
 
 <audio id="pop" src="party_poppers3.mp3"></audio>
+<audio id="music" src="happybirthday.mp3"></audio>
 
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
@@ -208,21 +209,43 @@ setTimeout(()=>{
 
 document.getElementById("flash").classList.add("show")
 
-/* クラッカー音 */
-
 const pop = document.getElementById("pop")
+const music = document.getElementById("music")
+
 pop.volume = 1
 pop.play()
-
-/* 音フェード */
 
 let fade = setInterval(()=>{
 
 if(pop.volume > 0.05){
+
 pop.volume -= 0.05
+
 }else{
+
 pop.volume = 0
 clearInterval(fade)
+
+/* 余韻 */
+setTimeout(()=>{
+
+music.volume = 0
+music.play()
+
+/* 曲フェードイン */
+
+let musicFade = setInterval(()=>{
+
+if(music.volume < 0.7){
+music.volume += 0.05
+}else{
+clearInterval(musicFade)
+}
+
+},200)
+
+},500)
+
 }
 
 },200)
@@ -254,9 +277,6 @@ if(Date.now() < end){
 requestAnimationFrame(frame)
 }else{
 
-// createSparkles()
-document.getElementById("from").classList.add("show")
-
 }
 
 }
@@ -264,30 +284,6 @@ document.getElementById("from").classList.add("show")
 frame()
 
 },500)
-
-}
-
-/* キラキラ生成 */
-
-function createSparkles(){
-
-for(let i=0;i<30;i++){
-
-setTimeout(()=>{
-
-const s=document.createElement("div")
-s.className="sparkle"
-
-s.style.left=Math.random()*100+"vw"
-s.style.top=Math.random()*100+"vh"
-
-document.body.appendChild(s)
-
-setTimeout(()=>{s.remove()},1500)
-
-},i*80)
-
-}
 
 }
 
