@@ -71,7 +71,7 @@ opacity:1;
 pointer-events:auto;
 }
 
-/* ケーキ */
+/* ケーキ画像 */
 
 .hero{
 position:fixed;
@@ -92,19 +92,6 @@ backface-visibility:hidden;
 @keyframes zoom{
 from{transform:scale(1);}
 to{transform:scale(1.08);}
-}
-
-/* 紙吹雪 */
-
-#confetti{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-pointer-events:none;
-background:transparent;
-z-index:10;
 }
 
 /* フラッシュ */
@@ -184,8 +171,6 @@ opacity:1;
 
 <img src="birthday.PNG" class="hero">
 
-<canvas id="confetti"></canvas>
-
 <div id="flash" class="flash"></div>
 
 <div id="from" class="from">
@@ -207,7 +192,7 @@ document.getElementById("tapMessage").classList.add("show")
 
 },2800)
 
-/* タップでスタート */
+/* タップで開始 */
 
 document.getElementById("tapMessage").addEventListener("click", startSurprise)
 
@@ -223,23 +208,33 @@ setTimeout(()=>{
 
 document.getElementById("flash").classList.add("show")
 
-/* 音 */
+/* クラッカー音 */
 
 const pop = document.getElementById("pop")
-pop.volume = 1.0
+pop.volume = 1
 pop.play()
 
-/* 紙吹雪 */
+/* 音フェード */
 
-const myCanvas = document.getElementById("confetti")
-const myConfetti = confetti.create(myCanvas,{resize:true})
+let fade = setInterval(()=>{
+
+if(pop.volume > 0.05){
+pop.volume -= 0.05
+}else{
+pop.volume = 0
+clearInterval(fade)
+}
+
+},200)
+
+/* 紙吹雪 */
 
 const duration = 4000
 const end = Date.now() + duration
 
 function frame(){
 
-myConfetti({
+confetti({
 particleCount:10,
 angle:60,
 spread:70,
@@ -247,7 +242,7 @@ origin:{x:0},
 colors:['#FFD700','#FFC107','#FFB300']
 })
 
-myConfetti({
+confetti({
 particleCount:10,
 angle:120,
 spread:70,
