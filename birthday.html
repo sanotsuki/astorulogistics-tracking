@@ -27,7 +27,7 @@ display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
-z-index:10;
+z-index:50;
 font-size:18px;
 color:#333;
 }
@@ -47,8 +47,8 @@ margin-bottom:15px;
 100%{transform:rotate(360deg);}
 }
 
-/* タップ要求 */
-  
+/* タップ画面 */
+
 #tapMessage{
 position:fixed;
 top:0;
@@ -63,14 +63,14 @@ font-size:22px;
 color:#333;
 opacity:0;
 pointer-events:none;
-z-index:9;
+z-index:40;
 }
 
 #tapMessage.show{
 opacity:1;
 pointer-events:auto;
 }
-  
+
 /* ケーキ */
 
 .hero{
@@ -82,6 +82,11 @@ height:100%;
 object-fit:cover;
 animation:zoom 10s ease forwards;
 display:none;
+z-index:1;
+
+will-change:transform;
+transform:translateZ(0);
+backface-visibility:hidden;
 }
 
 @keyframes zoom{
@@ -98,6 +103,8 @@ left:0;
 width:100%;
 height:100%;
 pointer-events:none;
+background:transparent;
+z-index:10;
 }
 
 /* フラッシュ */
@@ -111,6 +118,7 @@ height:100%;
 background:white;
 opacity:0;
 pointer-events:none;
+z-index:20;
 }
 
 .flash.show{
@@ -133,6 +141,7 @@ background:white;
 border-radius:50%;
 opacity:0;
 animation:sparkleAnim 1.5s linear forwards;
+z-index:25;
 }
 
 @keyframes sparkleAnim{
@@ -152,6 +161,7 @@ font-size:20px;
 opacity:0;
 transition:1s;
 text-shadow:0 2px 8px rgba(0,0,0,0.6);
+z-index:30;
 }
 
 .show{
@@ -193,11 +203,9 @@ From アストル3年目
 setTimeout(()=>{
 
 document.getElementById("loading").style.display="none"
-
 document.getElementById("tapMessage").classList.add("show")
 
-},1500)
-
+},2800)
 
 /* タップでスタート */
 
@@ -209,13 +217,19 @@ document.getElementById("tapMessage").style.display="none"
 
 document.querySelector(".hero").style.display="block"
 
-/* 演出開始 */
-
 setTimeout(()=>{
+
+/* フラッシュ */
 
 document.getElementById("flash").classList.add("show")
 
-document.getElementById("pop").play()
+/* 音 */
+
+const pop = document.getElementById("pop")
+pop.volume = 1.0
+pop.play()
+
+/* 紙吹雪 */
 
 const myCanvas = document.getElementById("confetti")
 const myConfetti = confetti.create(myCanvas,{resize:true})
@@ -255,6 +269,30 @@ document.getElementById("from").classList.add("show")
 frame()
 
 },500)
+
+}
+
+/* キラキラ生成 */
+
+function createSparkles(){
+
+for(let i=0;i<30;i++){
+
+setTimeout(()=>{
+
+const s=document.createElement("div")
+s.className="sparkle"
+
+s.style.left=Math.random()*100+"vw"
+s.style.top=Math.random()*100+"vh"
+
+document.body.appendChild(s)
+
+setTimeout(()=>{s.remove()},1500)
+
+},i*80)
+
+}
 
 }
 
