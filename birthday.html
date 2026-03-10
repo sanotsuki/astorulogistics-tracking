@@ -100,30 +100,6 @@ z-index:5;
 pointer-events:none;
 }
 
-/* フラッシュ */
-
-.flash{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:white;
-opacity:0;
-pointer-events:none;
-z-index:10;
-}
-
-.flash.show{
-animation:flashAnim 0.7s ease;
-}
-
-@keyframes flashAnim{
-0%{opacity:0;}
-20%{opacity:0.9;}
-100%{opacity:0;}
-}
-
 /* 署名 */
 
 .from{
@@ -159,8 +135,6 @@ opacity:1;
 <img src="birthday.PNG" class="hero">
 
 <canvas id="confetti"></canvas>
-
-<div id="flash" class="flash"></div>
 
 <div id="from" class="from">
 From アストル3年目
@@ -200,10 +174,6 @@ music.currentTime=0
 document.querySelector(".hero").style.display="block"
 
 setTimeout(()=>{
-
-/* フラッシュ */
-
-document.getElementById("flash").classList.add("show")
 
 /* クラッカー */
 
