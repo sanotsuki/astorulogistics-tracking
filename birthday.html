@@ -13,6 +13,41 @@ overflow:hidden;
 font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
 }
 
+/* ローディング画面 */
+
+#loading{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#f2f3f7;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+z-index:10;
+font-size:18px;
+color:#333;
+}
+
+/* くるくる */
+
+.loader{
+width:40px;
+height:40px;
+border:4px solid #ddd;
+border-top:4px solid #0a2c5e;
+border-radius:50%;
+animation:spin 1s linear infinite;
+margin-bottom:15px;
+}
+
+@keyframes spin{
+0%{transform:rotate(0deg);}
+100%{transform:rotate(360deg);}
+}
+  
 /* 全画面ケーキ */
 
 .hero{
@@ -84,7 +119,12 @@ opacity:1;
 </head>
 
 <body>
-
+  
+<div id="loading">
+  <div class="loader"></div>
+  <p>情報を取得しています...</p>
+</div>
+  
 <img src="birthday.PNG" class="hero">
 
 <canvas id="confetti"></canvas>
@@ -95,7 +135,7 @@ opacity:1;
 From アストル3年目
 </div>
 
-<audio id="pop" src="party.mp3"></audio>
+<audio id="pop" src="party_poppers3.mp3"></audio>
 
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
@@ -142,7 +182,7 @@ document.getElementById("from").classList.add("show")
 
 frame()
 
-},2000)
+},3500)
 
 </script>
 
