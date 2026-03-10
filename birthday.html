@@ -10,8 +10,8 @@
 body{
 margin:0;
 overflow:hidden;
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
 background:black;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
 }
 
 /* ローディング */
@@ -80,9 +80,9 @@ left:0;
 width:100%;
 height:100%;
 object-fit:cover;
-animation:zoom 10s ease forwards;
 display:none;
 z-index:1;
+animation:zoom 10s ease forwards;
 }
 
 @keyframes zoom{
@@ -90,16 +90,14 @@ from{transform:scale(1);}
 to{transform:scale(1.08);}
 }
 
-/* confetti canvas */
+/* 紙吹雪 */
 
 #confetti{
 position:fixed;
 top:0;
 left:0;
-width:100%;
-height:100%;
+z-index:5;
 pointer-events:none;
-z-index:10;
 }
 
 /* フラッシュ */
@@ -113,7 +111,7 @@ height:100%;
 background:white;
 opacity:0;
 pointer-events:none;
-z-index:20;
+z-index:10;
 }
 
 .flash.show{
@@ -137,7 +135,7 @@ font-size:20px;
 opacity:0;
 transition:1s;
 text-shadow:0 2px 8px rgba(0,0,0,0.6);
-z-index:30;
+z-index:20;
 }
 
 .show{
@@ -178,13 +176,11 @@ From アストル3年目
 /* ローディング */
 
 setTimeout(()=>{
-
 document.getElementById("loading").style.display="none"
 document.getElementById("tapMessage").classList.add("show")
-
 },2800)
 
-/* タップ開始 */
+/* タップ */
 
 document.getElementById("tapMessage").addEventListener("click", startSurprise)
 
@@ -192,11 +188,10 @@ function startSurprise(){
 
 document.getElementById("tapMessage").style.display="none"
 
+/* 音声準備（iPhone対策） */
+
 const music = document.getElementById("music")
-
-/* iPhone用 音声許可 */
-
-music.volume=0
+music.volume = 1
 music.play().then(()=>{
 music.pause()
 music.currentTime=0
@@ -206,16 +201,22 @@ document.querySelector(".hero").style.display="block"
 
 setTimeout(()=>{
 
+/* フラッシュ */
+
 document.getElementById("flash").classList.add("show")
 
-const pop = document.getElementById("pop")
+/* クラッカー */
 
-pop.volume = 1
+const pop = document.getElementById("pop")
 pop.play()
 
 /* 紙吹雪 */
 
 const canvas = document.getElementById("confetti")
+
+canvas.width = window.innerWidth
+canvas.height = window.innerHeight
+
 const myConfetti = confetti.create(canvas,{resize:true})
 
 const duration = 4000
@@ -241,53 +242,21 @@ colors:['#FFD700','#FFC107','#FFB300']
 
 if(Date.now() < end){
 requestAnimationFrame(frame)
+}else{
+
+/* 曲再生 */
+
+music.play()
+
+/* From表示 */
+
+document.getElementById("from").classList.add("show")
+
 }
 
 }
 
 frame()
-
-/* クラッカー音フェード */
-
-let fade = setInterval(()=>{
-
-if(pop.volume > 0.05){
-
-pop.volume -= 0.05
-
-}else{
-
-pop.volume = 0
-clearInterval(fade)
-
-/* HappyBirthday再生 */
-
-setTimeout(()=>{
-
-music.volume=0
-music.play()
-
-let musicFade = setInterval(()=>{
-
-if(music.volume < 0.7){
-music.volume += 0.05
-}else{
-clearInterval(musicFade)
-}
-
-},200)
-
-},500)
-
-}
-
-},200)
-
-/* From表示 */
-
-setTimeout(()=>{
-document.getElementById("from").classList.add("show")
-},4500)
 
 },500)
 
