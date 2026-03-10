@@ -11,9 +11,10 @@ body{
 margin:0;
 overflow:hidden;
 font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
+background:black;
 }
 
-/* ローディング画面 */
+/* ローディング */
 
 #loading{
 position:fixed;
@@ -31,8 +32,6 @@ font-size:18px;
 color:#333;
 }
 
-/* くるくる */
-
 .loader{
 width:40px;
 height:40px;
@@ -47,8 +46,8 @@ margin-bottom:15px;
 0%{transform:rotate(0deg);}
 100%{transform:rotate(360deg);}
 }
-  
-/* 全画面ケーキ */
+
+/* ケーキ */
 
 .hero{
 position:fixed;
@@ -57,7 +56,7 @@ left:0;
 width:100%;
 height:100%;
 object-fit:cover;
-animation:zoom 8s ease forwards;
+animation:zoom 10s ease forwards;
 }
 
 @keyframes zoom{
@@ -95,8 +94,26 @@ animation:flashAnim 0.7s ease;
 
 @keyframes flashAnim{
 0%{opacity:0;}
-20%{opacity:0.8;}
+20%{opacity:0.9;}
 100%{opacity:0;}
+}
+
+/* キラキラ */
+
+.sparkle{
+position:fixed;
+width:6px;
+height:6px;
+background:white;
+border-radius:50%;
+opacity:0;
+animation:sparkleAnim 1.5s linear forwards;
+}
+
+@keyframes sparkleAnim{
+0%{opacity:0;transform:scale(0);}
+50%{opacity:1;transform:scale(1.5);}
+100%{opacity:0;transform:scale(0);}
 }
 
 /* 署名 */
@@ -106,9 +123,10 @@ position:fixed;
 right:20px;
 bottom:20px;
 color:white;
-font-size:18px;
+font-size:20px;
 opacity:0;
 transition:1s;
+text-shadow:0 2px 8px rgba(0,0,0,0.6);
 }
 
 .show{
@@ -119,12 +137,12 @@ opacity:1;
 </head>
 
 <body>
-  
+
 <div id="loading">
-  <div class="loader"></div>
-  <p>情報を取得しています...</p>
+<div class="loader"></div>
+<p>情報を取得しています...</p>
 </div>
-  
+
 <img src="birthday.PNG" class="hero">
 
 <canvas id="confetti"></canvas>
@@ -141,13 +159,17 @@ From アストル3年目
 
 <script>
 
+/* ローディング終了 */
+
 setTimeout(()=>{
 
-/* フラッシュ */
+document.getElementById("loading").style.display="none"
+
+/* ケーキ表示後 */
+
+setTimeout(()=>{
 
 document.getElementById("flash").classList.add("show")
-
-/* クラッカー音 */
 
 document.getElementById("pop").play()
 
@@ -157,7 +179,7 @@ const end = Date.now() + duration
 function frame(){
 
 confetti({
-particleCount:5,
+particleCount:6,
 angle:60,
 spread:70,
 origin:{x:0},
@@ -165,7 +187,7 @@ colors:['#FFD700','#FFC107','#FFB300']
 })
 
 confetti({
-particleCount:5,
+particleCount:6,
 angle:120,
 spread:70,
 origin:{x:1},
@@ -175,14 +197,40 @@ colors:['#FFD700','#FFC107','#FFB300']
 if(Date.now() < end){
 requestAnimationFrame(frame)
 }else{
+
+createSparkles()
+
 document.getElementById("from").classList.add("show")
+
 }
 
 }
 
 frame()
 
-},3500)
+},2000)
+
+},1500)
+
+/* キラキラ生成 */
+
+function createSparkles(){
+
+for(let i=0;i<40;i++){
+
+const s=document.createElement("div")
+s.className="sparkle"
+
+s.style.left=Math.random()*100+"vw"
+s.style.top=Math.random()*100+"vh"
+
+document.body.appendChild(s)
+
+setTimeout(()=>{s.remove()},1500)
+
+}
+
+}
 
 </script>
 
