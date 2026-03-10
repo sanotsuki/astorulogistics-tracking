@@ -173,21 +173,24 @@ document.getElementById("flash").classList.add("show")
 
 document.getElementById("pop").play()
 
+const myCanvas = document.getElementById("confetti")
+const myConfetti = confetti.create(myCanvas,{resize:true})
+
 const duration = 4000
 const end = Date.now() + duration
 
 function frame(){
 
-confetti({
-particleCount:6,
+myConfetti({
+particleCount:10,
 angle:60,
 spread:70,
 origin:{x:0},
 colors:['#FFD700','#FFC107','#FFB300']
 })
 
-confetti({
-particleCount:6,
+myConfetti({
+particleCount:10,
 angle:120,
 spread:70,
 origin:{x:1},
