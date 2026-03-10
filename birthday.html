@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Birthday</title>
+<title>Happy Birthday</title>
 
 <style>
 
@@ -15,7 +15,10 @@ justify-content:center;
 align-items:center;
 height:100vh;
 font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
+overflow:hidden;
 }
+
+/* カード */
 
 .card{
 position:relative;
@@ -26,46 +29,22 @@ overflow:hidden;
 box-shadow:0 10px 30px rgba(0,0,0,0.15);
 }
 
-.cake{
+/* 画像 */
+
+.card img{
 width:100%;
 display:block;
 }
 
-/* ろうそくの火 */
+/* 紙吹雪キャンバス */
 
-.flame{
-position:absolute;
-font-size:26px;
-cursor:pointer;
-transition:0.3s;
-}
-
-/* 消えた火 */
-
-.off{
-opacity:0;
-transform:scale(0);
-}
-
-/* HappyBirthday */
-
-.message{
-position:absolute;
-bottom:40px;
+#confetti{
+position:fixed;
+top:0;
+left:0;
 width:100%;
-text-align:center;
-font-size:40px;
-font-weight:700;
-color:white;
-opacity:0;
-transform:translateY(20px);
-transition:.6s;
-text-shadow:0 4px 12px rgba(0,0,0,0.4);
-}
-
-.show{
-opacity:1;
-transform:translateY(0);
+height:100%;
+pointer-events:none;
 }
 
 </style>
@@ -74,45 +53,47 @@ transform:translateY(0);
 <body>
 
 <div class="card">
-
-<img src="images/birthday.png" class="cake">
-
-<!-- ろうそくの火（位置調整） -->
-
-<div class="flame" style="top:70px; left:110px;">🔥</div>
-<div class="flame" style="top:65px; left:145px;">🔥</div>
-<div class="flame" style="top:60px; left:180px;">🔥</div>
-<div class="flame" style="top:65px; left:215px;">🔥</div>
-<div class="flame" style="top:70px; left:250px;">🔥</div>
-
-<div class="message" id="message">
-Happy Birthday 🎉
+<img src="images/birthday.png">
 </div>
 
-</div>
+<canvas id="confetti"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <script>
 
-const flames = document.querySelectorAll(".flame")
-let remaining = flames.length
+/* 3秒後に紙吹雪 */
 
-flames.forEach(f => {
+setTimeout(()=>{
 
-f.addEventListener("click", () => {
+const duration = 4000
+const end = Date.now() + duration
 
-if(!f.classList.contains("off")){
-f.classList.add("off")
-remaining--
+function frame(){
 
-if(remaining === 0){
-document.getElementById("message").classList.add("show")
+confetti({
+particleCount:4,
+angle:60,
+spread:70,
+origin:{x:0}
+})
+
+confetti({
+particleCount:4,
+angle:120,
+spread:70,
+origin:{x:1}
+})
+
+if(Date.now() < end){
+requestAnimationFrame(frame)
 }
 
 }
 
-})
+frame()
 
-})
+},3000)
 
 </script>
 
