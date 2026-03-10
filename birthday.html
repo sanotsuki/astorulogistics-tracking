@@ -9,34 +9,22 @@
 
 body{
 margin:0;
-background:#f2f3f7;
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
+overflow:hidden;
 font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
-overflow:hidden;
 }
 
-/* カード */
+/* 全画面画像 */
 
-.card{
-position:relative;
-width:92%;
-max-width:420px;
-border-radius:20px;
-overflow:hidden;
-box-shadow:0 10px 30px rgba(0,0,0,0.15);
-}
-
-/* 画像 */
-
-.card img{
+.hero{
+position:fixed;
+top:0;
+left:0;
 width:100%;
-display:block;
+height:100%;
+object-fit:cover;
 }
 
-/* 紙吹雪キャンバス */
+/* 紙吹雪 */
 
 #confetti{
 position:fixed;
@@ -47,22 +35,40 @@ height:100%;
 pointer-events:none;
 }
 
+/* 署名 */
+
+.from{
+position:fixed;
+right:20px;
+bottom:20px;
+color:white;
+font-size:18px;
+opacity:0;
+transition:1s;
+}
+
+.show{
+opacity:1;
+}
+
 </style>
 </head>
 
 <body>
 
-<div class="card">
-<img src="birthday.PNG">
-</div>
+<img src="birthday.png" class="hero">
 
 <canvas id="confetti"></canvas>
+
+<div id="from" class="from">
+From アストル3年目
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <script>
 
-/* 3秒後に紙吹雪 */
+/* 紙吹雪開始（3秒後） */
 
 setTimeout(()=>{
 
@@ -75,18 +81,22 @@ confetti({
 particleCount:4,
 angle:60,
 spread:70,
-origin:{x:0}
+origin:{x:0},
+colors:['#FFD700','#FFC107','#FFB300']
 })
 
 confetti({
 particleCount:4,
 angle:120,
 spread:70,
-origin:{x:1}
+origin:{x:1},
+colors:['#FFD700','#FFC107','#FFB300']
 })
 
 if(Date.now() < end){
 requestAnimationFrame(frame)
+}else{
+document.getElementById("from").classList.add("show")
 }
 
 }
