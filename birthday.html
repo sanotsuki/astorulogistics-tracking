@@ -3,54 +3,69 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday</title>
+<title>Birthday</title>
 
 <style>
 
 body{
 margin:0;
 background:#f2f3f7;
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
 display:flex;
 justify-content:center;
 align-items:center;
 height:100vh;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
 }
-
-/* カード */
 
 .card{
+position:relative;
 width:92%;
 max-width:420px;
-background:white;
 border-radius:20px;
-box-shadow:0 8px 24px rgba(0,0,0,0.12);
 overflow:hidden;
+box-shadow:0 10px 30px rgba(0,0,0,0.15);
 }
 
-/* 画像 */
-
-.card img{
+.cake{
 width:100%;
 display:block;
 }
 
-/* 下のメッセージ */
+/* ろうそくの火 */
+
+.flame{
+position:absolute;
+font-size:26px;
+cursor:pointer;
+transition:0.3s;
+}
+
+/* 消えた火 */
+
+.off{
+opacity:0;
+transform:scale(0);
+}
+
+/* HappyBirthday */
 
 .message{
-padding:20px;
+position:absolute;
+bottom:40px;
+width:100%;
 text-align:center;
+font-size:40px;
+font-weight:700;
+color:white;
+opacity:0;
+transform:translateY(20px);
+transition:.6s;
+text-shadow:0 4px 12px rgba(0,0,0,0.4);
 }
 
-.message h1{
-margin:0 0 10px;
-font-size:26px;
-}
-
-.message p{
-margin:0;
-font-size:16px;
-color:#555;
+.show{
+opacity:1;
+transform:translateY(0);
 }
 
 </style>
@@ -60,14 +75,46 @@ color:#555;
 
 <div class="card">
 
-<img src="birthday.png">
+<img src="images/birthday.png" class="cake">
 
-<div class="message">
-<h1>🎉 Happy Birthday 🎉</h1>
-<p>素敵な一年になりますように</p>
+<!-- ろうそくの火（位置調整） -->
+
+<div class="flame" style="top:70px; left:110px;">🔥</div>
+<div class="flame" style="top:65px; left:145px;">🔥</div>
+<div class="flame" style="top:60px; left:180px;">🔥</div>
+<div class="flame" style="top:65px; left:215px;">🔥</div>
+<div class="flame" style="top:70px; left:250px;">🔥</div>
+
+<div class="message" id="message">
+Happy Birthday 🎉
 </div>
 
 </div>
+
+<script>
+
+const flames = document.querySelectorAll(".flame")
+let remaining = flames.length
+
+flames.forEach(f => {
+
+f.addEventListener("click", () => {
+
+if(!f.classList.contains("off")){
+f.classList.add("off")
+remaining--
+
+if(remaining === 0){
+document.getElementById("message").classList.add("show")
+}
+
+}
+
+})
+
+})
+
+</script>
 
 </body>
 </html>
