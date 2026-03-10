@@ -13,7 +13,7 @@ overflow:hidden;
 font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
 }
 
-/* 全画面画像 */
+/* 全画面ケーキ */
 
 .hero{
 position:fixed;
@@ -22,6 +22,12 @@ left:0;
 width:100%;
 height:100%;
 object-fit:cover;
+animation:zoom 8s ease forwards;
+}
+
+@keyframes zoom{
+from{transform:scale(1);}
+to{transform:scale(1.08);}
 }
 
 /* 紙吹雪 */
@@ -33,6 +39,29 @@ left:0;
 width:100%;
 height:100%;
 pointer-events:none;
+}
+
+/* フラッシュ */
+
+.flash{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:white;
+opacity:0;
+pointer-events:none;
+}
+
+.flash.show{
+animation:flashAnim 0.7s ease;
+}
+
+@keyframes flashAnim{
+0%{opacity:0;}
+20%{opacity:0.8;}
+100%{opacity:0;}
 }
 
 /* 署名 */
@@ -60,17 +89,27 @@ opacity:1;
 
 <canvas id="confetti"></canvas>
 
+<div id="flash" class="flash"></div>
+
 <div id="from" class="from">
 From アストル3年目
 </div>
+
+<audio id="pop" src="party.mp3"></audio>
 
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <script>
 
-/* 紙吹雪開始（3秒後） */
-
 setTimeout(()=>{
+
+/* フラッシュ */
+
+document.getElementById("flash").classList.add("show")
+
+/* クラッカー音 */
+
+document.getElementById("pop").play()
 
 const duration = 4000
 const end = Date.now() + duration
@@ -78,7 +117,7 @@ const end = Date.now() + duration
 function frame(){
 
 confetti({
-particleCount:4,
+particleCount:5,
 angle:60,
 spread:70,
 origin:{x:0},
@@ -86,7 +125,7 @@ colors:['#FFD700','#FFC107','#FFB300']
 })
 
 confetti({
-particleCount:4,
+particleCount:5,
 angle:120,
 spread:70,
 origin:{x:1},
@@ -103,7 +142,7 @@ document.getElementById("from").classList.add("show")
 
 frame()
 
-},3000)
+},2000)
 
 </script>
 
